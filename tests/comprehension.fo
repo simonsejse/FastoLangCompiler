@@ -1,0 +1,8 @@
+fun int write_int(int x) = write(x)
+fun [int] write_int_arr([int] x) = map(write_int, x)
+
+fun [int] main() =
+  let n = read (int) in
+  let x = iota (n)   in
+  let y = iota (n)   in
+  write_int_arr ([int r*r | i <- x, j <-y; int r = (i+j) / 2; r - (r/5)*5 == 0 ])

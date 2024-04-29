@@ -1,0 +1,1 @@
+Type error: Arity mismatch in declaration of main: expected a function of arity 0, but got int -> int at line 2, column 9

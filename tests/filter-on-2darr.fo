@@ -1,0 +1,17 @@
+fun int write_int(int x) = write(x)
+fun  [int]  write_1darr( [int]  x) = map(write_int  , x)
+fun [[int]] write_2darr([[int]] x) = map(write_1darr, x)
+
+fun bool even(int a) =
+  (a / 2) * 2 == a
+
+fun [[int]] main() =
+  let n   = read(int) in
+  let a2d = map( fn [int] (int i) => iota(i+2)
+               , iota(n)) in
+  let a2df= filter(fn bool ([int] a) =>
+                    let r = reduce(fn int(int x, int y) => x+y, 0, a)
+                    in  even(r)
+                  , a2d)
+  in write_2darr(a2df)
+

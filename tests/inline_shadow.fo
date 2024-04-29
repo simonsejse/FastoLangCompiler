@@ -1,0 +1,15 @@
+fun int f(int a, int b, int c, int d) = 1000*a + 100*b + 10*c + d
+
+fun int zero(bool b) = if b then 0 else zero(b)
+
+fun int test(int z) =
+  let a = 1+z in
+  let b = 2+z in
+  let c = 3+z in
+  let d = 4+z in
+  f(d,a,c,b)
+
+fun int main() =
+  let r1 = write(test(0)) in
+  let r2 = write(test(zero(true))) in
+  10000*r1+r2

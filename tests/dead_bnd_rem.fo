@@ -1,0 +1,16 @@
+fun int main() = 
+   let y = read(int) in
+   let x = y * y in
+   let z = 
+       let x =
+           let x = x + 3 in
+           let x = x + y 
+           in  x + 8
+       in  y
+   in
+   let x = y + 2 in
+   let w = x + 2 + z in
+   let v = 
+        let y = y + 3 
+        in  x * y
+   in  write(v) 

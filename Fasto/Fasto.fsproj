@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FsLexYacc" Version="11.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <FsYacc Include="Parser.fsp">
+      <OtherFlags>-v --module Parser</OtherFlags>
+    </FsYacc>
+    <FsLex Include="Lexer.fsl">
+      <OtherFlags></OtherFlags>
+    </FsLex>
+    <Compile Include="AbSyn.fs" />
+    <Compile Include="SymTab.fs" />
+    <Compile Include="Parser.fs" />
+    <Compile Include="Lexer.fs" />
+    <Compile Include="Interpreter.fs" />
+    <Compile Include="TypeChecker.fs" />
+    <Compile Include="CallGraph.fs" />
+    <Compile Include="Inlining.fs" />
+    <Compile Include="DeadFunctionRemoval.fs" />
+    <Compile Include="DeadBindingRemoval.fs" />
+    <Compile Include="CopyConstPropFold.fs" />
+    <Compile Include="RiscV.fs" />
+    <Compile Include="RegAlloc.fs" />
+    <Compile Include="CodeGen.fs" />
+
+    <Compile Include="Fasto.fs" />
+  </ItemGroup>
+
+
+</Project>
