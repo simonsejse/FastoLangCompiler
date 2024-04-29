@@ -45,13 +45,13 @@ let parse_error_rich =
 //specials
 %token <Position> IOTA LENGTH MAP READ REDUCE WRITE
 //symbols
-%token <Position> MINUS PLUS DEQ LTH
+%token <Position> MINUS PLUS TIMES DIVIDE DEQ LTH
 %token <Position> COMMA SEMICOLON EQ ARROW LPAR RPAR LBRACKET RBRACKET
 %token <Position> LCURLY RCURLY EOF
 
 %nonassoc ELSE IN
 %left DEQ LTH
-%left PLUS MINUS
+%left PLUS MINUS TIMES DIVIDE
 
 %start Prog
 %type <AbSyn.UntypedProg> Prog
@@ -102,6 +102,8 @@ Exp : NUM            { Constant (IntVal (fst $1), snd $1) }
                      { ArrayLit ($2, (), $1) }
     | Exp PLUS  Exp  { Plus ($1, $3, $2) }
     | Exp MINUS Exp  { Minus($1, $3, $2) }
+    | Exp TIMES Exp  { Times($1, $3, $2) }
+    | Exp DIVIDE Exp  { Divide($1, $3, $2) }
     | Exp DEQ   Exp  { Equal($1, $3, $2) }
     | Exp LTH   Exp  { Less ($1, $3, $2) }
     | IF Exp THEN Exp ELSE Exp
