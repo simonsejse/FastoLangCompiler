@@ -97,6 +97,8 @@ type nonTerminalId =
     | NONTERM_Fun
     | NONTERM_Type
     | NONTERM_Params
+    | NONTERM_LetDecls
+    | NONTERM_LetDecl
     | NONTERM_Exp
     | NONTERM_Exps
     | NONTERM_FunArg
