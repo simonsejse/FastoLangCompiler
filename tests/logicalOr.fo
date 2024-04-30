@@ -1,0 +1,7 @@
+fun bool main() = 
+  let a = true in
+  let b = false in
+  let result1 = a || b in   // Expected to be true (short-circuit)
+  let result2 = b || a in   // Expected to be true
+  let x = write(result1) in
+  write(result2)

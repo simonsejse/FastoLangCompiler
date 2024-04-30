@@ -1,0 +1,4 @@
+fun int main() = 
+  let a = 10 in
+  let result1 = ~a in  // Expected to be -10
+  write(result1)

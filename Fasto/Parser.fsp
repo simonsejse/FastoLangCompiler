@@ -41,17 +41,23 @@ let parse_error_rich =
 %token <char * Position> CHARLIT
 %token <string * Position> ID STRINGLIT
 //keywords
-%token <Position> BOOL CHAR ELSE FN FUN IF IN INT LET THEN TRUE
+%token <Position> BOOL CHAR ELSE FN FUN IF IN INT LET THEN
+%token <Position> NOT TRUE FALSE
 //specials
 %token <Position> IOTA LENGTH MAP READ REDUCE WRITE
 //symbols
 %token <Position> MINUS PLUS TIMES DIVIDE DEQ LTH
 %token <Position> COMMA SEMICOLON EQ ARROW LPAR RPAR LBRACKET RBRACKET
 %token <Position> LCURLY RCURLY EOF
+%token <Position> AND OR NEG
 
 %nonassoc ELSE IN
+%left OR
+%left AND
 %left DEQ LTH
-%left PLUS MINUS TIMES DIVIDE
+%left PLUS MINUS
+%left TIMES DIVIDE
+%right NOT NEG
 
 %start Prog
 %type <AbSyn.UntypedProg> Prog
@@ -97,6 +103,8 @@ Params : Type ID COMMA Params
 Exp : NUM            { Constant (IntVal (fst $1), snd $1) }
     | CHARLIT        { Constant (CharVal (fst $1), snd $1) }
     | ID             { Var $1 }
+    | TRUE           { Constant (BoolVal true, $1) }
+    | FALSE          { Constant (BoolVal false, $1) }
     | STRINGLIT      { StringLit $1 }
     | LCURLY Exps RCURLY
                      { ArrayLit ($2, (), $1) }
@@ -104,8 +112,12 @@ Exp : NUM            { Constant (IntVal (fst $1), snd $1) }
     | Exp MINUS Exp  { Minus($1, $3, $2) }
     | Exp TIMES Exp  { Times($1, $3, $2) }
     | Exp DIVIDE Exp  { Divide($1, $3, $2) }
-    | Exp DEQ   Exp  { Equal($1, $3, $2) }
-    | Exp LTH   Exp  { Less ($1, $3, $2) }
+    | Exp DEQ Exp  { Equal($1, $3, $2) }
+    | Exp LTH Exp  { Less ($1, $3, $2) }
+    | Exp AND Exp  { And ($1, $3, $2) }
+    | Exp OR Exp  { Or ($1, $3, $2) }
+    | NEG Exp { Negate ($2, $1) }
+    | NOT Exp { Not ($2, $1) }
     | IF Exp THEN Exp ELSE Exp
                      { If ($2, $4, $6, $1) }
     | ID LPAR Exps RPAR

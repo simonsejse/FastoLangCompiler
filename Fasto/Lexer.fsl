@@ -62,6 +62,7 @@ let keyword (s, pos) =
        | "char"         -> Parser.CHAR pos
        | "fun"          -> Parser.FUN pos
        | "fn"           -> Parser.FN pos
+       | "not"          -> Parser.NOT pos
 
 (* specials: *)
        | "iota"         -> Parser.IOTA pos
@@ -80,6 +81,8 @@ rule Token = parse
                                              :: lineStartPos;
                             Token lexbuf } (* newlines *)
   | "//" [^ '\n' '\012']* { Token lexbuf } (* comment *)
+  | "true"              { Parser.TRUE (getPos lexbuf) }
+  | "false"             { Parser.FALSE (getPos lexbuf) }
 
   | '0' | ['1'-'9']['0'-'9']* { Parser.NUM
                                   ( int (Encoding.UTF8.GetString(lexbuf.Lexeme))
@@ -102,8 +105,11 @@ rule Token = parse
                           }
   | '+'                   { Parser.PLUS   (getPos lexbuf) }
   | '-'                   { Parser.MINUS  (getPos lexbuf) }
+  | '~'                   { Parser.NEG  (getPos lexbuf) }
   | '*'                   { Parser.TIMES  (getPos lexbuf) }
   | '/'                   { Parser.DIVIDE  (getPos lexbuf) }
+  | "&&"                  { Parser.AND  (getPos lexbuf) }
+  | "||"                  { Parser.OR  (getPos lexbuf) }
   | "=>"                  { Parser.ARROW  (getPos lexbuf) }
   | "=="                  { Parser.DEQ    (getPos lexbuf) }
   | '='                   { Parser.EQ     (getPos lexbuf) }

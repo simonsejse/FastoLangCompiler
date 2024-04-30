@@ -10,7 +10,7 @@ open System.Reflection
 [<assembly: System.Reflection.AssemblyCompanyAttribute("Fasto")>]
 [<assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")>]
 [<assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")>]
-[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fe97a8e8928f9c51346dc4d0464eb037e3cef1f0")>]
+[<assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0b93be3c036347ffedce94891129992e15042f3d")>]
 [<assembly: System.Reflection.AssemblyProductAttribute("Fasto")>]
 [<assembly: System.Reflection.AssemblyTitleAttribute("Fasto")>]
 [<assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")>]

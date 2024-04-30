@@ -1,0 +1,5 @@
+fun bool main() = 
+  let a = 10 in  // Incorrect type: int instead of bool
+  let b = false in
+  let result = a && b in  // This should raise a type error for 'a'
+  write(result)
