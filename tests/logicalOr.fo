@@ -1,7 +1,10 @@
-fun bool main() = 
-  let a = true in
-  let b = false in
+fun bool print(bool a) = write(a)
+
+fun [bool] main() = 
+  let a = true; b = false; c = true in
   let result1 = a || b in   // Expected to be true (short-circuit)
   let result2 = b || a in   // Expected to be true
-  let x = write(result1) in
-  write(result2)
+  let result3 = b || c in   // Expected to be true 
+  let result4 = c || b in   // Expected to be true (short-circuit)
+  let result5 = b || b in   // Expected to be false
+  map(print, {result1, result2, result3, result4, result5})

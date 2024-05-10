@@ -110,7 +110,7 @@ l.then_33_:
 # 	mv	x10,_tmp_40_
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-	li	x11, 0
+	li	x18, 0
 # was:	li	_mainres_31_, 0
 	j	l.endif_35_
 l.else_34_:
@@ -491,33 +491,39 @@ l.nonneg_141_:
 # was:	addi	_i_126_, _i_126_, 1
 	j	l.loop_beg_127_
 l.loop_end_128_:
-# 	mv	_arr_143_,_let_squares_113_
+# 	mv	_arr_144_,_let_squares_113_
 	lw	x10, 0(x18)
-# was:	lw	_size_144_, 0(_arr_143_)
+# was:	lw	_size_145_, 0(_arr_144_)
 	li	x11, 0
-# was:	li	_mainres_31_, 0
+# was:	li	_tmp_143_, 0
 	addi	x18, x18, 4
-# was:	addi	_arr_143_, _arr_143_, 4
+# was:	addi	_arr_144_, _arr_144_, 4
 	mv	x12, x0
-# was:	mv	_ind_var_145_, x0
-l.loop_beg_147_:
-	bge	x12, x10, l.loop_end_148_
-# was:	bge	_ind_var_145_, _size_144_, l.loop_end_148_
+# was:	mv	_ind_var_146_, x0
+l.loop_beg_148_:
+	bge	x12, x10, l.loop_end_149_
+# was:	bge	_ind_var_146_, _size_145_, l.loop_end_149_
 	lw	x13, 0(x18)
-# was:	lw	_tmp_146_, 0(_arr_143_)
+# was:	lw	_tmp_147_, 0(_arr_144_)
 	addi	x18, x18, 4
-# was:	addi	_arr_143_, _arr_143_, 4
-# 	mv	_plus_L_150_,_mainres_31_
-# 	mv	_plus_R_151_,_tmp_146_
+# was:	addi	_arr_144_, _arr_144_, 4
+# 	mv	_plus_L_151_,_tmp_143_
+# 	mv	_plus_R_152_,_tmp_147_
 	add	x11, x11, x13
-# was:	add	_fun_arg_res_149_, _plus_L_150_, _plus_R_151_
-# 	mv	_mainres_31_,_fun_arg_res_149_
+# was:	add	_fun_arg_res_150_, _plus_L_151_, _plus_R_152_
+# 	mv	_tmp_143_,_fun_arg_res_150_
 	addi	x12, x12, 1
-# was:	addi	_ind_var_145_, _ind_var_145_, 1
-	j	l.loop_beg_147_
-l.loop_end_148_:
+# was:	addi	_ind_var_146_, _ind_var_146_, 1
+	j	l.loop_beg_148_
+l.loop_end_149_:
+	mv	x18, x11
+# was:	mv	_mainres_31_, _tmp_143_
+	mv	x10, x18
+# was:	mv	x10, _mainres_31_
+	jal	p.putint
+# was:	jal	p.putint, x10
 l.endif_35_:
-	mv	x10, x11
+	mv	x10, x18
 # was:	mv	x10, _mainres_31_
 	addi	x2, x2, 28
 	lw	x23, -28(x2)

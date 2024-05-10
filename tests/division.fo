@@ -1,5 +1,5 @@
 fun int main() = 
-  let a = 20 in
+  let a = read(int) in
   let b = 4 in
   let result1 = a / b in
   write(result1)

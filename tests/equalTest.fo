@@ -1,4 +1,0 @@
-
-fun bool main() =
-    let a = 2 in
-    write((a / 16) == a)

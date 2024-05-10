@@ -155,16 +155,35 @@ and checkExp (ftab: FunTable) (vtab: VarTable) (exp: UntypedExp) : (Type * Typed
         Implement by pattern matching Plus/Minus above.
         See `AbSyn.fs` for the expression constructors of `Times`, ...
     *)
-    | Times(e1, e2, pos) -> failwith "Unimplemented type check of multiplication"
+    | Times(e1, e2, pos) ->
+        let (e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Int, e1, e2)
+        (Int, Times(e1_dec, e2_dec, pos))
+    | Divide(e1, e2, pos) ->
+        let (e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Int, e1, e2)
+        (Int, Divide(e1_dec, e2_dec, pos))
 
-    | Divide(_, _, _) -> failwith "Unimplemented type check of division"
+    | And(e1, e2, pos) ->
+        let (e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Bool, e1, e2)
+        (Bool, And(e1_dec, e2_dec, pos))
 
-    | And(_, _, _) -> failwith "Unimplemented type check of &&"
-    | Or(_, _, _) -> failwith "Unimplemented type check of ||"
+    | Or(e1, e2, pos) ->
+        let (e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Bool, e1, e2)
+        (Bool, Or(e1_dec, e2_dec, pos))
+    | Not(exp, pos) ->
+        let (t, exp_dec) = checkExp ftab vtab exp
 
-    | Not(_, _) -> failwith "Unimplemented type check of not"
+        if t <> Bool then
+            reportTypeWrong "argument of not" Bool t pos
 
-    | Negate(_, _) -> failwith "Unimplemented type check of negate"
+        (Bool, Not(exp_dec, pos))
+
+    | Negate(exp, pos) ->
+        let (t, exp_dec) = checkExp ftab vtab exp
+
+        if t <> Int then
+            reportTypeWrong "argument of negate" Int t pos
+
+        (Int, Negate(exp_dec, pos))
 
     (* The types for e1, e2 must be the same. The result is always a Bool. *)
     | Equal(e1, e2, pos) ->
@@ -341,7 +360,14 @@ and checkExp (ftab: FunTable) (vtab: VarTable) (exp: UntypedExp) : (Type * Typed
         - assuming `a` is of type `t` the result type
           of replicate is `[t]`
     *)
-    | Replicate(_, _, _, _) -> failwith "Unimplemented type check of replicate"
+    | Replicate(n: Exp<unit>, a: Exp<unit>, tp: unit, pos: Position) ->
+        let (n_tp, n') = checkExp ftab vtab n
+        let (a_tp, a') = checkExp ftab vtab a
+
+        if n_tp <> Int then
+            reportTypeWrong "1st argument of replicate" Int n_tp pos
+
+        (Array a_tp, Replicate(n', a', a_tp, pos))
 
     (* TODO project task 2: Hint for `filter(f, arr)`
         Look into the type-checking lecture slides for the type rule of `map`
@@ -352,7 +378,17 @@ and checkExp (ftab: FunTable) (vtab: VarTable) (exp: UntypedExp) : (Type * Typed
             - `arr` should be of type `[ta]`
             - the result of filter should have type `[ta]`
     *)
-    | Filter(_, _, _, _) -> failwith "Unimplemented type check of filter"
+    | Filter(f: FunArg<unit>, arr: Exp<unit>, tp: unit, pos: Position) ->
+        match checkFunArg ftab vtab pos f with
+        | (f', Bool, [ ta ]) ->
+
+            let (arr_tp, arr') = checkExp ftab vtab arr
+
+            if arr_tp <> Array ta then
+                reportTypesDifferent "array argument of filter" (Array ta) arr_tp pos
+
+            (Array ta, Filter(f', arr', ta, pos))
+
 
     (* TODO project task 2: `scan(f, ne, arr)`
         Hint: Implementation is very similar to `reduce(f, ne, arr)`.

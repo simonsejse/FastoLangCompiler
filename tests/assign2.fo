@@ -12,5 +12,5 @@ fun int main() =
         let arr = map(fn int (int i) => read (int), iota(n)) in
         let difs = map(fn int (int i) => if i == 0 then arr[0] - arr[n-1] else arr[i] - arr[i-1], iota(n)) in
         let squares = map(fn int (int i) => mul(difs[i], difs[i]), iota(n)) in
-        reduce(fn int (int x, int y) => x+y, 0, squares)
+        write(reduce(fn int (int x, int y) => x+y, 0, squares))
     
