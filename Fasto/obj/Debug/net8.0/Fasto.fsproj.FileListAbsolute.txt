@@ -1,6 +1,3 @@
-/Users/simonwinther/dev/GitHub/fasto/Fasto/obj/Debug/net8.0/Fasto.AssemblyInfoInputs.cache
-/Users/simonwinther/dev/GitHub/fasto/Fasto/obj/Debug/net8.0/Fasto.AssemblyInfo.fs
-/Users/simonwinther/dev/GitHub/fasto/Fasto/obj/Debug/net8.0/Fasto.fsproj.AssemblyReference.cache
 /Users/simonwinther/dev/GitHub/fasto/Fasto/bin/Debug/net8.0/Fasto
 /Users/simonwinther/dev/GitHub/fasto/Fasto/bin/Debug/net8.0/Fasto.deps.json
 /Users/simonwinther/dev/GitHub/fasto/Fasto/bin/Debug/net8.0/Fasto.runtimeconfig.json
@@ -21,6 +18,9 @@
 /Users/simonwinther/dev/GitHub/fasto/Fasto/bin/Debug/net8.0/tr/FSharp.Core.resources.dll
 /Users/simonwinther/dev/GitHub/fasto/Fasto/bin/Debug/net8.0/zh-Hans/FSharp.Core.resources.dll
 /Users/simonwinther/dev/GitHub/fasto/Fasto/bin/Debug/net8.0/zh-Hant/FSharp.Core.resources.dll
+/Users/simonwinther/dev/GitHub/fasto/Fasto/obj/Debug/net8.0/Fasto.fsproj.AssemblyReference.cache
+/Users/simonwinther/dev/GitHub/fasto/Fasto/obj/Debug/net8.0/Fasto.AssemblyInfoInputs.cache
+/Users/simonwinther/dev/GitHub/fasto/Fasto/obj/Debug/net8.0/Fasto.AssemblyInfo.fs
 /Users/simonwinther/dev/GitHub/fasto/Fasto/obj/Debug/net8.0/Fasto.fsproj.CoreCompileInputs.cache
 /Users/simonwinther/dev/GitHub/fasto/Fasto/obj/Debug/net8.0/Fasto.sourcelink.json
 /Users/simonwinther/dev/GitHub/fasto/Fasto/obj/Debug/net8.0/Fasto.fsproj.Up2Date
