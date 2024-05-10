@@ -21,6 +21,7 @@ type token =
   | DIVIDE of (Position)
   | DEQ of (Position)
   | LTH of (Position)
+  | GTH of (Position)
   | IOTA of (Position)
   | LENGTH of (Position)
   | MAP of (Position)
@@ -65,6 +66,7 @@ type tokenId =
     | TOKEN_DIVIDE
     | TOKEN_DEQ
     | TOKEN_LTH
+    | TOKEN_GTH
     | TOKEN_IOTA
     | TOKEN_LENGTH
     | TOKEN_MAP

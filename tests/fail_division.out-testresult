@@ -1,0 +1,15 @@
+Unhandled exception. System.Exception: Unimplemented type check of division
+   at TypeChecker.checkExp(SymTab`1 ftab, SymTab`1 vtab, Exp`1 exp) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 160
+   at TypeChecker.checkExp(SymTab`1 ftab, SymTab`1 vtab, Exp`1 exp) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 239
+   at TypeChecker.checkExp(SymTab`1 ftab, SymTab`1 vtab, Exp`1 exp) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 241
+   at TypeChecker.checkExp(SymTab`1 ftab, SymTab`1 vtab, Exp`1 exp) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 241
+   at TypeChecker.checkExp(SymTab`1 ftab, SymTab`1 vtab, Exp`1 exp) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 241
+   at TypeChecker.checkFunWithVtable(SymTab`1 ftab, SymTab`1 vtab, Int32 pos_0, Int32 pos_1, FunDec`1 fdec) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 394
+   at TypeChecker.checkFun(SymTab`1 ftab, FunDec`1 fundec) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 419
+   at TypeChecker.decorated_funDecs@423.Invoke(FunDec`1 fundec)
+   at Microsoft.FSharp.Primitives.Basics.List.map[T,TResult](FSharpFunc`2 mapping, FSharpList`1 x) in D:\a\_work\1\s\src\FSharp.Core\local.fs:line 243
+   at Microsoft.FSharp.Collections.ListModule.Map[T,TResult](FSharpFunc`2 mapping, FSharpList`1 list) in D:\a\_work\1\s\src\FSharp.Core\list.fs:line 97
+   at TypeChecker.checkProg(FSharpList`1 funDecs) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 423
+   at Fasto.compile(String filename, FSharpFunc`2 optimiser) in /Users/simonwinther/dev/GitHub/fasto/Fasto/Fasto.fs:line 151
+   at Fasto.main(String[] paramList) in /Users/simonwinther/dev/GitHub/fasto/Fasto/Fasto.fs:line 212
+./bin/../bin/fasto.sh: line 18: 56158 Abort trap: 6           dotnet $FASTO "$@"

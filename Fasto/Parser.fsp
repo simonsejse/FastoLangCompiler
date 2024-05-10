@@ -17,6 +17,11 @@ let parse_error_rich =
       | Some token -> sprintf "at token %A\n" token
   )
 
+let rec desugarLet decls exp pos = 
+    match decls with
+    | [] -> exp
+    | dec :: decs -> Let (dec, desugarLet decs exp pos, pos)
+
 %}
 
 //////////////////////////////////////////////////////////////////////
@@ -46,7 +51,7 @@ let parse_error_rich =
 //specials
 %token <Position> IOTA LENGTH MAP READ REDUCE WRITE
 //symbols
-%token <Position> MINUS PLUS TIMES DIVIDE DEQ LTH
+%token <Position> MINUS PLUS TIMES DIVIDE DEQ LTH GTH
 %token <Position> COMMA SEMICOLON EQ ARROW LPAR RPAR LBRACKET RBRACKET
 %token <Position> LCURLY RCURLY EOF
 %token <Position> AND OR NEG
@@ -55,7 +60,7 @@ let parse_error_rich =
 %nonassoc ELSE IN
 %left OR
 %left AND
-%left DEQ LTH
+%left DEQ LTH GTH
 %left PLUS MINUS TIMES DIVIDE
 %right NOT NEG
 
@@ -94,12 +99,14 @@ Params : Type ID COMMA Params
                        { Param (fst $2, $1) :: $4 }
        | Type ID       { Param (fst $2, $1) :: [] }
 ;
-
-LetDecls : LetDecl SEMICOLON LetDecls { $1 :: $3 }
-         | LetDecl                   { [$1] }
+    
+LetDecls : LetDecl                    { $1 :: [] }
+         | LetDecl SEMICOLON LetDecls { $1 :: $3 }
 ;
 
-LetDecl : ID EQ Exp { ($1, $3) }
+LetDecl : ID EQ Exp { Dec (fst $1, $3, $2) }
+;
+
 
 ///////////////////////////////////////////////////////
 // TODO: project tasks 1,2,4: 
@@ -140,12 +147,11 @@ Exp : NUM            { Constant (IntVal (fst $1), snd $1) }
     | REDUCE LPAR FunArg COMMA Exp COMMA Exp RPAR
                      { Reduce ($3, $5, $7, (), $1) }
     | LPAR Exp RPAR  { $2 }
-    // TODO: task 1(b): replace this with a more general production
-    | LET ID EQ Exp IN Exp
-                     { Let (Dec (fst $2, $4, $3), $6, $1) }
+    | LET LetDecls IN Exp { desugarLet $2 $4 $1 }
     | ID LBRACKET Exp RBRACKET
                      { Index (fst $1, $3, (), $2) }
 ;
+
 
 Exps : Exp COMMA Exps { $1 :: $3 }
      | Exp            { $1 :: [] }
