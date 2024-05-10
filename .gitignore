@@ -1,8 +1,10 @@
 /.vscode/
+.vscode/
 
 /Fasto/bin/
-Fasto/bin
+Fasto/bin/
+
 /Fasto/obj/
-Fasto/obj
+Fasto/obj/
 
 /doc/
