@@ -312,7 +312,22 @@ let rec evalExp (e: UntypedExp, vtab: VarTable, ftab: FunTable) : Value =
          the value of `a`; otherwise raise an error (containing
          a meaningful message).
   *)
-    | Replicate(_, _, _, _) -> failwith "Unimplemented interpretation of replicate"
+    (* Replicate of Exp<'T> * Exp<'T> * 'T * Position *)
+    | Replicate(n: Exp<unit>, a: Exp<unit>, tp: unit, pos: Position) ->
+        let n_val = (n, vtab, ftab) |> evalExp
+        let a_val = (a, vtab, ftab) |> evalExp
+
+        let arr =
+            match n_val with
+            | BoolVal _
+            | ArrayVal(_, _)
+            | CharVal(_) -> raise (MyError("Replicate: first argument should be an integer", pos))
+            | IntVal n when n >= 0 -> ArrayVal(List.init n (fun _ -> a_val), valueType a_val)
+            | IntVal _ -> raise (MyError("Replicate: negative argument", pos))
+
+        arr
+
+
 
     (* TODO project task 2: `filter(p, arr)`
        pattern match the implementation of map:
@@ -322,14 +337,53 @@ let rec evalExp (e: UntypedExp, vtab: VarTable, ftab: FunTable) : Value =
          that the return value is a boolean at all);
        - create an `ArrayVal` from the (list) result of the previous step.
   *)
-    | Filter(_, _, _, _) -> failwith "Unimplemented interpretation of filter"
+
+    (*let x = filter(fn bool (int a) => a == (a/2)*2, iota(n)) in*)
+    | Filter(P: FunArg<unit>, arr: Exp<unit>, tp: unit, pos: Position) ->
+        let arr_val = (arr, vtab, ftab) |> evalExp
+
+        match arr_val with
+        | IntVal(_)
+        | BoolVal(_)
+        | CharVal(_) -> raise (MyError("Filter: second argument should be an array", pos))
+        | ArrayVal(lst, tp1) ->
+            let flst =
+                List.filter
+                    (fun x ->
+                        match evalFunArg (P, vtab, ftab, pos, [ x ]) with
+                        | BoolVal b -> b
+                        | _ -> raise (MyError("Filter: predicate should return a boolean", pos)))
+                    lst
+
+            ArrayVal(flst, tp1)
+
 
     (* TODO project task 2: `scan(f, ne, arr)`
      Implementation similar to reduce, except that it produces an array
      of the same type and length to the input array `arr`.
+    let b = scan(incr, 0, a) in
   *)
-    | Scan(_, _, _, _, _) -> failwith "Unimplemented interpretation of scan"
+    (*| Scan of FunArg<'T> * Exp<'T> * Exp<'T> * 'T * Position*)
+    | Scan(fargs: FunArg<unit>, ne: Exp<unit>, arr: Exp<unit>, tp: unit, pos: Position) ->
+        let arr_val = (arr, vtab, ftab) |> evalExp
+        let ne_val = (ne, vtab, ftab) |> evalExp
 
+        match arr_val with
+        | IntVal(_)
+        | BoolVal(_)
+        | CharVal(_) -> raise (MyError("Scan: third argument should be an array", pos))
+        | ArrayVal(lst, tp1) ->
+            let scan_lst =
+                (List.scan
+                    (fun acc x ->
+                        let args = [ acc; x ]
+                        evalFunArg (fargs, vtab, ftab, pos, args))
+                    ne_val
+                    lst)
+                |> List.tail
+
+
+            ArrayVal(scan_lst, tp1)
     | Read(t, p) ->
         let str = Console.ReadLine()
 
@@ -396,13 +450,8 @@ and evalFunArg (funarg: UntypedFunArg, vtab: VarTable, ftab: FunTable, callpos: 
     4. ftab is the function symbol table (containing f itself).
     5. pcall is the position of the function call. *)
 and callFunWithVtable
-    (
-        fundec: UntypedFunDec,
-        aargs: Value list,
-        vtab: VarTable,
-        ftab: FunTable,
-        pcall: Position
-    ) : Value =
+    (fundec: UntypedFunDec, aargs: Value list, vtab: VarTable, ftab: FunTable, pcall: Position)
+    : Value =
     let (FunDec(fid, rtp, fargs, body, pdcl)) = fundec
 
     match fid with

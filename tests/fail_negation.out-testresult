@@ -1,13 +1,13 @@
 Unhandled exception. System.Exception: Unimplemented type check of negate
-   at TypeChecker.checkExp(SymTab`1 ftab, SymTab`1 vtab, Exp`1 exp) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 169
-   at TypeChecker.checkExp(SymTab`1 ftab, SymTab`1 vtab, Exp`1 exp) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 241
-   at TypeChecker.checkExp(SymTab`1 ftab, SymTab`1 vtab, Exp`1 exp) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 243
-   at TypeChecker.checkFunWithVtable(SymTab`1 ftab, SymTab`1 vtab, Int32 pos_0, Int32 pos_1, FunDec`1 fdec) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 396
-   at TypeChecker.checkFun(SymTab`1 ftab, FunDec`1 fundec) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 421
-   at TypeChecker.decorated_funDecs@425.Invoke(FunDec`1 fundec)
-   at Microsoft.FSharp.Primitives.Basics.List.map[T,TResult](FSharpFunc`2 mapping, FSharpList`1 x) in D:\a\_work\1\s\src\FSharp.Core\local.fs:line 243
-   at Microsoft.FSharp.Collections.ListModule.Map[T,TResult](FSharpFunc`2 mapping, FSharpList`1 list) in D:\a\_work\1\s\src\FSharp.Core\list.fs:line 97
-   at TypeChecker.checkProg(FSharpList`1 funDecs) in /Users/simonwinther/dev/GitHub/fasto/Fasto/TypeChecker.fs:line 425
-   at Fasto.compile(String filename, FSharpFunc`2 optimiser) in /Users/simonwinther/dev/GitHub/fasto/Fasto/Fasto.fs:line 151
-   at Fasto.main(String[] paramList) in /Users/simonwinther/dev/GitHub/fasto/Fasto/Fasto.fs:line 212
-./bin/../bin/fasto.sh: line 18: 40890 Abort trap: 6           dotnet $FASTO "$@"
+   at TypeChecker.checkExp(SymTab`1 ftab, SymTab`1 vtab, Exp`1 exp) in /mnt/c/Users/simon/dev/GitHub/FastoLangCompiler/Fasto/TypeChecker.fs:line 167
+   at TypeChecker.checkExp(SymTab`1 ftab, SymTab`1 vtab, Exp`1 exp) in /mnt/c/Users/simon/dev/GitHub/FastoLangCompiler/Fasto/TypeChecker.fs:line 239
+   at TypeChecker.checkExp(SymTab`1 ftab, SymTab`1 vtab, Exp`1 exp) in /mnt/c/Users/simon/dev/GitHub/FastoLangCompiler/Fasto/TypeChecker.fs:line 241
+   at TypeChecker.checkFunWithVtable(SymTab`1 ftab, SymTab`1 vtab, Int32 pos_0, Int32 pos_1, FunDec`1 fdec) in /mnt/c/Users/simon/dev/GitHub/FastoLangCompiler/Fasto/TypeChecker.fs:line 394
+   at TypeChecker.checkFun(SymTab`1 ftab, FunDec`1 fundec) in /mnt/c/Users/simon/dev/GitHub/FastoLangCompiler/Fasto/TypeChecker.fs:line 419
+   at TypeChecker.decorated_funDecs@423.Invoke(FunDec`1 fundec)
+   at Microsoft.FSharp.Primitives.Basics.List.map[T,TResult](FSharpFunc`2 mapping, FSharpList`1 x) in /build/dotnet8-d9vf9I/dotnet8-8.0.103-8.0.3/src/fsharp/artifacts/source-build/self/src/src/FSharp.Core/local.fs:line 243
+   at Microsoft.FSharp.Collections.ListModule.Map[T,TResult](FSharpFunc`2 mapping, FSharpList`1 list) in /build/dotnet8-d9vf9I/dotnet8-8.0.103-8.0.3/src/fsharp/artifacts/source-build/self/src/src/FSharp.Core/list.fs:line 97
+   at TypeChecker.checkProg(FSharpList`1 funDecs) in /mnt/c/Users/simon/dev/GitHub/FastoLangCompiler/Fasto/TypeChecker.fs:line 423
+   at Fasto.compile(String filename, FSharpFunc`2 optimiser) in /mnt/c/Users/simon/dev/GitHub/FastoLangCompiler/Fasto/Fasto.fs:line 151
+   at Fasto.main(String[] paramList) in /mnt/c/Users/simon/dev/GitHub/FastoLangCompiler/Fasto/Fasto.fs:line 212
+bin/../bin/fasto.sh: line 18: 98052 Aborted                 dotnet $FASTO "$@"

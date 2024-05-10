@@ -27,6 +27,9 @@ type token =
   | MAP of (Position)
   | READ of (Position)
   | REDUCE of (Position)
+  | REPLICATE of (Position)
+  | FILTER of (Position)
+  | SCAN of (Position)
   | WRITE of (Position)
   | NOT of (Position)
   | TRUE of (Position)
@@ -72,6 +75,9 @@ type tokenId =
     | TOKEN_MAP
     | TOKEN_READ
     | TOKEN_REDUCE
+    | TOKEN_REPLICATE
+    | TOKEN_FILTER
+    | TOKEN_SCAN
     | TOKEN_WRITE
     | TOKEN_NOT
     | TOKEN_TRUE

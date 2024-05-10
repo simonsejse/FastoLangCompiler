@@ -1,0 +1,5 @@
+fun int writeInt(int b) = write(b)
+
+fun [int] main() =
+  let fs = replicate(10, 1) in
+  map(writeInt, fs)

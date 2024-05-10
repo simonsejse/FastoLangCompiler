@@ -95,8 +95,8 @@ f.main:
 	mv	x19, x10
 # was:	mv	_let_n_32_, x10
 # 	mv	_lt_L_37_,_let_n_32_
-	li	x10, 0
-# was:	li	_lt_R_38_, 0
+	li	x10, 1
+# was:	li	_lt_R_38_, 1
 	slt	x10, x19, x10
 # was:	slt	_cond_36_, _lt_L_37_, _lt_R_38_
 	bne	x10, x0, l.then_33_
@@ -105,7 +105,7 @@ f.main:
 l.then_33_:
 	la	x10, s.Incorre_41_
 # was:	la	_tmp_40_, s.Incorre_41_
-# s.Incorre_41_: string "Incorrect"
+# s.Incorre_41_: string "Incorrect Input!"
 # 	mv	_let_a_39_,_tmp_40_
 # 	mv	x10,_tmp_40_
 	jal	p.putstring
@@ -611,8 +611,8 @@ m.DivZero:
 # String literals (including lengths) from program
 	.align	2
 s.Incorre_41_:
-	.word	9
-	.ascii	"Incorrect"
+	.word	16
+	.ascii	"Incorrect Input!"
 	.align	2
 s.true:
 	.word	4
