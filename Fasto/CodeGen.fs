@@ -225,25 +225,25 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
      `Not` and `Negate` are simpler; you can use `XORI` for `Not`
   *)
     | Times(e1: Exp<Type>, e2: Exp<Type>, pos: Position) ->
-        let t1 = newReg "times_L"
-        let t2 = newReg "times_R"
-        let code1 = compileExp e1 vtable t1
-        let code2 = compileExp e2 vtable t2
+        let t1: reg = newReg "times_L"
+        let t2: reg = newReg "times_R"
+        let code1: Instruction list = compileExp e1 vtable t1
+        let code2: Instruction list = compileExp e2 vtable t2
         code1 @ code2 @ [ MUL(place, t1, t2) ]
 
     | Divide(e1: Exp<Type>, e2: Exp<Type>, pos: Position) ->
-        let t1 = newReg "div_L"
-        let t2 = newReg "div_R"
-        let code1 = compileExp e1 vtable t1
-        let code2 = compileExp e2 vtable t2
+        let t1: reg = newReg "div_L"
+        let t2: reg = newReg "div_R"
+        let code1: Instruction list = compileExp e1 vtable t1
+        let code2: Instruction list = compileExp e2 vtable t2
         code1 @ code2 @ [ DIV(place, t1, t2) ]
     | Not(exp: Exp<Type>, pos: Position) ->
-        let t1 = newReg "not"
-        let code1 = compileExp exp vtable t1
+        let t1: reg = newReg "not"
+        let code1: Instruction list = compileExp exp vtable t1
         code1 @ [ XORI(place, t1, 1) ]
-    | Negate(exp, pos) ->
-        let t1 = newReg "negate"
-        let code1 = compileExp exp vtable t1
+    | Negate(exp: Exp<Type>, pos: Position) ->
+        let t1: reg = newReg "negate"
+        let code1: Instruction list = compileExp exp vtable t1
         code1 @ [ SUB(place, Rzero, t1) ] //rd = 0 - t1  = -t1
     | Let(dec, e1, pos) ->
         let (code1, vtable1) = compileDec dec vtable
@@ -334,12 +334,14 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
         the code of `e2` must not be executed. Similarly for `And` (&&).
   *)
     | And(e1: Exp<Type>, e2: Exp<Type>, pos: Position) ->
-        let t1 = newReg "and_L"
-        let t2 = newReg "and_R"
-        let code1 = compileExp e1 vtable t1
-        let code2 = compileExp e2 vtable t2
-        let falseLabel = newLab "and_false"
-        let endLabel = newLab "and_end"
+        let t1: reg = newReg "and_L"
+        let t2: reg = newReg "and_R"
+
+        let code1: Instruction list = compileExp e1 vtable t1
+        let code2: Instruction list = compileExp e2 vtable t2
+
+        let falseLabel: string = newLab "and_false"
+        let endLabel: string = newLab "and_end"
 
         code1
         @ [ BEQ(t1, Rzero, falseLabel) ]
@@ -352,12 +354,12 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
             LABEL endLabel ]
 
     | Or(e1: Exp<Type>, e2: Exp<Type>, pos: Position) ->
-        let t1 = newReg "and_L"
-        let t2 = newReg "and_R"
-        let code1 = compileExp e1 vtable t1
-        let code2 = compileExp e2 vtable t2
-        let trueLabel = newLab "or_true"
-        let endLabel = newLab "or_end"
+        let t1: reg = newReg "and_L"
+        let t2: reg = newReg "and_R"
+        let code1: Instruction list = compileExp e1 vtable t1
+        let code2: Instruction list = compileExp e2 vtable t2
+        let trueLabel: string = newLab "or_true"
+        let endLabel: string = newLab "or_end"
 
         code1
         @ [ BNE(t1, Rzero, trueLabel) ]
@@ -559,7 +561,48 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
         If `n` is less than `0` then remember to terminate the program with
         an error -- see implementation of `iota`.
   *)
-    | Replicate(_, _, _, _) -> failwith "Unimplemented code generation of replicate"
+    | Replicate(n: Exp<Type>, a: Exp<Type>, tp: Type, pos: Position) ->
+        let size_reg = newReg "replicate_n"
+        let n_code = compileExp n vtable size_reg
+
+        let a_reg = newReg "replicate_a"
+        let a_code = compileExp a vtable a_reg
+
+        let safe_lab = newLab "safe"
+
+        let checkSize =
+            [ BGE(size_reg, Rzero, safe_lab)
+              LI(Ra0, fst pos)
+              LA(Ra1, "m.BadSize")
+              J "p.RuntimeError"
+              LABEL safe_lab ]
+
+
+        let i_reg = newReg "replicate_i"
+        let addr_reg = newReg "replicate_addr"
+        let init_regs = [ ADDI(addr_reg, place, 4); MV(i_reg, Rzero) ]
+
+        let start_lab = newLab "replicate_start"
+        let end_lab = newLab "replicate_end"
+
+        let loop_header = [ LABEL start_lab; BGE(i_reg, size_reg, end_lab) ]
+
+        let loop_body = [ SW(a_reg, addr_reg, 0) ]
+
+        let loop_footer =
+            [ ADDI(addr_reg, addr_reg, 4)
+              ADDI(i_reg, i_reg, 1)
+              J start_lab
+              LABEL end_lab ]
+
+        n_code
+        @ checkSize
+        @ a_code
+        @ dynalloc (size_reg, place, tp)
+        @ init_regs
+        @ loop_header
+        @ loop_body
+        @ loop_footer
 
     (* TODO project task 2: see also the comment to replicate.
      (a) `filter(f, arr)`:  has some similarity with the implementation of map.
