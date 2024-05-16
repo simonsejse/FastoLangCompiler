@@ -576,8 +576,7 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
               LA(Ra1, "m.BadSize")
               J "p.RuntimeError"
               LABEL safe_lab ]
-
-
+              
         let i_reg = newReg "replicate_i"
         let addr_reg = newReg "replicate_addr"
         let init_regs = [ ADDI(addr_reg, place, 4); MV(i_reg, Rzero) ]
@@ -619,7 +618,35 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
          counter computed in step (c). You do this of course with a
          `SW(counter_reg, place, 0)` instruction.
   *)
-    | Filter(_, _, _, _) -> failwith "Unimplemented code generation of filter"
+    | Filter(funarg: FunArg<Type>, exp: Exp<Type>, tp: Type, pos: Position) ->
+        (* dont change this direvtly as we might need for copying over to new array or smth*)
+        let arr_reg = newReg "filter_arr" (* base address of array *)
+        let arr_code = compileExp exp vtable arr_reg
+
+        let size_reg = newReg "filter_size" (* size of input array *)
+        let get_size = [ LW(size_reg, arr_reg, 0) ]
+        (* lw reads 4 bytes, word = 4 bytes *)
+        (* assuming the first word of the array is the size *)
+
+        let i_reg = newReg "filter_i" (* loop counter *)
+        let src_addr_reg = newReg "src_addr"
+        let dst_addr_reg = newReg "dst_addr"
+
+        let init_regs =
+            [ ADDI(src_addr_reg, arr_reg, 4)
+              MV(i_reg, Rzero)
+              ADDI(dst_addr_reg, place, 4) ]
+
+        let loop_start = newLab "filter_start"
+        let loop_end = newLab "filter_end"
+
+        let loop_header = [ LABEL loop_start; BGE(i_reg, size_reg, loop_end) ]
+
+        let loop_body = [
+            
+        ]
+
+        arr_code @ get_size @ init_regs @ loop_header
 
     (* TODO project task 2: see also the comment to replicate.
      `scan(f, ne, arr)`: you can inspire yourself from the implementation of
