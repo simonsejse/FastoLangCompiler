@@ -697,7 +697,8 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
         the current location of the result iterator at every iteration of
         the loop.
   *)
-    | Scan(_, _, _, _, _) -> failwith "Unimplemented code generation of scan"
+    | Scan(funarg, ne, arr, tp, pos) -> 
+        failwith "Unimplemented code generation of scan"
 
 and applyFunArg (ff: TypedFunArg, args: reg list, vtable: VarTable, place: reg, pos: Position) : Instruction list =
     match ff with
