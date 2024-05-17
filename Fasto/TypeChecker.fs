@@ -396,7 +396,34 @@ and checkExp (ftab: FunTable) (vtab: VarTable) (exp: UntypedExp) : (Type * Typed
               scan's return type is the same as the type of `arr`,
               while reduce's return type is that of an element of `arr`).
     *)
-    | Scan(_, _, _, _, _) -> failwith "Unimplemented type check of scan"
+    | Scan(fargs, ne, arr, tp, pos) -> 
+        let (ne_tp, ne') = checkExp ftab vtab ne
+        let (arr_tp, arr') = checkExp ftab vtab arr
+
+        let elem_type =
+            match arr_tp with
+            | Array t -> t
+            | _ -> reportTypeWrongKind "third argument of scan" "array" arr_tp pos
+
+        let (f', f_argres_type) =
+            match checkFunArg ftab vtab pos fargs with
+            | (f', res, [ a1; a2 ]) ->
+                if a1 <> a2 then
+                    reportTypesDifferent "argument types of operation in scan" a1 a2 pos
+
+                if res <> a1 then
+                    reportTypesDifferent "argument and return type of operation in scan" a1 res pos
+
+                (f', res)
+            | (_, res, args) -> reportArityWrong "operation in scan" 2 (args, res) pos
+
+        if elem_type <> f_argres_type then
+            reportTypesDifferent "operation and array-element types in scan" f_argres_type elem_type pos
+
+        if ne_tp <> f_argres_type then
+            reportTypesDifferent "operation and start-element types in scan" f_argres_type ne_tp pos
+
+        (Array elem_type, Scan(f', ne', arr', elem_type, pos))
 
 and checkFunArg
     (ftab: FunTable)

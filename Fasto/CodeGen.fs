@@ -113,6 +113,11 @@ let checkBounds (arr_beg: reg, ind_reg: reg, (line: int, c: int)) : Instruction 
      place: will contain the address of new allocation (old Rhp)
      ty: char/bool elements take 1 byte, int/array elements take 4 bytes
  *)
+(*  getOffsetAndSize : Type -> ElemSize * int
+    This function returns a tuple of the element size and the size of the element in bytes. *)
+let getOffsetAndSize (tp: Type) : (ElemSize * int) = 
+    (getElemSize tp, tp |> getElemSize |> elemSizeToInt)
+
 let dynalloc (size_reg: reg, place: reg, ty: Type) : Instruction list =
     let tmp_reg = newReg "tmp"
 
@@ -697,8 +702,63 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
         the current location of the result iterator at every iteration of
         the loop.
   *)
-    | Scan(funarg, ne, arr, tp, pos) -> 
-        failwith "Unimplemented code generation of scan"
+    | Scan(funarg: FunArg<Type>, ne: Exp<Type>, arr: Exp<Type>, tp: Type, pos: Position) ->
+        let (elem_size, offset) = getOffsetAndSize tp
+        let ne_reg = newReg "scan_ne"                   // initial value
+        let ne_code = compileExp ne vtable ne_reg 
+
+        let arr_addr_reg = newReg "scan_arr"            // base address of the array
+        let arr_code = compileExp arr vtable arr_addr_reg
+
+        let size_reg = newReg "scan_size"               // size of the input array
+        let get_size = [ Load elem_size (size_reg, arr_addr_reg, 0)
+                         ADDI(arr_addr_reg, arr_addr_reg, offset) ] 
+
+        let i_reg = newReg "scan_i"                     // loop counter
+        let acc_reg = newReg "scan_acc"                 // accumulator
+        let elem_reg = newReg "scan_elem"               // current element of the array to be applied the func
+        let current_place = newReg "scan_current_place" // Current position in the result array
+
+        let init_regs = [ 
+            MV(i_reg, Rzero)                            // initialize the loop counter
+            MV(acc_reg, ne_reg)                         // initialize the accumulator
+            MV(current_place, place)                    // initialize the current place
+            ADDI(current_place, current_place, offset)  // skip the size of the array
+         ] 
+
+        let loop_start = newLab "scan_start"
+        let loop_end = newLab "scan_end"
+
+        let loop_header = [ 
+            LABEL loop_start; 
+            BGE(i_reg, size_reg, loop_end) 
+        ]
+
+        let loop_body = 
+            [ Load elem_size (elem_reg, arr_addr_reg, 0) ] 
+            @ applyFunArg(funarg, [ acc_reg; elem_reg ], vtable, acc_reg, pos) (* takes acc and elem as arguments *)
+            @ [ 
+                (* when i used arr_addr_reg i change the value in the old array instead of the result 
+                array at place where we dynamically allocated down below *)
+                Store elem_size (acc_reg, current_place, 0) 
+                ADDI(current_place, current_place, offset)
+                ADDI(arr_addr_reg, arr_addr_reg, offset)
+                ADDI(i_reg, i_reg, 1)
+            ]
+
+        let loop_footer = [
+            J loop_start
+            LABEL loop_end
+        ]
+
+        ne_code 
+        @ arr_code 
+        @ get_size 
+        @ dynalloc(size_reg, place, tp)
+        @ init_regs 
+        @ loop_header 
+        @ loop_body 
+        @ loop_footer
 
 and applyFunArg (ff: TypedFunArg, args: reg list, vtable: VarTable, place: reg, pos: Position) : Instruction list =
     match ff with
