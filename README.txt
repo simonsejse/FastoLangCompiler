@@ -1,23 +1,5 @@
 # The Fasto Compiler (v1.0, 2024-04-28)
 
-This is the compiler for the Fasto programming language.  The source
-code resides in the `Fasto` directory.
-
-To build the compiler, run `make` (or just `dotnet build Fasto`).
-
-To interpret, compile, or optimize a Fasto program, run `bin/fasto.sh`.
-
-To execute a compiled program (in RISC-V assembly), run `bin/rars.sh`.
-
-To compile and immediately execute a Fasto program, run `bin/compilerun.sh`.
-
-To run all tests from the `tests` directory (or some other), run
-`bin/runtests.sh`. Use `-i` to run in interpreted mode, and `-o` to
-turn on the optimizations in the compiler.
-
-
-# The Fasto Compiler (v1.0, 2024-04-28)
-
 This is the compiler for the Fasto programming language. The source code resides in the `Fasto` directory.
 
 ## Commits
