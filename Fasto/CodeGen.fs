@@ -245,7 +245,7 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
             J endLabel
             LABEL divZeroLabel
             LI(Ra0, fst pos)
-            LA(Ra1, "m.DivByZero")
+            LA(Ra1, "m.DivZero")
             J "p.RuntimeError"
             LABEL endLabel
         ]
