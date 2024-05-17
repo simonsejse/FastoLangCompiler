@@ -237,17 +237,14 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
         let code1: Instruction list = compileExp e1 vtable t1
         let code2: Instruction list = compileExp e2 vtable t2
 
-        let divZeroLabel: string = newLab "div_zero"
-        let endLabel: string = newLab "div_end" 
+        let divZeroSafeLabel = newLab "divZeroSafe"
 
         let checkDivByZero = [
-            BEQ(t2, Rzero, divZeroLabel)
-            J endLabel
-            LABEL divZeroLabel
+            BNE(t2, Rzero, divZeroSafeLabel)
             LI(Ra0, fst pos)
             LA(Ra1, "m.DivZero")
             J "p.RuntimeError"
-            LABEL endLabel
+            LABEL divZeroSafeLabel
         ]
 
         code1 @ code2 @ checkDivByZero @ [ DIV(place, t1, t2) ]
@@ -634,35 +631,55 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
          `SW(counter_reg, place, 0)` instruction.
   *)
     | Filter(funarg: FunArg<Type>, exp: Exp<Type>, tp: Type, pos: Position) ->
-        let arr_reg = newReg "filter_arr" (* base address of array *)
-        let size_reg = newReg "filter_size" (* size of input array *)
-        let i_reg = newReg "filter_i" (* loop counter *)
-        let elem_reg = newReg "src_elem"
-        let counter_reg = newReg "counter"
-        let res_reg = newReg "res" 
+        let elem_size = getElemSize tp 
+        let offset = elemSizeToInt elem_size
+
+        let arr_addr_reg = newReg "filter_arr"             // base address of the array 
+        let arr_code = compileExp exp vtable arr_addr_reg
         
-        let arr_code = compileExp exp vtable arr_reg
-        let get_size = [ LW(size_reg, arr_reg, 0) ]
-        let init_regs = [ ADDI(elem_reg, arr_reg, 4); MV(i_reg, Rzero) ]
+        let size_reg = newReg "filter_size"                // size of the input array
+        let get_size = [ LW(size_reg, arr_addr_reg, 0) ]
+       
+        let elem_reg = newReg "filter_elem"               // current element of the array
+        let predicate_res = newReg "filter_predicate_res" // result of the predicate
+        let counter_reg = newReg "filter_counter"         // counter of the elements that passed the predicate
+        let i_reg = newReg "filter_i"                     // loop counter
+        let current_place = newReg "filter_current_place" // Current position in the result array
+
+        let init_regs = [ 
+            ADDI(arr_addr_reg, arr_addr_reg, offset);     // skip the size of the array
+            MV(i_reg, Rzero)                              // initialize the loop counter  
+            MV(counter_reg, Rzero);                       // initialize the counter
+            MV(current_place, place)                      // initialize the current place
+            ADDI(current_place, current_place, offset)    // skip the size of the array
+        ]
 
         let loop_start = newLab "filter_start"
         let filter_skip = newLab "filter_skip"
         let loop_end = newLab "filter_end"
 
-        let loop_header = [ LABEL loop_start; BGE(i_reg, size_reg, loop_end) ]
+        let loop_header = [ 
+            LABEL loop_start; 
+            BGE(i_reg, size_reg, loop_end) 
+        ]
 
         let loop_body =
-            [ Load (getElemSize tp) (res_reg, elem_reg, 0) ]
-            @ applyFunArg(funarg, [res_reg], vtable, res_reg, pos)
+            [ Load elem_size (elem_reg, arr_addr_reg, 0) ] 
+            @ applyFunArg(funarg, [ elem_reg ], vtable, predicate_res, pos)
             @ [
-                BEQ(res_reg, Rzero, filter_skip) (* Skip if f(a) is false *)
-
+                BEQ(predicate_res, Rzero, filter_skip)
+                Store elem_size (elem_reg, current_place, 0)
+                ADDI(current_place, current_place, offset)
                 ADDI(counter_reg, counter_reg, 1)
                 LABEL filter_skip
+                ADDI(arr_addr_reg, arr_addr_reg, offset)
+                ADDI(i_reg, i_reg, 1)
             ]
-            @ [ ADDI(i_reg, i_reg, 1); J loop_start ]
-
-        let loop_footer = [ LABEL loop_end ]
+            
+        let loop_footer = [ 
+            J loop_start
+            LABEL loop_end 
+        ]
 
         arr_code 
         @ get_size 
