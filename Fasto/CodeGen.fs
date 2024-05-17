@@ -236,7 +236,22 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
         let t2: reg = newReg "div_R"
         let code1: Instruction list = compileExp e1 vtable t1
         let code2: Instruction list = compileExp e2 vtable t2
-        code1 @ code2 @ [ DIV(place, t1, t2) ]
+
+        let divZeroLabel: string = newLab "div_zero"
+        let endLabel: string = newLab "div_end" 
+
+        let checkDivByZero = [
+            BEQ(t2, Rzero, divZeroLabel)
+            J endLabel
+            LABEL divZeroLabel
+            LI(Ra0, fst pos)
+            LA(Ra1, "m.DivByZero")
+            J "p.RuntimeError"
+            LABEL endLabel
+        ]
+
+        code1 @ code2 @ checkDivByZero @ [ DIV(place, t1, t2) ]
+
     | Not(exp: Exp<Type>, pos: Position) ->
         let t1: reg = newReg "not"
         let code1: Instruction list = compileExp exp vtable t1
@@ -619,34 +634,44 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
          `SW(counter_reg, place, 0)` instruction.
   *)
     | Filter(funarg: FunArg<Type>, exp: Exp<Type>, tp: Type, pos: Position) ->
-        (* dont change this direvtly as we might need for copying over to new array or smth*)
         let arr_reg = newReg "filter_arr" (* base address of array *)
-        let arr_code = compileExp exp vtable arr_reg
-
         let size_reg = newReg "filter_size" (* size of input array *)
-        let get_size = [ LW(size_reg, arr_reg, 0) ]
-        (* lw reads 4 bytes, word = 4 bytes *)
-        (* assuming the first word of the array is the size *)
-
         let i_reg = newReg "filter_i" (* loop counter *)
-        let src_addr_reg = newReg "src_addr"
-        let dst_addr_reg = newReg "dst_addr"
-
-        let init_regs =
-            [ ADDI(src_addr_reg, arr_reg, 4)
-              MV(i_reg, Rzero)
-              ADDI(dst_addr_reg, place, 4) ]
+        let elem_reg = newReg "src_elem"
+        let counter_reg = newReg "counter"
+        let res_reg = newReg "res" 
+        
+        let arr_code = compileExp exp vtable arr_reg
+        let get_size = [ LW(size_reg, arr_reg, 0) ]
+        let init_regs = [ ADDI(elem_reg, arr_reg, 4); MV(i_reg, Rzero) ]
 
         let loop_start = newLab "filter_start"
+        let filter_skip = newLab "filter_skip"
         let loop_end = newLab "filter_end"
 
         let loop_header = [ LABEL loop_start; BGE(i_reg, size_reg, loop_end) ]
 
-        let loop_body = [
-            
-        ]
+        let loop_body =
+            [ Load (getElemSize tp) (res_reg, elem_reg, 0) ]
+            @ applyFunArg(funarg, [res_reg], vtable, res_reg, pos)
+            @ [
+                BEQ(res_reg, Rzero, filter_skip) (* Skip if f(a) is false *)
 
-        arr_code @ get_size @ init_regs @ loop_header
+                ADDI(counter_reg, counter_reg, 1)
+                LABEL filter_skip
+            ]
+            @ [ ADDI(i_reg, i_reg, 1); J loop_start ]
+
+        let loop_footer = [ LABEL loop_end ]
+
+        arr_code 
+        @ get_size 
+        @ dynalloc(size_reg, place, tp) 
+        @ init_regs 
+        @ loop_header 
+        @ loop_body 
+        @ loop_footer 
+        @ [ SW(counter_reg, place, 0) ]
 
     (* TODO project task 2: see also the comment to replicate.
      `scan(f, ne, arr)`: you can inspire yourself from the implementation of
