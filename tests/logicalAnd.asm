@@ -36,105 +36,144 @@ f.main:
 	sw	x19, -12(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -24
-	li	x12, 1
+	li	x10, 1
 # was:	li	_let_a_6_, 1
-	li	x13, 0
+	li	x11, 0
 # was:	li	_let_b_7_, 0
-	li	x11, 1
+	li	x13, 1
 # was:	li	_let_c_8_, 1
 # 	mv	_and_L_10_,_let_a_6_
-l.and_false_12_:
+	beq	x10, x0, l.and_false_12_
+# was:	beq	_and_L_10_, x0, l.and_false_12_
 # 	mv	_and_R_11_,_let_b_7_
-# 	mv	_and_L_14_,_let_b_7_
-l.and_false_16_:
-# 	mv	_and_R_15_,_let_a_6_
-# 	mv	_and_L_18_,_let_a_6_
-l.and_false_20_:
-# 	mv	_and_R_19_,_let_c_8_
-# 	mv	_and_L_22_,_let_c_8_
-l.and_false_24_:
-# 	mv	_and_R_23_,_let_a_6_
-	li	x12, 4
-# was:	li	_size_29_, 4
-	mv	x11, x3
-# was:	mv	_arr_26_, x3
-	addi	x13, x12, 3
-# was:	addi	_tmp_32_, _size_29_, 3
-	andi	x13, x13, -4
-# was:	andi	_tmp_32_, _tmp_32_, -4
-	addi	x13, x13, 4
-# was:	addi	_tmp_32_, _tmp_32_, 4
-	add	x3, x3, x13
-# was:	add	x3, x3, _tmp_32_
-	sw	x12, 0(x11)
-# was:	sw	_size_29_, 0(_arr_26_)
-	addi	x12, x11, 4
-# was:	addi	_addr_30_, _arr_26_, 4
-	mv	x13, x10
-# was:	mv	_tmp_31_, _let_result1_9_
-	sb	x13, 0(x12)
-# was:	sb	_tmp_31_, 0(_addr_30_)
-	addi	x12, x12, 1
-# was:	addi	_addr_30_, _addr_30_, 1
-	mv	x13, x10
-# was:	mv	_tmp_31_, _let_result2_13_
-	sb	x13, 0(x12)
-# was:	sb	_tmp_31_, 0(_addr_30_)
-	addi	x12, x12, 1
-# was:	addi	_addr_30_, _addr_30_, 1
-	mv	x13, x10
-# was:	mv	_tmp_31_, _let_result3_17_
-	sb	x13, 0(x12)
-# was:	sb	_tmp_31_, 0(_addr_30_)
-	addi	x12, x12, 1
-# was:	addi	_addr_30_, _addr_30_, 1
-	mv	x13, x10
-# was:	mv	_tmp_31_, _let_result4_21_
-	sb	x13, 0(x12)
-# was:	sb	_tmp_31_, 0(_addr_30_)
-	addi	x12, x12, 1
-# was:	addi	_addr_30_, _addr_30_, 1
-	lw	x19, 0(x11)
-# was:	lw	_size_25_, 0(_arr_26_)
-	mv	x18, x3
+	beq	x11, x0, l.and_false_12_
+# was:	beq	_and_R_11_, x0, l.and_false_12_
+	li	x14, 1
+# was:	li	_let_result1_9_, 1
+	j	l.and_end_13_
+l.and_false_12_:
+	li	x14, 0
+# was:	li	_let_result1_9_, 0
+l.and_end_13_:
+# 	mv	_and_L_15_,_let_b_7_
+	beq	x11, x0, l.and_false_17_
+# was:	beq	_and_L_15_, x0, l.and_false_17_
+# 	mv	_and_R_16_,_let_a_6_
+	beq	x10, x0, l.and_false_17_
+# was:	beq	_and_R_16_, x0, l.and_false_17_
+	li	x11, 1
+# was:	li	_let_result2_14_, 1
+	j	l.and_end_18_
+l.and_false_17_:
+	li	x11, 0
+# was:	li	_let_result2_14_, 0
+l.and_end_18_:
+# 	mv	_and_L_20_,_let_a_6_
+	beq	x10, x0, l.and_false_22_
+# was:	beq	_and_L_20_, x0, l.and_false_22_
+# 	mv	_and_R_21_,_let_c_8_
+	beq	x13, x0, l.and_false_22_
+# was:	beq	_and_R_21_, x0, l.and_false_22_
+	li	x12, 1
+# was:	li	_let_result3_19_, 1
+	j	l.and_end_23_
+l.and_false_22_:
+	li	x12, 0
+# was:	li	_let_result3_19_, 0
+l.and_end_23_:
+# 	mv	_and_L_25_,_let_c_8_
+	beq	x13, x0, l.and_false_27_
+# was:	beq	_and_L_25_, x0, l.and_false_27_
+# 	mv	_and_R_26_,_let_a_6_
+	beq	x10, x0, l.and_false_27_
+# was:	beq	_and_R_26_, x0, l.and_false_27_
+	li	x13, 1
+# was:	li	_let_result4_24_, 1
+	j	l.and_end_28_
+l.and_false_27_:
+	li	x13, 0
+# was:	li	_let_result4_24_, 0
+l.and_end_28_:
+	li	x15, 4
+# was:	li	_size_33_, 4
+	mv	x10, x3
+# was:	mv	_arr_30_, x3
+	addi	x16, x15, 3
+# was:	addi	_tmp_36_, _size_33_, 3
+	andi	x16, x16, -4
+# was:	andi	_tmp_36_, _tmp_36_, -4
+	addi	x16, x16, 4
+# was:	addi	_tmp_36_, _tmp_36_, 4
+	add	x3, x3, x16
+# was:	add	x3, x3, _tmp_36_
+	sw	x15, 0(x10)
+# was:	sw	_size_33_, 0(_arr_30_)
+	addi	x15, x10, 4
+# was:	addi	_addr_34_, _arr_30_, 4
+# 	mv	_tmp_35_,_let_result1_9_
+	sb	x14, 0(x15)
+# was:	sb	_tmp_35_, 0(_addr_34_)
+	addi	x15, x15, 1
+# was:	addi	_addr_34_, _addr_34_, 1
+	mv	x14, x11
+# was:	mv	_tmp_35_, _let_result2_14_
+	sb	x14, 0(x15)
+# was:	sb	_tmp_35_, 0(_addr_34_)
+	addi	x15, x15, 1
+# was:	addi	_addr_34_, _addr_34_, 1
+	mv	x14, x12
+# was:	mv	_tmp_35_, _let_result3_19_
+	sb	x14, 0(x15)
+# was:	sb	_tmp_35_, 0(_addr_34_)
+	addi	x15, x15, 1
+# was:	addi	_addr_34_, _addr_34_, 1
+	mv	x14, x13
+# was:	mv	_tmp_35_, _let_result4_24_
+	sb	x14, 0(x15)
+# was:	sb	_tmp_35_, 0(_addr_34_)
+	addi	x15, x15, 1
+# was:	addi	_addr_34_, _addr_34_, 1
+	lw	x18, 0(x10)
+# was:	lw	_size_29_, 0(_arr_30_)
+	mv	x19, x3
 # was:	mv	_mainres_5_, x3
-	addi	x10, x19, 3
-# was:	addi	_tmp_38_, _size_25_, 3
-	andi	x10, x10, -4
-# was:	andi	_tmp_38_, _tmp_38_, -4
-	addi	x10, x10, 4
-# was:	addi	_tmp_38_, _tmp_38_, 4
-	add	x3, x3, x10
-# was:	add	x3, x3, _tmp_38_
-	sw	x19, 0(x18)
-# was:	sw	_size_25_, 0(_mainres_5_)
-	addi	x20, x18, 4
-# was:	addi	_addrg_33_, _mainres_5_, 4
+	addi	x11, x18, 3
+# was:	addi	_tmp_42_, _size_29_, 3
+	andi	x11, x11, -4
+# was:	andi	_tmp_42_, _tmp_42_, -4
+	addi	x11, x11, 4
+# was:	addi	_tmp_42_, _tmp_42_, 4
+	add	x3, x3, x11
+# was:	add	x3, x3, _tmp_42_
+	sw	x18, 0(x19)
+# was:	sw	_size_29_, 0(_mainres_5_)
+	addi	x20, x19, 4
+# was:	addi	_addrg_37_, _mainres_5_, 4
 	mv	x21, x0
-# was:	mv	_i_34_, x0
-	addi	x22, x11, 4
-# was:	addi	_elem_27_, _arr_26_, 4
-l.loop_beg_35_:
-	bge	x21, x19, l.loop_end_36_
-# was:	bge	_i_34_, _size_25_, l.loop_end_36_
+# was:	mv	_i_38_, x0
+	addi	x22, x10, 4
+# was:	addi	_elem_31_, _arr_30_, 4
+l.loop_beg_39_:
+	bge	x21, x18, l.loop_end_40_
+# was:	bge	_i_38_, _size_29_, l.loop_end_40_
 	lbu	x10, 0(x22)
-# was:	lbu	_res_28_, 0(_elem_27_)
+# was:	lbu	_res_32_, 0(_elem_31_)
 	addi	x22, x22, 1
-# was:	addi	_elem_27_, _elem_27_, 1
-# 	mv	x10,_res_28_
+# was:	addi	_elem_31_, _elem_31_, 1
+# 	mv	x10,_res_32_
 	jal	f.print
 # was:	jal	f.print, x10
-# 	mv	_tmp_37_,x10
-# 	mv	_res_28_,_tmp_37_
+# 	mv	_tmp_41_,x10
+# 	mv	_res_32_,_tmp_41_
 	sb	x10, 0(x20)
-# was:	sb	_res_28_, 0(_addrg_33_)
+# was:	sb	_res_32_, 0(_addrg_37_)
 	addi	x20, x20, 1
-# was:	addi	_addrg_33_, _addrg_33_, 1
+# was:	addi	_addrg_37_, _addrg_37_, 1
 	addi	x21, x21, 1
-# was:	addi	_i_34_, _i_34_, 1
-	j	l.loop_beg_35_
-l.loop_end_36_:
-	mv	x10, x18
+# was:	addi	_i_38_, _i_38_, 1
+	j	l.loop_beg_39_
+l.loop_end_40_:
+	mv	x10, x19
 # was:	mv	x10, _mainres_5_
 	addi	x2, x2, 24
 	lw	x22, -24(x2)

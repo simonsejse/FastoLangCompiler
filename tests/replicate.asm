@@ -69,8 +69,8 @@ l.replicate_start_12_:
 # was:	bge	_replicate_i_10_, _replicate_n_7_, l.replicate_end_13_
 	sw	x12, 0(x14)
 # was:	sw	_replicate_a_8_, 0(_replicate_addr_11_)
-	addi	x14, x14, 1
-# was:	addi	_replicate_addr_11_, _replicate_addr_11_, 1
+	addi	x14, x14, 4
+# was:	addi	_replicate_addr_11_, _replicate_addr_11_, 4
 	addi	x13, x13, 1
 # was:	addi	_replicate_i_10_, _replicate_i_10_, 1
 	j	l.replicate_start_12_

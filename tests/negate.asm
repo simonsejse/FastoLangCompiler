@@ -46,17 +46,25 @@ f.main:
 # was:	li	_div_L_14_, 3
 	li	x11, 2
 # was:	li	_div_R_15_, 2
+	bne	x11, x0, l.divZeroSafe_16_
+# was:	bne	_div_R_15_, x0, l.divZeroSafe_16_
+	li	x10, 7
+# was:	li	x10, 7
+	la	x11, m.DivZero
+# was:	la	x11, m.DivZero
+	j	p.RuntimeError
+l.divZeroSafe_16_:
 	div	x11, x10, x11
 # was:	div	_eq_L_12_, _div_L_14_, _div_R_15_
 	li	x10, 1
 # was:	li	_eq_R_13_, 1
 	li	x12, 0
 # was:	li	_arg_11_, 0
-	bne	x11, x10, l.false_16_
-# was:	bne	_eq_L_12_, _eq_R_13_, l.false_16_
+	bne	x11, x10, l.false_17_
+# was:	bne	_eq_L_12_, _eq_R_13_, l.false_17_
 	li	x12, 1
 # was:	li	_arg_11_, 1
-l.false_16_:
+l.false_17_:
 	mv	x10, x12
 # was:	mv	x10, _arg_11_
 	jal	f.write_nl
@@ -64,121 +72,145 @@ l.false_16_:
 	mv	x19, x10
 # was:	mv	_let_x0_10_, x10
 	li	x10, 3
-# was:	li	_negate_23_, 3
+# was:	li	_negate_24_, 3
 	sub	x10, x0, x10
-# was:	sub	_div_L_21_, x0, _negate_23_
+# was:	sub	_div_L_22_, x0, _negate_24_
 	li	x11, 2
-# was:	li	_div_R_22_, 2
+# was:	li	_div_R_23_, 2
+	bne	x11, x0, l.divZeroSafe_25_
+# was:	bne	_div_R_23_, x0, l.divZeroSafe_25_
+	li	x10, 8
+# was:	li	x10, 8
+	la	x11, m.DivZero
+# was:	la	x11, m.DivZero
+	j	p.RuntimeError
+l.divZeroSafe_25_:
 	div	x11, x10, x11
-# was:	div	_eq_L_19_, _div_L_21_, _div_R_22_
+# was:	div	_eq_L_20_, _div_L_22_, _div_R_23_
 	li	x10, 2
-# was:	li	_negate_24_, 2
+# was:	li	_negate_26_, 2
 	sub	x10, x0, x10
-# was:	sub	_eq_R_20_, x0, _negate_24_
+# was:	sub	_eq_R_21_, x0, _negate_26_
 	li	x12, 0
-# was:	li	_arg_18_, 0
-	bne	x11, x10, l.false_25_
-# was:	bne	_eq_L_19_, _eq_R_20_, l.false_25_
+# was:	li	_arg_19_, 0
+	bne	x11, x10, l.false_27_
+# was:	bne	_eq_L_20_, _eq_R_21_, l.false_27_
 	li	x12, 1
-# was:	li	_arg_18_, 1
-l.false_25_:
+# was:	li	_arg_19_, 1
+l.false_27_:
 	mv	x10, x12
-# was:	mv	x10, _arg_18_
+# was:	mv	x10, _arg_19_
 	jal	f.write_nl
 # was:	jal	f.write_nl, x10
 	mv	x18, x10
-# was:	mv	_let_x1_17_, x10
+# was:	mv	_let_x1_18_, x10
 	li	x10, 3
-# was:	li	_div_L_30_, 3
+# was:	li	_div_L_32_, 3
 	li	x11, 2
-# was:	li	_negate_32_, 2
+# was:	li	_negate_34_, 2
 	sub	x11, x0, x11
-# was:	sub	_div_R_31_, x0, _negate_32_
+# was:	sub	_div_R_33_, x0, _negate_34_
+	bne	x11, x0, l.divZeroSafe_35_
+# was:	bne	_div_R_33_, x0, l.divZeroSafe_35_
+	li	x10, 9
+# was:	li	x10, 9
+	la	x11, m.DivZero
+# was:	la	x11, m.DivZero
+	j	p.RuntimeError
+l.divZeroSafe_35_:
 	div	x10, x10, x11
-# was:	div	_eq_L_28_, _div_L_30_, _div_R_31_
+# was:	div	_eq_L_30_, _div_L_32_, _div_R_33_
 	li	x11, 2
-# was:	li	_negate_33_, 2
+# was:	li	_negate_36_, 2
 	sub	x11, x0, x11
-# was:	sub	_eq_R_29_, x0, _negate_33_
+# was:	sub	_eq_R_31_, x0, _negate_36_
 	li	x12, 0
-# was:	li	_arg_27_, 0
-	bne	x10, x11, l.false_34_
-# was:	bne	_eq_L_28_, _eq_R_29_, l.false_34_
+# was:	li	_arg_29_, 0
+	bne	x10, x11, l.false_37_
+# was:	bne	_eq_L_30_, _eq_R_31_, l.false_37_
 	li	x12, 1
-# was:	li	_arg_27_, 1
-l.false_34_:
+# was:	li	_arg_29_, 1
+l.false_37_:
 	mv	x10, x12
-# was:	mv	x10, _arg_27_
+# was:	mv	x10, _arg_29_
 	jal	f.write_nl
 # was:	jal	f.write_nl, x10
 	mv	x20, x10
-# was:	mv	_let_x2_26_, x10
+# was:	mv	_let_x2_28_, x10
 	li	x10, 3
-# was:	li	_negate_41_, 3
+# was:	li	_negate_44_, 3
 	sub	x10, x0, x10
-# was:	sub	_div_L_39_, x0, _negate_41_
+# was:	sub	_div_L_42_, x0, _negate_44_
 	li	x11, 2
-# was:	li	_negate_42_, 2
+# was:	li	_negate_45_, 2
 	sub	x11, x0, x11
-# was:	sub	_div_R_40_, x0, _negate_42_
+# was:	sub	_div_R_43_, x0, _negate_45_
+	bne	x11, x0, l.divZeroSafe_46_
+# was:	bne	_div_R_43_, x0, l.divZeroSafe_46_
+	li	x10, 10
+# was:	li	x10, 10
+	la	x11, m.DivZero
+# was:	la	x11, m.DivZero
+	j	p.RuntimeError
+l.divZeroSafe_46_:
 	div	x10, x10, x11
-# was:	div	_eq_L_37_, _div_L_39_, _div_R_40_
+# was:	div	_eq_L_40_, _div_L_42_, _div_R_43_
 	li	x11, 1
-# was:	li	_eq_R_38_, 1
+# was:	li	_eq_R_41_, 1
 	li	x12, 0
-# was:	li	_arg_36_, 0
-	bne	x10, x11, l.false_43_
-# was:	bne	_eq_L_37_, _eq_R_38_, l.false_43_
+# was:	li	_arg_39_, 0
+	bne	x10, x11, l.false_47_
+# was:	bne	_eq_L_40_, _eq_R_41_, l.false_47_
 	li	x12, 1
-# was:	li	_arg_36_, 1
-l.false_43_:
+# was:	li	_arg_39_, 1
+l.false_47_:
 	mv	x10, x12
-# was:	mv	x10, _arg_36_
+# was:	mv	x10, _arg_39_
 	jal	f.write_nl
 # was:	jal	f.write_nl, x10
-# 	mv	_let_x3_35_,x10
-# 	mv	_and_L_49_,_let_x0_10_
-	beq	x19, x0, l.and_false_52_
-# was:	beq	_and_L_49_, x0, l.and_false_52_
-# 	mv	_not_51_,_let_x1_17_
+# 	mv	_let_x3_38_,x10
+# 	mv	_and_L_53_,_let_x0_10_
+	beq	x19, x0, l.and_false_56_
+# was:	beq	_and_L_53_, x0, l.and_false_56_
+# 	mv	_not_55_,_let_x1_18_
 	xori	x11, x18, 1
-# was:	xori	_and_R_50_, _not_51_, 1
-	beq	x11, x0, l.and_false_52_
-# was:	beq	_and_R_50_, x0, l.and_false_52_
+# was:	xori	_and_R_54_, _not_55_, 1
+	beq	x11, x0, l.and_false_56_
+# was:	beq	_and_R_54_, x0, l.and_false_56_
 	li	x11, 1
-# was:	li	_and_L_47_, 1
-	j	l.and_end_53_
-l.and_false_52_:
+# was:	li	_and_L_51_, 1
+	j	l.and_end_57_
+l.and_false_56_:
 	li	x11, 0
-# was:	li	_and_L_47_, 0
-l.and_end_53_:
-	beq	x11, x0, l.and_false_55_
-# was:	beq	_and_L_47_, x0, l.and_false_55_
-# 	mv	_not_54_,_let_x2_26_
+# was:	li	_and_L_51_, 0
+l.and_end_57_:
+	beq	x11, x0, l.and_false_59_
+# was:	beq	_and_L_51_, x0, l.and_false_59_
+# 	mv	_not_58_,_let_x2_28_
 	xori	x11, x20, 1
-# was:	xori	_and_R_48_, _not_54_, 1
-	beq	x11, x0, l.and_false_55_
-# was:	beq	_and_R_48_, x0, l.and_false_55_
+# was:	xori	_and_R_52_, _not_58_, 1
+	beq	x11, x0, l.and_false_59_
+# was:	beq	_and_R_52_, x0, l.and_false_59_
 	li	x11, 1
-# was:	li	_and_L_45_, 1
-	j	l.and_end_56_
-l.and_false_55_:
+# was:	li	_and_L_49_, 1
+	j	l.and_end_60_
+l.and_false_59_:
 	li	x11, 0
-# was:	li	_and_L_45_, 0
-l.and_end_56_:
-	beq	x11, x0, l.and_false_57_
-# was:	beq	_and_L_45_, x0, l.and_false_57_
-# 	mv	_and_R_46_,_let_x3_35_
-	beq	x10, x0, l.and_false_57_
-# was:	beq	_and_R_46_, x0, l.and_false_57_
+# was:	li	_and_L_49_, 0
+l.and_end_60_:
+	beq	x11, x0, l.and_false_61_
+# was:	beq	_and_L_49_, x0, l.and_false_61_
+# 	mv	_and_R_50_,_let_x3_38_
+	beq	x10, x0, l.and_false_61_
+# was:	beq	_and_R_50_, x0, l.and_false_61_
 	li	x10, 1
-# was:	li	_arg_44_, 1
-	j	l.and_end_58_
-l.and_false_57_:
+# was:	li	_arg_48_, 1
+	j	l.and_end_62_
+l.and_false_61_:
 	li	x10, 0
-# was:	li	_arg_44_, 0
-l.and_end_58_:
-# 	mv	x10,_arg_44_
+# was:	li	_arg_48_, 0
+l.and_end_62_:
+# 	mv	x10,_arg_48_
 	jal	f.write_nl
 # was:	jal	f.write_nl, x10
 # 	mv	_mainres_9_,x10
