@@ -1,3 +1,0 @@
-fun int main () =
-    let x = 2 * "Simon" in
-    write(x)

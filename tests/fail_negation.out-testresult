@@ -1,1 +1,0 @@
-Type error: Type mismatch in argument of negate: expected int, but got bool at line 3, column 16

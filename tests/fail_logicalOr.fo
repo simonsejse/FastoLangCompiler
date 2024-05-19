@@ -1,5 +1,0 @@
-fun bool main() = 
-  let a = true in
-  let b = "not a boolean" in  // Incorrect type: string instead of bool
-  let result = b || a in  // This should raise a type error for 'b'
-  write(result)
