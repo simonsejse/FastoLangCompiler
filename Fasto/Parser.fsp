@@ -51,7 +51,7 @@ let rec desugarLet decls exp pos =
 //specials
 %token <Position>                  IOTA LENGTH MAP READ REDUCE REPLICATE FILTER SCAN WRITE
 //symbols
-%token <Position>                  MINUS PLUS TIMES DIVIDE DEQ LTH GTH
+%token <Position>                  MINUS PLUS TIMES DIVIDE DEQ LTH 
 %token <Position>                  COMMA SEMICOLON EQ ARROW LPAR RPAR LBRACKET RBRACKET
 %token <Position>                  LCURLY RCURLY EOF
 %token <Position>                  AND OR NEG
