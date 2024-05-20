@@ -1,6 +1,6 @@
-# The Fasto Compiler (v1.0, 2024-04-28)
+# The Fasto Compiler and Interpreter (v1.0, 2024-04-28)
 
-This is the compiler for the Fasto programming language. The source code resides in the `Fasto` directory.
+This is a compiler and interpreter for the Fasto programming language. The source code resides in the `Fasto` directory.
 
 ## Commits
 For a detailed overview of changes and additions, check the commit history: [Commit History](https://github.com/simonsejse/FastoLangCompiler/commits/master/).
