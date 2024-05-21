@@ -1,4 +1,5 @@
-# The Fasto Compiler and Interpreter (v1.0, 2024-04-28)
+# Compiler and Interpreter for the Fasto language (v1.0, 2024-04-28)
+
 
 This is a compiler and interpreter for the Fasto programming language. The source code resides in the `Fasto` directory.
 
