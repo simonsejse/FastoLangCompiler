@@ -1,4 +1,4 @@
-# Compiler & Interpreter for the Fasto language
+# Compiler & Interpreter for the Fasto Language
 
 This is a compiler and interpreter for the Fasto programming language. The source code resides in the `Fasto` directory.
 
