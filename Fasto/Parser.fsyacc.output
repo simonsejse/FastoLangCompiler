@@ -21,7 +21,6 @@ state 0:  items:    _startProg ->  . Prog
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -74,7 +73,6 @@ state 1:  items:    _startProg -> Prog .
     action 'DIVIDE' (noprec):   accept
     action 'DEQ' (noprec):   accept
     action 'LTH' (noprec):   accept
-    action 'GTH' (noprec):   accept
     action 'IOTA' (noprec):   accept
     action 'LENGTH' (noprec):   accept
     action 'MAP' (noprec):   accept
@@ -125,7 +123,6 @@ state 1:  items:    _startProg -> Prog .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -176,7 +173,6 @@ state 1:  items:    _startProg -> Prog .
     action 'DIVIDE' (noprec):   reduce Prog --> FunDecs 'EOF'
     action 'DEQ' (noprec):   reduce Prog --> FunDecs 'EOF'
     action 'LTH' (noprec):   reduce Prog --> FunDecs 'EOF'
-    action 'GTH' (noprec):   reduce Prog --> FunDecs 'EOF'
     action 'IOTA' (noprec):   reduce Prog --> FunDecs 'EOF'
     action 'LENGTH' (noprec):   reduce Prog --> FunDecs 'EOF'
     action 'MAP' (noprec):   reduce Prog --> FunDecs 'EOF'
@@ -228,7 +224,6 @@ state 1:  items:    _startProg -> Prog .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -282,7 +277,6 @@ state 5:  items:    FunDecs -> 'FUN' Fun . FunDecs
     action 'DIVIDE' (noprec):   reduce FunDecs --> 'FUN' Fun
     action 'DEQ' (noprec):   reduce FunDecs --> 'FUN' Fun
     action 'LTH' (noprec):   reduce FunDecs --> 'FUN' Fun
-    action 'GTH' (noprec):   reduce FunDecs --> 'FUN' Fun
     action 'IOTA' (noprec):   reduce FunDecs --> 'FUN' Fun
     action 'LENGTH' (noprec):   reduce FunDecs --> 'FUN' Fun
     action 'MAP' (noprec):   reduce FunDecs --> 'FUN' Fun
@@ -334,7 +328,6 @@ state 6:  items:    FunDecs -> 'FUN' Fun FunDecs .
     action 'DIVIDE' (noprec):   reduce FunDecs --> 'FUN' Fun FunDecs
     action 'DEQ' (noprec):   reduce FunDecs --> 'FUN' Fun FunDecs
     action 'LTH' (noprec):   reduce FunDecs --> 'FUN' Fun FunDecs
-    action 'GTH' (noprec):   reduce FunDecs --> 'FUN' Fun FunDecs
     action 'IOTA' (noprec):   reduce FunDecs --> 'FUN' Fun FunDecs
     action 'LENGTH' (noprec):   reduce FunDecs --> 'FUN' Fun FunDecs
     action 'MAP' (noprec):   reduce FunDecs --> 'FUN' Fun FunDecs
@@ -386,7 +379,6 @@ state 6:  items:    FunDecs -> 'FUN' Fun FunDecs .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -438,7 +430,6 @@ state 6:  items:    FunDecs -> 'FUN' Fun FunDecs .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -490,7 +481,6 @@ state 6:  items:    FunDecs -> 'FUN' Fun FunDecs .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -543,7 +533,6 @@ state 10:  items:    Fun -> Type 'ID' 'LPAR' Params . 'RPAR' 'EQ' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -594,7 +583,6 @@ state 10:  items:    Fun -> Type 'ID' 'LPAR' Params . 'RPAR' 'EQ' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -645,7 +633,6 @@ state 10:  items:    Fun -> Type 'ID' 'LPAR' Params . 'RPAR' 'EQ' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -705,7 +692,6 @@ state 13:  items:    Fun -> Type 'ID' 'LPAR' Params 'RPAR' 'EQ' Exp .
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   reduce Fun --> Type 'ID' 'LPAR' Params 'RPAR' 'EQ' Exp
     action 'IOTA' (noprec):   reduce Fun --> Type 'ID' 'LPAR' Params 'RPAR' 'EQ' Exp
     action 'LENGTH' (noprec):   reduce Fun --> Type 'ID' 'LPAR' Params 'RPAR' 'EQ' Exp
     action 'MAP' (noprec):   reduce Fun --> Type 'ID' 'LPAR' Params 'RPAR' 'EQ' Exp
@@ -756,7 +742,6 @@ state 13:  items:    Fun -> Type 'ID' 'LPAR' Params 'RPAR' 'EQ' Exp .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -807,7 +792,6 @@ state 13:  items:    Fun -> Type 'ID' 'LPAR' Params 'RPAR' 'EQ' Exp .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -867,7 +851,6 @@ state 16:  items:    Fun -> Type 'ID' 'LPAR' 'RPAR' 'EQ' Exp .
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   reduce Fun --> Type 'ID' 'LPAR' 'RPAR' 'EQ' Exp
     action 'IOTA' (noprec):   reduce Fun --> Type 'ID' 'LPAR' 'RPAR' 'EQ' Exp
     action 'LENGTH' (noprec):   reduce Fun --> Type 'ID' 'LPAR' 'RPAR' 'EQ' Exp
     action 'MAP' (noprec):   reduce Fun --> Type 'ID' 'LPAR' 'RPAR' 'EQ' Exp
@@ -918,7 +901,6 @@ state 16:  items:    Fun -> Type 'ID' 'LPAR' 'RPAR' 'EQ' Exp .
     action 'DIVIDE' (noprec):   reduce Type --> 'INT'
     action 'DEQ' (noprec):   reduce Type --> 'INT'
     action 'LTH' (noprec):   reduce Type --> 'INT'
-    action 'GTH' (noprec):   reduce Type --> 'INT'
     action 'IOTA' (noprec):   reduce Type --> 'INT'
     action 'LENGTH' (noprec):   reduce Type --> 'INT'
     action 'MAP' (noprec):   reduce Type --> 'INT'
@@ -969,7 +951,6 @@ state 16:  items:    Fun -> Type 'ID' 'LPAR' 'RPAR' 'EQ' Exp .
     action 'DIVIDE' (noprec):   reduce Type --> 'CHAR'
     action 'DEQ' (noprec):   reduce Type --> 'CHAR'
     action 'LTH' (noprec):   reduce Type --> 'CHAR'
-    action 'GTH' (noprec):   reduce Type --> 'CHAR'
     action 'IOTA' (noprec):   reduce Type --> 'CHAR'
     action 'LENGTH' (noprec):   reduce Type --> 'CHAR'
     action 'MAP' (noprec):   reduce Type --> 'CHAR'
@@ -1020,7 +1001,6 @@ state 16:  items:    Fun -> Type 'ID' 'LPAR' 'RPAR' 'EQ' Exp .
     action 'DIVIDE' (noprec):   reduce Type --> 'BOOL'
     action 'DEQ' (noprec):   reduce Type --> 'BOOL'
     action 'LTH' (noprec):   reduce Type --> 'BOOL'
-    action 'GTH' (noprec):   reduce Type --> 'BOOL'
     action 'IOTA' (noprec):   reduce Type --> 'BOOL'
     action 'LENGTH' (noprec):   reduce Type --> 'BOOL'
     action 'MAP' (noprec):   reduce Type --> 'BOOL'
@@ -1071,7 +1051,6 @@ state 16:  items:    Fun -> Type 'ID' 'LPAR' 'RPAR' 'EQ' Exp .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -1123,7 +1102,6 @@ state 21:  items:    Type -> 'LBRACKET' Type . 'RBRACKET'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -1174,7 +1152,6 @@ state 21:  items:    Type -> 'LBRACKET' Type . 'RBRACKET'
     action 'DIVIDE' (noprec):   reduce Type --> 'LBRACKET' Type 'RBRACKET'
     action 'DEQ' (noprec):   reduce Type --> 'LBRACKET' Type 'RBRACKET'
     action 'LTH' (noprec):   reduce Type --> 'LBRACKET' Type 'RBRACKET'
-    action 'GTH' (noprec):   reduce Type --> 'LBRACKET' Type 'RBRACKET'
     action 'IOTA' (noprec):   reduce Type --> 'LBRACKET' Type 'RBRACKET'
     action 'LENGTH' (noprec):   reduce Type --> 'LBRACKET' Type 'RBRACKET'
     action 'MAP' (noprec):   reduce Type --> 'LBRACKET' Type 'RBRACKET'
@@ -1226,7 +1203,6 @@ state 21:  items:    Type -> 'LBRACKET' Type . 'RBRACKET'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -1278,7 +1254,6 @@ state 21:  items:    Type -> 'LBRACKET' Type . 'RBRACKET'
     action 'DIVIDE' (noprec):   reduce Params --> Type 'ID'
     action 'DEQ' (noprec):   reduce Params --> Type 'ID'
     action 'LTH' (noprec):   reduce Params --> Type 'ID'
-    action 'GTH' (noprec):   reduce Params --> Type 'ID'
     action 'IOTA' (noprec):   reduce Params --> Type 'ID'
     action 'LENGTH' (noprec):   reduce Params --> Type 'ID'
     action 'MAP' (noprec):   reduce Params --> Type 'ID'
@@ -1329,7 +1304,6 @@ state 21:  items:    Type -> 'LBRACKET' Type . 'RBRACKET'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -1382,7 +1356,6 @@ state 26:  items:    Params -> Type 'ID' 'COMMA' Params .
     action 'DIVIDE' (noprec):   reduce Params --> Type 'ID' 'COMMA' Params
     action 'DEQ' (noprec):   reduce Params --> Type 'ID' 'COMMA' Params
     action 'LTH' (noprec):   reduce Params --> Type 'ID' 'COMMA' Params
-    action 'GTH' (noprec):   reduce Params --> Type 'ID' 'COMMA' Params
     action 'IOTA' (noprec):   reduce Params --> Type 'ID' 'COMMA' Params
     action 'LENGTH' (noprec):   reduce Params --> Type 'ID' 'COMMA' Params
     action 'MAP' (noprec):   reduce Params --> Type 'ID' 'COMMA' Params
@@ -1434,7 +1407,6 @@ state 26:  items:    Params -> Type 'ID' 'COMMA' Params .
     action 'DIVIDE' (noprec):   reduce LetDecls --> LetDecl
     action 'DEQ' (noprec):   reduce LetDecls --> LetDecl
     action 'LTH' (noprec):   reduce LetDecls --> LetDecl
-    action 'GTH' (noprec):   reduce LetDecls --> LetDecl
     action 'IOTA' (noprec):   reduce LetDecls --> LetDecl
     action 'LENGTH' (noprec):   reduce LetDecls --> LetDecl
     action 'MAP' (noprec):   reduce LetDecls --> LetDecl
@@ -1485,7 +1457,6 @@ state 26:  items:    Params -> Type 'ID' 'COMMA' Params .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -1538,7 +1509,6 @@ state 29:  items:    LetDecls -> LetDecl 'SEMICOLON' LetDecls .
     action 'DIVIDE' (noprec):   reduce LetDecls --> LetDecl 'SEMICOLON' LetDecls
     action 'DEQ' (noprec):   reduce LetDecls --> LetDecl 'SEMICOLON' LetDecls
     action 'LTH' (noprec):   reduce LetDecls --> LetDecl 'SEMICOLON' LetDecls
-    action 'GTH' (noprec):   reduce LetDecls --> LetDecl 'SEMICOLON' LetDecls
     action 'IOTA' (noprec):   reduce LetDecls --> LetDecl 'SEMICOLON' LetDecls
     action 'LENGTH' (noprec):   reduce LetDecls --> LetDecl 'SEMICOLON' LetDecls
     action 'MAP' (noprec):   reduce LetDecls --> LetDecl 'SEMICOLON' LetDecls
@@ -1589,7 +1559,6 @@ state 29:  items:    LetDecls -> LetDecl 'SEMICOLON' LetDecls .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -1640,7 +1609,6 @@ state 29:  items:    LetDecls -> LetDecl 'SEMICOLON' LetDecls .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -1700,7 +1668,6 @@ state 32:  items:    LetDecl -> 'ID' 'EQ' Exp .
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   reduce LetDecl --> 'ID' 'EQ' Exp
     action 'IOTA' (noprec):   reduce LetDecl --> 'ID' 'EQ' Exp
     action 'LENGTH' (noprec):   reduce LetDecl --> 'ID' 'EQ' Exp
     action 'MAP' (noprec):   reduce LetDecl --> 'ID' 'EQ' Exp
@@ -1751,7 +1718,6 @@ state 32:  items:    LetDecl -> 'ID' 'EQ' Exp .
     action 'DIVIDE' (noprec):   reduce Exp --> 'NUM'
     action 'DEQ' (noprec):   reduce Exp --> 'NUM'
     action 'LTH' (noprec):   reduce Exp --> 'NUM'
-    action 'GTH' (noprec):   reduce Exp --> 'NUM'
     action 'IOTA' (noprec):   reduce Exp --> 'NUM'
     action 'LENGTH' (noprec):   reduce Exp --> 'NUM'
     action 'MAP' (noprec):   reduce Exp --> 'NUM'
@@ -1802,7 +1768,6 @@ state 32:  items:    LetDecl -> 'ID' 'EQ' Exp .
     action 'DIVIDE' (noprec):   reduce Exp --> 'CHARLIT'
     action 'DEQ' (noprec):   reduce Exp --> 'CHARLIT'
     action 'LTH' (noprec):   reduce Exp --> 'CHARLIT'
-    action 'GTH' (noprec):   reduce Exp --> 'CHARLIT'
     action 'IOTA' (noprec):   reduce Exp --> 'CHARLIT'
     action 'LENGTH' (noprec):   reduce Exp --> 'CHARLIT'
     action 'MAP' (noprec):   reduce Exp --> 'CHARLIT'
@@ -1853,7 +1818,6 @@ state 32:  items:    LetDecl -> 'ID' 'EQ' Exp .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -1913,7 +1877,6 @@ state 36:  items:    Exp -> 'LPAR' Exp . 'RPAR'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -1964,7 +1927,6 @@ state 36:  items:    Exp -> 'LPAR' Exp . 'RPAR'
     action 'DIVIDE' (noprec):   reduce Exp --> 'LPAR' Exp 'RPAR'
     action 'DEQ' (noprec):   reduce Exp --> 'LPAR' Exp 'RPAR'
     action 'LTH' (noprec):   reduce Exp --> 'LPAR' Exp 'RPAR'
-    action 'GTH' (noprec):   reduce Exp --> 'LPAR' Exp 'RPAR'
     action 'IOTA' (noprec):   reduce Exp --> 'LPAR' Exp 'RPAR'
     action 'LENGTH' (noprec):   reduce Exp --> 'LPAR' Exp 'RPAR'
     action 'MAP' (noprec):   reduce Exp --> 'LPAR' Exp 'RPAR'
@@ -2018,7 +1980,6 @@ state 36:  items:    Exp -> 'LPAR' Exp . 'RPAR'
     action 'DIVIDE' (noprec):   reduce Exp --> 'ID'
     action 'DEQ' (noprec):   reduce Exp --> 'ID'
     action 'LTH' (noprec):   reduce Exp --> 'ID'
-    action 'GTH' (noprec):   reduce Exp --> 'ID'
     action 'IOTA' (noprec):   reduce Exp --> 'ID'
     action 'LENGTH' (noprec):   reduce Exp --> 'ID'
     action 'MAP' (noprec):   reduce Exp --> 'ID'
@@ -2069,7 +2030,6 @@ state 36:  items:    Exp -> 'LPAR' Exp . 'RPAR'
     action 'DIVIDE' (noprec):   reduce Exp --> 'TRUE'
     action 'DEQ' (noprec):   reduce Exp --> 'TRUE'
     action 'LTH' (noprec):   reduce Exp --> 'TRUE'
-    action 'GTH' (noprec):   reduce Exp --> 'TRUE'
     action 'IOTA' (noprec):   reduce Exp --> 'TRUE'
     action 'LENGTH' (noprec):   reduce Exp --> 'TRUE'
     action 'MAP' (noprec):   reduce Exp --> 'TRUE'
@@ -2120,7 +2080,6 @@ state 36:  items:    Exp -> 'LPAR' Exp . 'RPAR'
     action 'DIVIDE' (noprec):   reduce Exp --> 'FALSE'
     action 'DEQ' (noprec):   reduce Exp --> 'FALSE'
     action 'LTH' (noprec):   reduce Exp --> 'FALSE'
-    action 'GTH' (noprec):   reduce Exp --> 'FALSE'
     action 'IOTA' (noprec):   reduce Exp --> 'FALSE'
     action 'LENGTH' (noprec):   reduce Exp --> 'FALSE'
     action 'MAP' (noprec):   reduce Exp --> 'FALSE'
@@ -2171,7 +2130,6 @@ state 36:  items:    Exp -> 'LPAR' Exp . 'RPAR'
     action 'DIVIDE' (noprec):   reduce Exp --> 'STRINGLIT'
     action 'DEQ' (noprec):   reduce Exp --> 'STRINGLIT'
     action 'LTH' (noprec):   reduce Exp --> 'STRINGLIT'
-    action 'GTH' (noprec):   reduce Exp --> 'STRINGLIT'
     action 'IOTA' (noprec):   reduce Exp --> 'STRINGLIT'
     action 'LENGTH' (noprec):   reduce Exp --> 'STRINGLIT'
     action 'MAP' (noprec):   reduce Exp --> 'STRINGLIT'
@@ -2222,7 +2180,6 @@ state 36:  items:    Exp -> 'LPAR' Exp . 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -2275,7 +2232,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -2326,7 +2282,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (noprec):   reduce Exp --> 'LCURLY' Exps 'RCURLY'
     action 'DEQ' (noprec):   reduce Exp --> 'LCURLY' Exps 'RCURLY'
     action 'LTH' (noprec):   reduce Exp --> 'LCURLY' Exps 'RCURLY'
-    action 'GTH' (noprec):   reduce Exp --> 'LCURLY' Exps 'RCURLY'
     action 'IOTA' (noprec):   reduce Exp --> 'LCURLY' Exps 'RCURLY'
     action 'LENGTH' (noprec):   reduce Exp --> 'LCURLY' Exps 'RCURLY'
     action 'MAP' (noprec):   reduce Exp --> 'LCURLY' Exps 'RCURLY'
@@ -2385,7 +2340,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   reduce Exp --> Exp 'PLUS' Exp
     action 'DEQ' (explicit left 9998):   reduce Exp --> Exp 'PLUS' Exp
     action 'LTH' (explicit left 9998):   reduce Exp --> Exp 'PLUS' Exp
-    action 'GTH' (explicit left 9998):   reduce Exp --> Exp 'PLUS' Exp
     action 'IOTA' (explicit left 9998):   reduce Exp --> Exp 'PLUS' Exp
     action 'LENGTH' (explicit left 9998):   reduce Exp --> Exp 'PLUS' Exp
     action 'MAP' (explicit left 9998):   reduce Exp --> Exp 'PLUS' Exp
@@ -2444,7 +2398,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   reduce Exp --> Exp 'MINUS' Exp
     action 'DEQ' (explicit left 9998):   reduce Exp --> Exp 'MINUS' Exp
     action 'LTH' (explicit left 9998):   reduce Exp --> Exp 'MINUS' Exp
-    action 'GTH' (explicit left 9998):   reduce Exp --> Exp 'MINUS' Exp
     action 'IOTA' (explicit left 9998):   reduce Exp --> Exp 'MINUS' Exp
     action 'LENGTH' (explicit left 9998):   reduce Exp --> Exp 'MINUS' Exp
     action 'MAP' (explicit left 9998):   reduce Exp --> Exp 'MINUS' Exp
@@ -2503,7 +2456,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   reduce Exp --> Exp 'TIMES' Exp
     action 'DEQ' (explicit left 9998):   reduce Exp --> Exp 'TIMES' Exp
     action 'LTH' (explicit left 9998):   reduce Exp --> Exp 'TIMES' Exp
-    action 'GTH' (explicit left 9998):   reduce Exp --> Exp 'TIMES' Exp
     action 'IOTA' (explicit left 9998):   reduce Exp --> Exp 'TIMES' Exp
     action 'LENGTH' (explicit left 9998):   reduce Exp --> Exp 'TIMES' Exp
     action 'MAP' (explicit left 9998):   reduce Exp --> Exp 'TIMES' Exp
@@ -2562,7 +2514,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   reduce Exp --> Exp 'DIVIDE' Exp
     action 'DEQ' (explicit left 9998):   reduce Exp --> Exp 'DIVIDE' Exp
     action 'LTH' (explicit left 9998):   reduce Exp --> Exp 'DIVIDE' Exp
-    action 'GTH' (explicit left 9998):   reduce Exp --> Exp 'DIVIDE' Exp
     action 'IOTA' (explicit left 9998):   reduce Exp --> Exp 'DIVIDE' Exp
     action 'LENGTH' (explicit left 9998):   reduce Exp --> Exp 'DIVIDE' Exp
     action 'MAP' (explicit left 9998):   reduce Exp --> Exp 'DIVIDE' Exp
@@ -2621,7 +2572,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   reduce Exp --> Exp 'DEQ' Exp
     action 'LTH' (explicit left 9997):   reduce Exp --> Exp 'DEQ' Exp
-    action 'GTH' (explicit left 9997):   reduce Exp --> Exp 'DEQ' Exp
     action 'IOTA' (explicit left 9997):   reduce Exp --> Exp 'DEQ' Exp
     action 'LENGTH' (explicit left 9997):   reduce Exp --> Exp 'DEQ' Exp
     action 'MAP' (explicit left 9997):   reduce Exp --> Exp 'DEQ' Exp
@@ -2680,7 +2630,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   reduce Exp --> Exp 'LTH' Exp
     action 'LTH' (explicit left 9997):   reduce Exp --> Exp 'LTH' Exp
-    action 'GTH' (explicit left 9997):   reduce Exp --> Exp 'LTH' Exp
     action 'IOTA' (explicit left 9997):   reduce Exp --> Exp 'LTH' Exp
     action 'LENGTH' (explicit left 9997):   reduce Exp --> Exp 'LTH' Exp
     action 'MAP' (explicit left 9997):   reduce Exp --> Exp 'LTH' Exp
@@ -2739,7 +2688,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (explicit left 9996):   reduce Exp --> Exp 'AND' Exp
     action 'IOTA' (explicit left 9996):   reduce Exp --> Exp 'AND' Exp
     action 'LENGTH' (explicit left 9996):   reduce Exp --> Exp 'AND' Exp
     action 'MAP' (explicit left 9996):   reduce Exp --> Exp 'AND' Exp
@@ -2798,7 +2746,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (explicit left 9995):   reduce Exp --> Exp 'OR' Exp
     action 'IOTA' (explicit left 9995):   reduce Exp --> Exp 'OR' Exp
     action 'LENGTH' (explicit left 9995):   reduce Exp --> Exp 'OR' Exp
     action 'MAP' (explicit left 9995):   reduce Exp --> Exp 'OR' Exp
@@ -2857,7 +2804,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit right 9999):   reduce Exp --> 'NEG' Exp
     action 'DEQ' (explicit right 9999):   reduce Exp --> 'NEG' Exp
     action 'LTH' (explicit right 9999):   reduce Exp --> 'NEG' Exp
-    action 'GTH' (explicit right 9999):   reduce Exp --> 'NEG' Exp
     action 'IOTA' (explicit right 9999):   reduce Exp --> 'NEG' Exp
     action 'LENGTH' (explicit right 9999):   reduce Exp --> 'NEG' Exp
     action 'MAP' (explicit right 9999):   reduce Exp --> 'NEG' Exp
@@ -2916,7 +2862,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit right 9999):   reduce Exp --> 'NOT' Exp
     action 'DEQ' (explicit right 9999):   reduce Exp --> 'NOT' Exp
     action 'LTH' (explicit right 9999):   reduce Exp --> 'NOT' Exp
-    action 'GTH' (explicit right 9999):   reduce Exp --> 'NOT' Exp
     action 'IOTA' (explicit right 9999):   reduce Exp --> 'NOT' Exp
     action 'LENGTH' (explicit right 9999):   reduce Exp --> 'NOT' Exp
     action 'MAP' (explicit right 9999):   reduce Exp --> 'NOT' Exp
@@ -2975,7 +2920,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3034,7 +2978,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3093,7 +3036,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (explicit nonassoc 9994):   reduce Exp --> 'IF' Exp 'THEN' Exp 'ELSE' Exp
     action 'IOTA' (explicit nonassoc 9994):   reduce Exp --> 'IF' Exp 'THEN' Exp 'ELSE' Exp
     action 'LENGTH' (explicit nonassoc 9994):   reduce Exp --> 'IF' Exp 'THEN' Exp 'ELSE' Exp
     action 'MAP' (explicit nonassoc 9994):   reduce Exp --> 'IF' Exp 'THEN' Exp 'ELSE' Exp
@@ -3152,7 +3094,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3211,7 +3152,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3270,7 +3210,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3329,7 +3268,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3388,7 +3326,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3447,7 +3384,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3506,7 +3442,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3565,7 +3500,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3624,7 +3558,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3683,7 +3616,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3742,7 +3674,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (explicit nonassoc 9994):   reduce Exp --> 'LET' LetDecls 'IN' Exp
     action 'IOTA' (explicit nonassoc 9994):   reduce Exp --> 'LET' LetDecls 'IN' Exp
     action 'LENGTH' (explicit nonassoc 9994):   reduce Exp --> 'LET' LetDecls 'IN' Exp
     action 'MAP' (explicit nonassoc 9994):   reduce Exp --> 'LET' LetDecls 'IN' Exp
@@ -3801,7 +3732,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -3861,7 +3791,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   reduce Exps --> Exp
     action 'IOTA' (noprec):   reduce Exps --> Exp
     action 'LENGTH' (noprec):   reduce Exps --> Exp
     action 'MAP' (noprec):   reduce Exps --> Exp
@@ -3920,7 +3849,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   reduce FunArg --> 'FN' Type 'LPAR' 'RPAR' 'ARROW' Exp
     action 'IOTA' (noprec):   reduce FunArg --> 'FN' Type 'LPAR' 'RPAR' 'ARROW' Exp
     action 'LENGTH' (noprec):   reduce FunArg --> 'FN' Type 'LPAR' 'RPAR' 'ARROW' Exp
     action 'MAP' (noprec):   reduce FunArg --> 'FN' Type 'LPAR' 'RPAR' 'ARROW' Exp
@@ -3979,7 +3907,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (explicit left 9998):   shift 76
     action 'DEQ' (explicit left 9997):   shift 77
     action 'LTH' (explicit left 9997):   shift 78
-    action 'GTH' (noprec):   reduce FunArg --> 'FN' Type 'LPAR' Params 'RPAR' 'ARROW' Exp
     action 'IOTA' (noprec):   reduce FunArg --> 'FN' Type 'LPAR' Params 'RPAR' 'ARROW' Exp
     action 'LENGTH' (noprec):   reduce FunArg --> 'FN' Type 'LPAR' Params 'RPAR' 'ARROW' Exp
     action 'MAP' (noprec):   reduce FunArg --> 'FN' Type 'LPAR' Params 'RPAR' 'ARROW' Exp
@@ -4030,7 +3957,6 @@ state 43:  items:    Exp -> 'LCURLY' Exps . 'RCURLY'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4082,7 +4008,6 @@ state 74:  items:    Exp -> Exp 'MINUS' . Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4134,7 +4059,6 @@ state 75:  items:    Exp -> Exp 'TIMES' . Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4186,7 +4110,6 @@ state 76:  items:    Exp -> Exp 'DIVIDE' . Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4238,7 +4161,6 @@ state 77:  items:    Exp -> Exp 'DEQ' . Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4290,7 +4212,6 @@ state 78:  items:    Exp -> Exp 'LTH' . Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4342,7 +4263,6 @@ state 79:  items:    Exp -> Exp 'AND' . Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4394,7 +4314,6 @@ state 80:  items:    Exp -> Exp 'OR' . Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4446,7 +4365,6 @@ state 81:  items:    Exp -> 'NEG' . Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4498,7 +4416,6 @@ state 82:  items:    Exp -> 'NOT' . Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4550,7 +4467,6 @@ state 83:  items:    Exp -> 'IF' . Exp 'THEN' Exp 'ELSE' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4602,7 +4518,6 @@ state 84:  items:    Exp -> 'IF' Exp 'THEN' . Exp 'ELSE' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4654,7 +4569,6 @@ state 85:  items:    Exp -> 'IF' Exp 'THEN' Exp 'ELSE' . Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4707,7 +4621,6 @@ state 86:  items:    Exp -> 'ID' 'LPAR' . Exps 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -4760,7 +4673,6 @@ state 87:  items:    Exp -> 'ID' 'LPAR' Exps . 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -4811,7 +4723,6 @@ state 87:  items:    Exp -> 'ID' 'LPAR' Exps . 'RPAR'
     action 'DIVIDE' (noprec):   reduce Exp --> 'ID' 'LPAR' Exps 'RPAR'
     action 'DEQ' (noprec):   reduce Exp --> 'ID' 'LPAR' Exps 'RPAR'
     action 'LTH' (noprec):   reduce Exp --> 'ID' 'LPAR' Exps 'RPAR'
-    action 'GTH' (noprec):   reduce Exp --> 'ID' 'LPAR' Exps 'RPAR'
     action 'IOTA' (noprec):   reduce Exp --> 'ID' 'LPAR' Exps 'RPAR'
     action 'LENGTH' (noprec):   reduce Exp --> 'ID' 'LPAR' Exps 'RPAR'
     action 'MAP' (noprec):   reduce Exp --> 'ID' 'LPAR' Exps 'RPAR'
@@ -4862,7 +4773,6 @@ state 87:  items:    Exp -> 'ID' 'LPAR' Exps . 'RPAR'
     action 'DIVIDE' (noprec):   reduce Exp --> 'ID' 'LPAR' 'RPAR'
     action 'DEQ' (noprec):   reduce Exp --> 'ID' 'LPAR' 'RPAR'
     action 'LTH' (noprec):   reduce Exp --> 'ID' 'LPAR' 'RPAR'
-    action 'GTH' (noprec):   reduce Exp --> 'ID' 'LPAR' 'RPAR'
     action 'IOTA' (noprec):   reduce Exp --> 'ID' 'LPAR' 'RPAR'
     action 'LENGTH' (noprec):   reduce Exp --> 'ID' 'LPAR' 'RPAR'
     action 'MAP' (noprec):   reduce Exp --> 'ID' 'LPAR' 'RPAR'
@@ -4913,7 +4823,6 @@ state 87:  items:    Exp -> 'ID' 'LPAR' Exps . 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -4964,7 +4873,6 @@ state 87:  items:    Exp -> 'ID' 'LPAR' Exps . 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -5016,7 +4924,6 @@ state 92:  items:    Exp -> 'READ' 'LPAR' Type . 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -5067,7 +4974,6 @@ state 92:  items:    Exp -> 'READ' 'LPAR' Type . 'RPAR'
     action 'DIVIDE' (noprec):   reduce Exp --> 'READ' 'LPAR' Type 'RPAR'
     action 'DEQ' (noprec):   reduce Exp --> 'READ' 'LPAR' Type 'RPAR'
     action 'LTH' (noprec):   reduce Exp --> 'READ' 'LPAR' Type 'RPAR'
-    action 'GTH' (noprec):   reduce Exp --> 'READ' 'LPAR' Type 'RPAR'
     action 'IOTA' (noprec):   reduce Exp --> 'READ' 'LPAR' Type 'RPAR'
     action 'LENGTH' (noprec):   reduce Exp --> 'READ' 'LPAR' Type 'RPAR'
     action 'MAP' (noprec):   reduce Exp --> 'READ' 'LPAR' Type 'RPAR'
@@ -5118,7 +5024,6 @@ state 92:  items:    Exp -> 'READ' 'LPAR' Type . 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -5169,7 +5074,6 @@ state 92:  items:    Exp -> 'READ' 'LPAR' Type . 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -5221,7 +5125,6 @@ state 96:  items:    Exp -> 'WRITE' 'LPAR' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   reduce Exp --> 'WRITE' 'LPAR' Exp 'RPAR'
     action 'DEQ' (noprec):   reduce Exp --> 'WRITE' 'LPAR' Exp 'RPAR'
     action 'LTH' (noprec):   reduce Exp --> 'WRITE' 'LPAR' Exp 'RPAR'
-    action 'GTH' (noprec):   reduce Exp --> 'WRITE' 'LPAR' Exp 'RPAR'
     action 'IOTA' (noprec):   reduce Exp --> 'WRITE' 'LPAR' Exp 'RPAR'
     action 'LENGTH' (noprec):   reduce Exp --> 'WRITE' 'LPAR' Exp 'RPAR'
     action 'MAP' (noprec):   reduce Exp --> 'WRITE' 'LPAR' Exp 'RPAR'
@@ -5272,7 +5175,6 @@ state 96:  items:    Exp -> 'WRITE' 'LPAR' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -5323,7 +5225,6 @@ state 96:  items:    Exp -> 'WRITE' 'LPAR' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -5375,7 +5276,6 @@ state 99:  items:    Exp -> 'IOTA' 'LPAR' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   reduce Exp --> 'IOTA' 'LPAR' Exp 'RPAR'
     action 'DEQ' (noprec):   reduce Exp --> 'IOTA' 'LPAR' Exp 'RPAR'
     action 'LTH' (noprec):   reduce Exp --> 'IOTA' 'LPAR' Exp 'RPAR'
-    action 'GTH' (noprec):   reduce Exp --> 'IOTA' 'LPAR' Exp 'RPAR'
     action 'IOTA' (noprec):   reduce Exp --> 'IOTA' 'LPAR' Exp 'RPAR'
     action 'LENGTH' (noprec):   reduce Exp --> 'IOTA' 'LPAR' Exp 'RPAR'
     action 'MAP' (noprec):   reduce Exp --> 'IOTA' 'LPAR' Exp 'RPAR'
@@ -5426,7 +5326,6 @@ state 99:  items:    Exp -> 'IOTA' 'LPAR' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -5477,7 +5376,6 @@ state 99:  items:    Exp -> 'IOTA' 'LPAR' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -5529,7 +5427,6 @@ state 102:  items:    Exp -> 'MAP' 'LPAR' FunArg . 'COMMA' Exp 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -5580,7 +5477,6 @@ state 102:  items:    Exp -> 'MAP' 'LPAR' FunArg . 'COMMA' Exp 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -5632,7 +5528,6 @@ state 104:  items:    Exp -> 'MAP' 'LPAR' FunArg 'COMMA' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   reduce Exp --> 'MAP' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
     action 'DEQ' (noprec):   reduce Exp --> 'MAP' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
     action 'LTH' (noprec):   reduce Exp --> 'MAP' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
-    action 'GTH' (noprec):   reduce Exp --> 'MAP' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
     action 'IOTA' (noprec):   reduce Exp --> 'MAP' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
     action 'LENGTH' (noprec):   reduce Exp --> 'MAP' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
     action 'MAP' (noprec):   reduce Exp --> 'MAP' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
@@ -5683,7 +5578,6 @@ state 104:  items:    Exp -> 'MAP' 'LPAR' FunArg 'COMMA' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -5734,7 +5628,6 @@ state 104:  items:    Exp -> 'MAP' 'LPAR' FunArg 'COMMA' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -5786,7 +5679,6 @@ state 107:  items:    Exp -> 'REDUCE' 'LPAR' FunArg . 'COMMA' Exp 'COMMA' Exp 'R
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -5837,7 +5729,6 @@ state 107:  items:    Exp -> 'REDUCE' 'LPAR' FunArg . 'COMMA' Exp 'COMMA' Exp 'R
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -5889,7 +5780,6 @@ state 109:  items:    Exp -> 'REDUCE' 'LPAR' FunArg 'COMMA' Exp 'COMMA' . Exp 'R
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -5941,7 +5831,6 @@ state 110:  items:    Exp -> 'REDUCE' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPA
     action 'DIVIDE' (noprec):   reduce Exp --> 'REDUCE' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'DEQ' (noprec):   reduce Exp --> 'REDUCE' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'LTH' (noprec):   reduce Exp --> 'REDUCE' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
-    action 'GTH' (noprec):   reduce Exp --> 'REDUCE' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'IOTA' (noprec):   reduce Exp --> 'REDUCE' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'LENGTH' (noprec):   reduce Exp --> 'REDUCE' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'MAP' (noprec):   reduce Exp --> 'REDUCE' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
@@ -5992,7 +5881,6 @@ state 110:  items:    Exp -> 'REDUCE' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPA
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -6043,7 +5931,6 @@ state 110:  items:    Exp -> 'REDUCE' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPA
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -6095,7 +5982,6 @@ state 113:  items:    Exp -> 'REPLICATE' 'LPAR' Exp 'COMMA' . Exp 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -6147,7 +6033,6 @@ state 114:  items:    Exp -> 'REPLICATE' 'LPAR' Exp 'COMMA' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   reduce Exp --> 'REPLICATE' 'LPAR' Exp 'COMMA' Exp 'RPAR'
     action 'DEQ' (noprec):   reduce Exp --> 'REPLICATE' 'LPAR' Exp 'COMMA' Exp 'RPAR'
     action 'LTH' (noprec):   reduce Exp --> 'REPLICATE' 'LPAR' Exp 'COMMA' Exp 'RPAR'
-    action 'GTH' (noprec):   reduce Exp --> 'REPLICATE' 'LPAR' Exp 'COMMA' Exp 'RPAR'
     action 'IOTA' (noprec):   reduce Exp --> 'REPLICATE' 'LPAR' Exp 'COMMA' Exp 'RPAR'
     action 'LENGTH' (noprec):   reduce Exp --> 'REPLICATE' 'LPAR' Exp 'COMMA' Exp 'RPAR'
     action 'MAP' (noprec):   reduce Exp --> 'REPLICATE' 'LPAR' Exp 'COMMA' Exp 'RPAR'
@@ -6198,7 +6083,6 @@ state 114:  items:    Exp -> 'REPLICATE' 'LPAR' Exp 'COMMA' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -6249,7 +6133,6 @@ state 114:  items:    Exp -> 'REPLICATE' 'LPAR' Exp 'COMMA' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -6301,7 +6184,6 @@ state 117:  items:    Exp -> 'FILTER' 'LPAR' FunArg . 'COMMA' Exp 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -6352,7 +6234,6 @@ state 117:  items:    Exp -> 'FILTER' 'LPAR' FunArg . 'COMMA' Exp 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -6404,7 +6285,6 @@ state 119:  items:    Exp -> 'FILTER' 'LPAR' FunArg 'COMMA' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   reduce Exp --> 'FILTER' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
     action 'DEQ' (noprec):   reduce Exp --> 'FILTER' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
     action 'LTH' (noprec):   reduce Exp --> 'FILTER' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
-    action 'GTH' (noprec):   reduce Exp --> 'FILTER' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
     action 'IOTA' (noprec):   reduce Exp --> 'FILTER' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
     action 'LENGTH' (noprec):   reduce Exp --> 'FILTER' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
     action 'MAP' (noprec):   reduce Exp --> 'FILTER' 'LPAR' FunArg 'COMMA' Exp 'RPAR'
@@ -6455,7 +6335,6 @@ state 119:  items:    Exp -> 'FILTER' 'LPAR' FunArg 'COMMA' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -6506,7 +6385,6 @@ state 119:  items:    Exp -> 'FILTER' 'LPAR' FunArg 'COMMA' Exp 'RPAR' .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -6558,7 +6436,6 @@ state 122:  items:    Exp -> 'SCAN' 'LPAR' FunArg . 'COMMA' Exp 'COMMA' Exp 'RPA
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -6609,7 +6486,6 @@ state 122:  items:    Exp -> 'SCAN' 'LPAR' FunArg . 'COMMA' Exp 'COMMA' Exp 'RPA
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -6661,7 +6537,6 @@ state 124:  items:    Exp -> 'SCAN' 'LPAR' FunArg 'COMMA' Exp 'COMMA' . Exp 'RPA
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -6713,7 +6588,6 @@ state 125:  items:    Exp -> 'SCAN' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'DIVIDE' (noprec):   reduce Exp --> 'SCAN' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'DEQ' (noprec):   reduce Exp --> 'SCAN' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'LTH' (noprec):   reduce Exp --> 'SCAN' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
-    action 'GTH' (noprec):   reduce Exp --> 'SCAN' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'IOTA' (noprec):   reduce Exp --> 'SCAN' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'LENGTH' (noprec):   reduce Exp --> 'SCAN' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'MAP' (noprec):   reduce Exp --> 'SCAN' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
@@ -6764,7 +6638,6 @@ state 125:  items:    Exp -> 'SCAN' 'LPAR' FunArg 'COMMA' Exp 'COMMA' Exp 'RPAR'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -6817,7 +6690,6 @@ state 127:  items:    Exp -> 'LET' LetDecls . 'IN' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -6868,7 +6740,6 @@ state 127:  items:    Exp -> 'LET' LetDecls . 'IN' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -6920,7 +6791,6 @@ state 129:  items:    Exp -> 'ID' 'LBRACKET' . Exp 'RBRACKET'
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -6972,7 +6842,6 @@ state 130:  items:    Exp -> 'ID' 'LBRACKET' Exp 'RBRACKET' .
     action 'DIVIDE' (noprec):   reduce Exp --> 'ID' 'LBRACKET' Exp 'RBRACKET'
     action 'DEQ' (noprec):   reduce Exp --> 'ID' 'LBRACKET' Exp 'RBRACKET'
     action 'LTH' (noprec):   reduce Exp --> 'ID' 'LBRACKET' Exp 'RBRACKET'
-    action 'GTH' (noprec):   reduce Exp --> 'ID' 'LBRACKET' Exp 'RBRACKET'
     action 'IOTA' (noprec):   reduce Exp --> 'ID' 'LBRACKET' Exp 'RBRACKET'
     action 'LENGTH' (noprec):   reduce Exp --> 'ID' 'LBRACKET' Exp 'RBRACKET'
     action 'MAP' (noprec):   reduce Exp --> 'ID' 'LBRACKET' Exp 'RBRACKET'
@@ -7023,7 +6892,6 @@ state 130:  items:    Exp -> 'ID' 'LBRACKET' Exp 'RBRACKET' .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -7076,7 +6944,6 @@ state 132:  items:    Exps -> Exp 'COMMA' Exps .
     action 'DIVIDE' (noprec):   reduce Exps --> Exp 'COMMA' Exps
     action 'DEQ' (noprec):   reduce Exps --> Exp 'COMMA' Exps
     action 'LTH' (noprec):   reduce Exps --> Exp 'COMMA' Exps
-    action 'GTH' (noprec):   reduce Exps --> Exp 'COMMA' Exps
     action 'IOTA' (noprec):   reduce Exps --> Exp 'COMMA' Exps
     action 'LENGTH' (noprec):   reduce Exps --> Exp 'COMMA' Exps
     action 'MAP' (noprec):   reduce Exps --> Exp 'COMMA' Exps
@@ -7127,7 +6994,6 @@ state 132:  items:    Exps -> Exp 'COMMA' Exps .
     action 'DIVIDE' (noprec):   reduce FunArg --> 'ID'
     action 'DEQ' (noprec):   reduce FunArg --> 'ID'
     action 'LTH' (noprec):   reduce FunArg --> 'ID'
-    action 'GTH' (noprec):   reduce FunArg --> 'ID'
     action 'IOTA' (noprec):   reduce FunArg --> 'ID'
     action 'LENGTH' (noprec):   reduce FunArg --> 'ID'
     action 'MAP' (noprec):   reduce FunArg --> 'ID'
@@ -7179,7 +7045,6 @@ state 132:  items:    Exps -> Exp 'COMMA' Exps .
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -7232,7 +7097,6 @@ state 135:  items:    FunArg -> 'FN' Type . 'LPAR' 'RPAR' 'ARROW' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -7284,7 +7148,6 @@ state 135:  items:    FunArg -> 'FN' Type . 'LPAR' 'RPAR' 'ARROW' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -7337,7 +7200,6 @@ state 137:  items:    FunArg -> 'FN' Type 'LPAR' 'RPAR' . 'ARROW' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -7388,7 +7250,6 @@ state 137:  items:    FunArg -> 'FN' Type 'LPAR' 'RPAR' . 'ARROW' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100
@@ -7440,7 +7301,6 @@ state 139:  items:    FunArg -> 'FN' Type 'LPAR' Params . 'RPAR' 'ARROW' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -7491,7 +7351,6 @@ state 139:  items:    FunArg -> 'FN' Type 'LPAR' Params . 'RPAR' 'ARROW' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   error
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   error
@@ -7542,7 +7401,6 @@ state 139:  items:    FunArg -> 'FN' Type 'LPAR' Params . 'RPAR' 'ARROW' Exp
     action 'DIVIDE' (noprec):   error
     action 'DEQ' (noprec):   error
     action 'LTH' (noprec):   error
-    action 'GTH' (noprec):   error
     action 'IOTA' (noprec):   shift 97
     action 'LENGTH' (noprec):   error
     action 'MAP' (noprec):   shift 100

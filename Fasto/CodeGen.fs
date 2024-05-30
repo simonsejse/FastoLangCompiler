@@ -115,7 +115,7 @@ let checkBounds (arr_beg: reg, ind_reg: reg, (line: int, c: int)) : Instruction 
  *)
 (*  getOffsetAndSize : Type -> ElemSize * int
     This function returns a tuple of the element size and the size of the element in bytes. *)
-let getOffsetAndSize (tp: Type) : (ElemSize * int) = 
+let getOffsetAndSize (tp: Type) : (ElemSize * int) =
     (getElemSize tp, tp |> getElemSize |> elemSizeToInt)
 
 let dynalloc (size_reg: reg, place: reg, ty: Type) : Instruction list =
@@ -244,13 +244,12 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
 
         let divZeroSafeLabel = newLab "divZeroSafe"
 
-        let checkDivByZero = [
-            BNE(t2, Rzero, divZeroSafeLabel)
-            LI(Ra0, fst pos)
-            LA(Ra1, "m.DivZero")
-            J "p.RuntimeError"
-            LABEL divZeroSafeLabel
-        ]
+        let checkDivByZero =
+            [ BNE(t2, Rzero, divZeroSafeLabel)
+              LI(Ra0, fst pos)
+              LA(Ra1, "m.DivZero")
+              J "p.RuntimeError"
+              LABEL divZeroSafeLabel ]
 
         code1 @ code2 @ checkDivByZero @ [ DIV(place, t1, t2) ]
 
@@ -593,7 +592,7 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
               LA(Ra1, "m.BadSize")
               J "p.RuntimeError"
               LABEL safe_lab ]
-              
+
         let i_reg = newReg "replicate_i"
         let addr_reg = newReg "replicate_addr"
         let init_regs = [ ADDI(addr_reg, place, 4); MV(i_reg, Rzero) ]
@@ -619,80 +618,55 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
         @ loop_header
         @ loop_body
         @ loop_footer
-
-    (* TODO project task 2: see also the comment to replicate.
-     (a) `filter(f, arr)`:  has some similarity with the implementation of map.
-     (b) Use `applyFunArg` to call `f(a)` in a loop, for every element `a` of `arr`.
-     (c) If `f(a)` succeeds (result in the `true` value) then (and only then):
-          - set the next element of the result array to `a`, and
-          - increment a counter (initialized before the loop)
-     (d) It is useful to maintain two array iterators: one for the input array `arr`
-         and one for the result array. (The latter increases slower because
-         some of the elements of the input array are skipped because they fail
-         under the predicate).
-     (e) The last step (after the loop writing the elments of the result array)
-         is to update the logical size of the result array to the value of the
-         counter computed in step (c). You do this of course with a
-         `SW(counter_reg, place, 0)` instruction.
-  *)
     | Filter(funarg: FunArg<Type>, exp: Exp<Type>, tp: Type, pos: Position) ->
-        let elem_size = getElemSize tp 
+        let elem_size = getElemSize tp
         let offset = elemSizeToInt elem_size
 
-        let arr_addr_reg = newReg "filter_arr"             // base address of the array 
+        let arr_addr_reg = newReg "filter_arr" // base address of the array
         let arr_code = compileExp exp vtable arr_addr_reg
-        
-        let size_reg = newReg "filter_size"                // size of the input array
+
+        let size_reg = newReg "filter_size" // size of the input array
         let get_size = [ LW(size_reg, arr_addr_reg, 0) ]
-       
-        let elem_reg = newReg "filter_elem"               // current element of the array
+
+        let elem_reg = newReg "filter_elem" // current element of the array
         let predicate_res = newReg "filter_predicate_res" // result of the predicate
-        let counter_reg = newReg "filter_counter"         // counter of the elements that passed the predicate
-        let i_reg = newReg "filter_i"                     // loop counter
+        let counter_reg = newReg "filter_counter" // counter of the elements that passed the predicate
+        let i_reg = newReg "filter_i" // loop counter
         let current_place = newReg "filter_current_place" // Current position in the result array
 
-        let init_regs = [ 
-            ADDI(arr_addr_reg, arr_addr_reg, offset);     // skip the size of the array
-            MV(i_reg, Rzero)                              // initialize the loop counter  
-            MV(counter_reg, Rzero);                       // initialize the counter
-            MV(current_place, place)                      // initialize the current place
-            ADDI(current_place, current_place, offset)    // skip the size of the array
-        ]
+        let init_regs =
+            [ ADDI(arr_addr_reg, arr_addr_reg, offset) // skip the size of the array
+              MV(i_reg, Rzero) // initialize the loop counter
+              MV(counter_reg, Rzero) // initialize the counter
+              MV(current_place, place) // initialize the current place
+              ADDI(current_place, current_place, offset) ] // skip the size of the array
 
         let loop_start = newLab "filter_start"
         let filter_skip = newLab "filter_skip"
         let loop_end = newLab "filter_end"
 
-        let loop_header = [ 
-            LABEL loop_start; 
-            BGE(i_reg, size_reg, loop_end) 
-        ]
+        let loop_header = [ LABEL loop_start; BGE(i_reg, size_reg, loop_end) ]
 
         let loop_body =
-            [ Load elem_size (elem_reg, arr_addr_reg, 0) ] 
-            @ applyFunArg(funarg, [ elem_reg ], vtable, predicate_res, pos)
-            @ [
-                BEQ(predicate_res, Rzero, filter_skip)
+            [ Load elem_size (elem_reg, arr_addr_reg, 0) ]
+            @ applyFunArg (funarg, [ elem_reg ], vtable, predicate_res, pos)
+            @ [ BEQ(predicate_res, Rzero, filter_skip)
                 Store elem_size (elem_reg, current_place, 0)
                 ADDI(current_place, current_place, offset)
                 ADDI(counter_reg, counter_reg, 1)
                 LABEL filter_skip
                 ADDI(arr_addr_reg, arr_addr_reg, offset)
-                ADDI(i_reg, i_reg, 1)
-            ]
-            
-        let loop_footer = [ 
-            J loop_start
-            LABEL loop_end 
-        ]
+                ADDI(i_reg, i_reg, 1) ]
 
-        arr_code 
-        @ get_size 
-        @ dynalloc(size_reg, place, tp) 
-        @ init_regs 
-        @ loop_header 
-        @ loop_body 
-        @ loop_footer 
+        let loop_footer = [ J loop_start; LABEL loop_end ]
+
+        arr_code
+        @ get_size
+        @ dynalloc (size_reg, place, tp)
+        @ init_regs
+        @ loop_header
+        @ loop_body
+        @ loop_footer
         @ [ SW(counter_reg, place, 0) ]
 
     (* TODO project task 2: see also the comment to replicate.
@@ -704,60 +678,54 @@ let rec compileExp (e: TypedExp) (vtable: VarTable) (place: reg) : Instruction l
   *)
     | Scan(funarg: FunArg<Type>, ne: Exp<Type>, arr: Exp<Type>, tp: Type, pos: Position) ->
         let (elem_size, offset) = getOffsetAndSize tp
-        let ne_reg = newReg "scan_ne"                   // initial value
-        let ne_code = compileExp ne vtable ne_reg 
+        let ne_reg = newReg "scan_ne" // initial value
+        let ne_code = compileExp ne vtable ne_reg
 
-        let arr_addr_reg = newReg "scan_arr"            // base address of the array
+        let arr_addr_reg = newReg "scan_arr" // base address of the array
         let arr_code = compileExp arr vtable arr_addr_reg
 
-        let size_reg = newReg "scan_size"               // size of the input array
-        let get_size = [ Load elem_size (size_reg, arr_addr_reg, 0)
-                         ADDI(arr_addr_reg, arr_addr_reg, offset) ] 
+        let size_reg = newReg "scan_size" // size of the input array
 
-        let i_reg = newReg "scan_i"                     // loop counter
-        let acc_reg = newReg "scan_acc"                 // accumulator
-        let elem_reg = newReg "scan_elem"               // current element of the array to be applied the func
+        let get_size =
+            [ Load elem_size (size_reg, arr_addr_reg, 0)
+              ADDI(arr_addr_reg, arr_addr_reg, offset) ]
+
+        let i_reg = newReg "scan_i" // loop counter
+        let acc_reg = newReg "scan_acc" // accumulator
+        let elem_reg = newReg "scan_elem" // current element of the array to be applied the func
         let current_place = newReg "scan_current_place" // Current position in the result array
 
-        let init_regs = [ 
-            MV(i_reg, Rzero)                            // initialize the loop counter
-            MV(acc_reg, ne_reg)                         // initialize the accumulator
-            MV(current_place, place)                    // initialize the current place
-            ADDI(current_place, current_place, offset)  // skip the size of the array
-         ] 
+        let init_regs =
+            [ MV(i_reg, Rzero) // initialize the loop counter
+              MV(acc_reg, ne_reg) // initialize the accumulator
+              MV(current_place, place) // initialize the current place
+              ADDI(current_place, current_place, offset) ] // skip the size of the array
 
         let loop_start = newLab "scan_start"
         let loop_end = newLab "scan_end"
 
-        let loop_header = [ 
-            LABEL loop_start; 
-            BGE(i_reg, size_reg, loop_end) 
-        ]
+        let loop_header = [ LABEL loop_start; BGE(i_reg, size_reg, loop_end) ]
 
-        let loop_body = 
-            [ Load elem_size (elem_reg, arr_addr_reg, 0) ] 
-            @ applyFunArg(funarg, [ acc_reg; elem_reg ], vtable, acc_reg, pos) (* takes acc and elem as arguments *)
-            @ [ 
+        let loop_body =
+            [ Load elem_size (elem_reg, arr_addr_reg, 0) ]
+            @ applyFunArg (funarg, [ acc_reg; elem_reg ], vtable, acc_reg, pos) (* takes acc and elem as arguments *)
+            @ [
                 (* when i used arr_addr_reg i change the value in the old array instead of the result 
                 array at place where we dynamically allocated down below *)
-                Store elem_size (acc_reg, current_place, 0) 
+                Store elem_size (acc_reg, current_place, 0)
                 ADDI(current_place, current_place, offset)
                 ADDI(arr_addr_reg, arr_addr_reg, offset)
-                ADDI(i_reg, i_reg, 1)
-            ]
+                ADDI(i_reg, i_reg, 1) ]
 
-        let loop_footer = [
-            J loop_start
-            LABEL loop_end
-        ]
+        let loop_footer = [ J loop_start; LABEL loop_end ]
 
-        ne_code 
-        @ arr_code 
-        @ get_size 
-        @ dynalloc(size_reg, place, tp)
-        @ init_regs 
-        @ loop_header 
-        @ loop_body 
+        ne_code
+        @ arr_code
+        @ get_size
+        @ dynalloc (size_reg, place, tp)
+        @ init_regs
+        @ loop_header
+        @ loop_body
         @ loop_footer
 
 and applyFunArg (ff: TypedFunArg, args: reg list, vtable: VarTable, place: reg, pos: Position) : Instruction list =
