@@ -50,27 +50,40 @@ where `OPTS` is a list of optimization passes, e.g., ic for just inlining and co
 
 Ex. `./bin/fasto.sh -p ic tests/copyConstPropFold2.fo` 
 
-### ./bin/fasto.sh
+For a detailed view over the `OPTS`:
 ```fsharp
-    match paramList with
-      | [|"-i"; file|] -> interpret (sanitiseFilename file)
-      | [|"-r"; file|] -> let res = interpretSimple (sanitiseFilename file)
-                          printfn "\n\nResult of 'main': %s\n" (AbSyn.ppVal 0 res)
-      | [|"-c"; file|] -> compile  (sanitiseFilename file) (fun x -> x)
-      | [|"-o"; file|] -> compile  (sanitiseFilename file) defaultOptimisations
-      | [|"-o"; opts; file|] ->
-          match extractOpts (explode opts) with
-            | Some (opts') -> compile (sanitiseFilename file) opts'
-            | None         -> bad ()
-      | [|"-P"; file|] ->
-          printOptimised (sanitiseFilename file) withoutOptimisations
-      | [|"-p"; file|] ->
-          printOptimised (sanitiseFilename file) defaultOptimisations
-      | [|"-p"; opts; file|] ->
-          match extractOpts (explode opts) with
-              | Some (opts') -> printOptimised (sanitiseFilename file) opts'
-              | None         -> bad ()
-      | _ -> bad ()
+let extractOpt (op : opt) =
+    match op with
+        | 'i' -> Some inlineOptimiseProgram
+        | 'c' -> Some optimiseProgram
+        | 'd' -> Some removeDeadBindings
+        | 'D' -> Some removeDeadFunction
+```
+where `i` and `c` was just explained, and the rest is pretty selfexplanatory.
+
+
+### Parameter list for `./bin/fasto.sh`
+```fsharp
+match paramList with
+  | [|"-i"; file|] -> interpret (sanitiseFilename file)
+  | [|"-r"; file|] -> let res = interpretSimple (sanitiseFilename file)
+                      printfn "\n\nResult of 'main': %s\n" (AbSyn.ppVal 0 res)
+  | [|"-c"; file|] -> compile  (sanitiseFilename file) (fun x -> x)
+  | [|"-o"; file|] -> compile  (sanitiseFilename file) defaultOptimisations
+  | [|"-o"; opts; file|] ->
+      match extractOpts (explode opts) with
+        | Some (opts') -> compile (sanitiseFilename file) opts'
+        | None         -> bad ()
+  | [|"-P"; file|] ->
+      printOptimised (sanitiseFilename file) withoutOptimisations
+  | [|"-p"; file|] ->
+      printOptimised (sanitiseFilename file) defaultOptimisations
+  | [|"-p"; opts; file|] ->
+      match extractOpts (explode opts) with
+          | Some (opts') -> printOptimised (sanitiseFilename file) opts'
+          | None         -> bad ()
+  | _ -> bad ()
 ```
 Here is a detailed view over all params you can use for the fasto.sh file!
+
 For more details and updates, check the commit history: [Commit History](https://github.com/simonsejse/FastoLangCompiler/commits/master/)
