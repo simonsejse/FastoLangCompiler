@@ -43,4 +43,11 @@ Options:
 - `-i` to run in interpreted mode
 - `-o` to enable optimizations in the compiler
 
+### Running tests for compiler optimization
+You can show the result of the optimizations with:
+- `fasto.sh -p OPTS foo.fo`
+where `OPTS` is a list of optimization passes, e.g., ic for just inlining and copy/constant propagation.
+
+Ex. `./bin/fasto.sh -p ic tests/copyConstPropFold2.fo` 
+
 For more details and updates, check the commit history: [Commit History](https://github.com/simonsejse/FastoLangCompiler/commits/master/)
