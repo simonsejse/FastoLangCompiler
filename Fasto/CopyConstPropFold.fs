@@ -21,12 +21,6 @@ let rec copyConstPropFoldExp (vtable: VarTable) (e: TypedExp) =
     (* Copy propagation is handled entirely in the following three
         cases for variables, array indexing, and let-bindings. *)
     | Var(name: string, pos: Position) ->
-        (* TODO project task 3:
-                Should probably look in the symbol table to see if
-                a binding corresponding to the current variable `name`
-                exists and if so, it should replace the current expression
-                with the variable or constant to be propagated.
-        *)
         let prop = SymTab.lookup name vtable
 
         match prop with
@@ -53,23 +47,15 @@ let rec copyConstPropFoldExp (vtable: VarTable) (e: TypedExp) =
         let ed' = copyConstPropFoldExp vtable ed
 
         match ed' with
-        | Var(_, _) ->
-            (* TODO project task 3:
-                        Hint: I have discovered a variable-copy statement `let x = a`.
-                              I should probably record it in the `vtable` by
-                              associating `x` with a variable-propagatee binding,
-                              and optimize the `body` of the let.
-                    *)
-            failwith "Unimplemented copyConstPropFold for Let with Var"
-        | Constant(_, _) ->
-            (* TODO project task 3:
-                        Hint: I have discovered a constant-copy statement `let x = 5`.
-                              I should probably record it in the `vtable` by
-                              associating `x` with a constant-propagatee binding,
-                              and optimize the `body` of the let.
-                    *)
-            failwith "Unimplemented copyConstPropFold for Let with Constant"
-        | Let(_, _, _) ->
+        | Var(id, pos) ->
+            let vtable' = SymTab.bind name (VarProp id) vtable
+            let body' = copyConstPropFoldExp vtable' body
+            Let(Dec(name, Var(id, pos), decpos), body', pos)
+        | Constant(value, pos) ->
+            let vtable' = SymTab.bind name (ConstProp value) vtable
+            let body' = copyConstPropFoldExp vtable' body
+            Let(Dec(name, Constant(value, pos), decpos), body', pos)
+        | Let(Dec(name, var, decpos), exp, pos) ->
             (* TODO project task 3:
                         Hint: this has the structure
                                 `let y = (let x = e1 in e2) in e3`
@@ -86,18 +72,25 @@ let rec copyConstPropFoldExp (vtable: VarTable) (e: TypedExp) =
             let body' = copyConstPropFoldExp vtable body
             Let(Dec(name, ed', decpos), body', pos)
 
-    | Times(_, _, _) ->
-        (* TODO project task 3: implement as many safe algebraic
-               simplifications as you can think of. You may inspire
-               yourself from the case of `Plus`. For example:
-                     1 * x = ?
-                     x * 0 = ?
-            *)
-        failwith "Unimplemented copyConstPropFold for multiplication"
+    | Times(e1, e2, pos) ->
+        let e1' = copyConstPropFoldExp vtable e1
+        let e2' = copyConstPropFoldExp vtable e2
+
+        match (e1', e2') with
+        | (Constant(IntVal x, _), Constant(IntVal y, _)) -> Constant(IntVal(x * y), pos)
+        | (Constant(IntVal 0, _), _) -> Constant(IntVal 0, pos)
+        | (_, Constant(IntVal 0, _)) -> Constant(IntVal 0, pos)
+        | (Constant(IntVal 1, _), _) -> e2'
+        | (_, Constant(IntVal 1, _)) -> e1'
+        | _ -> Times(e1', e2', pos)
     | And(e1, e2, pos) ->
-        (* TODO project task 3: see above. You may inspire yourself from
-               `Or` below, but that only scratches the surface of what's possible *)
-        failwith "Unimplemented copyConstPropFold for &&"
+        let e1' = copyConstPropFoldExp vtable e1
+        let e2' = copyConstPropFoldExp vtable e2
+
+        match (e1', e2') with
+        | (Constant(BoolVal a, _), Constant(BoolVal b, _)) -> Constant(BoolVal(a && b), pos)
+        | _ -> And(e1', e2', pos)
+
     | Constant(x, pos) -> Constant(x, pos)
     | StringLit(x, pos) -> StringLit(x, pos)
     | ArrayLit(es, t, pos) -> ArrayLit(List.map (copyConstPropFoldExp vtable) es, t, pos)

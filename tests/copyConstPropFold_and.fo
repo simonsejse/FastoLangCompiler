@@ -1,0 +1,31 @@
+fun bool main() =
+    let x1 = true in
+    let y1 = x1 && x1 in
+    let a = write(y1) in
+
+    let x2 = false in
+    let y2 = x2 && true in
+    let b = write(y2) in
+    
+    let x3 = true in
+    let y3 = x3 && false in
+    let c = write(y3) in
+    
+    let x4 = false in
+    let y4 = x4 && x4 in
+    let d = write(y4) in
+    
+    let x5 = true in
+    let y5 = false in
+    let z5 = x5 && (y5 && x5) in
+    let e = write(z5) in
+    
+    let x6 = true in
+    let y6 = x6 && false in
+    let z6 = y6 && true in
+    let f = write(z6) in
+    
+    let x7 = true in
+    let x7 = false in
+    let y7 = x7 && true in
+    write(y7)
