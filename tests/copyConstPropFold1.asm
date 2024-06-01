@@ -8,87 +8,67 @@ f.main:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
-	li	x12, 40
-# was:	li	_let_len_2_, 40
-# 	mv	_size_4_,_let_len_2_
-	bge	x12, x0, l.safe_5_
-# was:	bge	_size_4_, x0, l.safe_5_
+	li	x11, 40
+# was:	li	_size_3_, 40
+	bge	x11, x0, l.safe_4_
+# was:	bge	_size_3_, x0, l.safe_4_
 	li	x10, 3
 # was:	li	x10, 3
 	la	x11, m.BadSize
 # was:	la	x11, m.BadSize
 	j	p.RuntimeError
-l.safe_5_:
+l.safe_4_:
 	mv	x10, x3
-# was:	mv	_let_array_3_, x3
-	slli	x11, x12, 2
-# was:	slli	_tmp_10_, _size_4_, 2
-	addi	x11, x11, 4
-# was:	addi	_tmp_10_, _tmp_10_, 4
-	add	x3, x3, x11
-# was:	add	x3, x3, _tmp_10_
-	sw	x12, 0(x10)
-# was:	sw	_size_4_, 0(_let_array_3_)
+# was:	mv	_let_array_2_, x3
+	slli	x12, x11, 2
+# was:	slli	_tmp_9_, _size_3_, 2
+	addi	x12, x12, 4
+# was:	addi	_tmp_9_, _tmp_9_, 4
+	add	x3, x3, x12
+# was:	add	x3, x3, _tmp_9_
+	sw	x11, 0(x10)
+# was:	sw	_size_3_, 0(_let_array_2_)
 	addi	x13, x10, 4
-# was:	addi	_addr_6_, _let_array_3_, 4
-	mv	x11, x0
-# was:	mv	_i_7_, x0
-l.loop_beg_8_:
-	bge	x11, x12, l.loop_end_9_
-# was:	bge	_i_7_, _size_4_, l.loop_end_9_
-	sw	x11, 0(x13)
-# was:	sw	_i_7_, 0(_addr_6_)
+# was:	addi	_addr_5_, _let_array_2_, 4
+	mv	x12, x0
+# was:	mv	_i_6_, x0
+l.loop_beg_7_:
+	bge	x12, x11, l.loop_end_8_
+# was:	bge	_i_6_, _size_3_, l.loop_end_8_
+	sw	x12, 0(x13)
+# was:	sw	_i_6_, 0(_addr_5_)
 	addi	x13, x13, 4
-# was:	addi	_addr_6_, _addr_6_, 4
-	addi	x11, x11, 1
-# was:	addi	_i_7_, _i_7_, 1
-	j	l.loop_beg_8_
-l.loop_end_9_:
-# 	mv	_div_L_12_,_let_len_2_
-	li	x11, 10
-# was:	li	_div_R_13_, 10
-	bne	x11, x0, l.divZeroSafe_14_
-# was:	bne	_div_R_13_, x0, l.divZeroSafe_14_
-	li	x10, 4
-# was:	li	x10, 4
-	la	x11, m.DivZero
-# was:	la	x11, m.DivZero
-	j	p.RuntimeError
-l.divZeroSafe_14_:
-	div	x11, x12, x11
-# was:	div	_let_index_11_, _div_L_12_, _div_R_13_
-# 	mv	_arr_ind_16_,_let_index_11_
+# was:	addi	_addr_5_, _addr_5_, 4
+	addi	x12, x12, 1
+# was:	addi	_i_6_, _i_6_, 1
+	j	l.loop_beg_7_
+l.loop_end_8_:
+	li	x11, 4
+# was:	li	_arr_ind_11_, 4
 	addi	x12, x10, 4
-# was:	addi	_arr_data_17_, _let_array_3_, 4
-	bge	x11, x0, l.nonneg_20_
-# was:	bge	_arr_ind_16_, x0, l.nonneg_20_
-l.error_19_:
+# was:	addi	_arr_data_12_, _let_array_2_, 4
+	bge	x11, x0, l.nonneg_15_
+# was:	bge	_arr_ind_11_, x0, l.nonneg_15_
+l.error_14_:
 	li	x10, 5
 # was:	li	x10, 5
 	la	x11, m.BadIndex
 # was:	la	x11, m.BadIndex
 	j	p.RuntimeError
-l.nonneg_20_:
+l.nonneg_15_:
 	lw	x10, 0(x10)
-# was:	lw	_size_18_, 0(_let_array_3_)
-	bge	x11, x10, l.error_19_
-# was:	bge	_arr_ind_16_, _size_18_, l.error_19_
+# was:	lw	_size_13_, 0(_let_array_2_)
+	bge	x11, x10, l.error_14_
+# was:	bge	_arr_ind_11_, _size_13_, l.error_14_
 	slli	x11, x11, 2
-# was:	slli	_arr_ind_16_, _arr_ind_16_, 2
+# was:	slli	_arr_ind_11_, _arr_ind_11_, 2
 	add	x12, x12, x11
-# was:	add	_arr_data_17_, _arr_data_17_, _arr_ind_16_
-	lw	x11, 0(x12)
-# was:	lw	_let_x_15_, 0(_arr_data_17_)
-# 	mv	_times_L_24_,_let_x_15_
-	li	x10, 1
-# was:	li	_times_R_25_, 1
-	mul	x11, x11, x10
-# was:	mul	_plus_L_22_, _times_L_24_, _times_R_25_
-	li	x10, 0
-# was:	li	_plus_R_23_, 0
-	add	x18, x11, x10
-# was:	add	_tmp_21_, _plus_L_22_, _plus_R_23_
-# 	mv	_mainres_1_,_tmp_21_
+# was:	add	_arr_data_12_, _arr_data_12_, _arr_ind_11_
+	lw	x10, 0(x12)
+# was:	lw	_let_x_10_, 0(_arr_data_12_)
+# 	mv	_tmp_16_,_let_x_10_
+	mv	x18, x10
+# was:	mv	_mainres_1_, _tmp_16_
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	jal	p.putint
