@@ -42,7 +42,10 @@ let rec copyConstPropFoldExp (vtable: VarTable) (e: TypedExp) =
         | Var(v, _) -> Index(v, ei', t, pos)
         | _ -> Index(name, ei', t, pos)
 
-
+    (* called ed to not overshadow e:TypedExp
+        
+        name=y           ed=(let x = e1 in e2)           body=e3
+*)
     | Let(Dec(name, ed, decpos), body, pos) ->
         let ed' = copyConstPropFoldExp vtable ed
 
@@ -55,23 +58,23 @@ let rec copyConstPropFoldExp (vtable: VarTable) (e: TypedExp) =
             let vtable' = SymTab.bind name (ConstProp value) vtable
             let body' = copyConstPropFoldExp vtable' body
             Let(Dec(name, Constant(value, pos), decpos), body', pos)
-        | Let(Dec(name, var, decpos), exp, pos) ->
-            (* TODO project task 3:
-                        Hint: this has the structure
-                                `let y = (let x = e1 in e2) in e3`
-                        Problem is, in this form, `e2` may simplify
-                        to a variable or constant, but I will miss
-                        identifying the resulting variable/constant-copy
-                        statement on `y`.
-                        A potential solution is to optimize directly the
-                        restructured, semantically-equivalent expression:
-                                `let x = e1 in let y = e2 in e3`
-                    *)
-            failwith "Unimplemented copyConstPropFold for Let with Let"
+        (* innerName=x          innerEd=e1          innerBody=e2 *)
+        | Let(Dec(innerName, innerEd, innerDecPos), innerBody, innerPos) ->
+            let innerBody' = copyConstPropFoldExp vtable innerBody (* e2 optimized *)
+            let innerEd' = copyConstPropFoldExp vtable innerEd (* e1 optimized *)
+            let body' = copyConstPropFoldExp vtable body (* e3 optimized *)
+
+            (* let y = e2 in e3 *)
+            let newBody = Let(Dec(name, innerBody', decpos), body', pos)
+
+            (* let x = e1 in let y = e2 in e3 *)
+            let newLet = Let(Dec(innerName, innerEd', innerDecPos), newBody, innerPos)
+
+            (* recursively until it hits var or constant RIGHT above in the pattern match ^^*)
+            copyConstPropFoldExp vtable newLet
         | _ -> (* Fallthrough - for everything else, do nothing *)
             let body' = copyConstPropFoldExp vtable body
             Let(Dec(name, ed', decpos), body', pos)
-
     | Times(e1, e2, pos) ->
         let e1' = copyConstPropFoldExp vtable e1
         let e2' = copyConstPropFoldExp vtable e2
@@ -89,7 +92,12 @@ let rec copyConstPropFoldExp (vtable: VarTable) (e: TypedExp) =
 
         match (e1', e2') with
         | (Constant(BoolVal a, _), Constant(BoolVal b, _)) -> Constant(BoolVal(a && b), pos)
+        | (Constant(BoolVal false, _), _) -> Constant(BoolVal false, pos)
+        | (_, Constant(BoolVal false, _)) -> Constant(BoolVal false, pos)
+        | (Constant(BoolVal true, _), _) -> e2'
+        | (_, Constant(BoolVal true, _)) -> e1'
         | _ -> And(e1', e2', pos)
+
 
     | Constant(x, pos) -> Constant(x, pos)
     | StringLit(x, pos) -> StringLit(x, pos)
