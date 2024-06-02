@@ -27,13 +27,15 @@ let rec copyConstPropFoldExp (vtable: VarTable) (e: TypedExp) =
         | Some(ConstProp v) -> Constant(v, pos)
         | Some(VarProp v) -> Var(v, pos)
         | None -> Var(name, pos)
-
-
-
     | Index(name: string, ei: Exp<Type>, t: Type, pos: Position) ->
         (* TODO project task 3:
                 Should probably do the same as the `Var` case, for
                 the array name, and optimize the index expression `ei` as well.
+
+                let arrayName = "arr"
+                let value = arrayName.[2]
+
+                let value = "arr".[2]
             *)
         let name' = copyConstPropFoldExp vtable (Var(name, pos))
         let ei' = copyConstPropFoldExp vtable ei
@@ -42,10 +44,6 @@ let rec copyConstPropFoldExp (vtable: VarTable) (e: TypedExp) =
         | Var(v, _) -> Index(v, ei', t, pos)
         | _ -> Index(name, ei', t, pos)
 
-    (* called ed to not overshadow e:TypedExp
-        
-        name=y           ed=(let x = e1 in e2)           body=e3
-*)
     | Let(Dec(name, ed, decpos), body, pos) ->
         let ed' = copyConstPropFoldExp vtable ed
 
@@ -58,7 +56,6 @@ let rec copyConstPropFoldExp (vtable: VarTable) (e: TypedExp) =
             let vtable' = SymTab.bind name (ConstProp value) vtable
             let body' = copyConstPropFoldExp vtable' body
             Let(Dec(name, Constant(value, pos), decpos), body', pos)
-        (* innerName=x          innerEd=e1          innerBody=e2 *)
         | Let(Dec(innerName, innerEd, innerDecPos), innerBody, innerPos) ->
             let innerBody' = copyConstPropFoldExp vtable innerBody (* e2 optimized *)
             let innerEd' = copyConstPropFoldExp vtable innerEd (* e1 optimized *)
