@@ -1,0 +1,11 @@
+fun char fCheck(char a, char b) = 
+    if a == b then
+        a
+    else b
+
+fun char writeChar(char c) = write(c)
+
+fun [char] main() =
+    let x = {'a', 'a', 'b'} in
+    let y = scan(fCheck, 'a', x) in
+    map(writeChar, y)

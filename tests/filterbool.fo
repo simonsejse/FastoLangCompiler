@@ -1,0 +1,10 @@
+fun bool writeBool(bool x) = write(x)
+
+fun [bool] writeBoolArray([bool] x) = map(writeBool, x)
+
+fun bool isBoolTrue(bool x) = x == true
+
+fun [bool] main() =
+    let y = {2==2, 2==4, (16/16)==1} in
+    let z = filter(isBoolTrue, y) in
+    writeBoolArray(z)

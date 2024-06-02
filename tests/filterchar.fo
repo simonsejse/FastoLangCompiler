@@ -1,0 +1,11 @@
+fun char writeChar(char x) = write(x)
+
+fun [char] writeCharArray([char] x) = map(writeChar, x)
+
+fun bool isCharA(char x) = 
+    x == 'a'
+
+fun [char] main() = 
+    let y = {'a', 'b', 'c'} in
+    let z = filter(isCharA, y) in
+    writeCharArray(z)
