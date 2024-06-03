@@ -18,42 +18,56 @@ f.no_way:
 f.main:
 	sw	x1, -4(x2)
 	addi	x2, x2, -4
+	li	x10, 0
+# was:	li	_and_L_5_, 0
+	beq	x10, x0, l.and_false_7_
+# was:	beq	_and_L_5_, x0, l.and_false_7_
+	jal	f.no_way
+# was:	jal	f.no_way, 
+# 	mv	_and_R_6_,x10
+	beq	x10, x0, l.and_false_7_
+# was:	beq	_and_R_6_, x0, l.and_false_7_
+	li	x11, 1
+# was:	li	_tmp_4_, 1
+	j	l.and_end_8_
+l.and_false_7_:
 	li	x11, 0
 # was:	li	_tmp_4_, 0
+l.and_end_8_:
 # 	mv	_let_a_3_,_tmp_4_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_5_
-# was:	bne	_let_a_3_, x0, l.wBoolF_5_
+	bne	x11, x0, l.wBoolF_9_
+# was:	bne	_let_a_3_, x0, l.wBoolF_9_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_5_:
+l.wBoolF_9_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
 	li	x10, 1
-# was:	li	_and_L_8_, 1
-	bne	x10, x0, l.or_true_10_
-# was:	bne	_and_L_8_, x0, l.or_true_10_
+# was:	li	_and_L_12_, 1
+	bne	x10, x0, l.or_true_14_
+# was:	bne	_and_L_12_, x0, l.or_true_14_
 	jal	f.no_way
 # was:	jal	f.no_way, 
-# 	mv	_and_R_9_,x10
-	bne	x10, x0, l.or_true_10_
-# was:	bne	_and_R_9_, x0, l.or_true_10_
+# 	mv	_and_R_13_,x10
+	bne	x10, x0, l.or_true_14_
+# was:	bne	_and_R_13_, x0, l.or_true_14_
 	li	x11, 0
-# was:	li	_tmp_7_, 0
-	j	l.or_end_11_
-l.or_true_10_:
+# was:	li	_tmp_11_, 0
+	j	l.or_end_15_
+l.or_true_14_:
 	li	x11, 1
-# was:	li	_tmp_7_, 1
-l.or_end_11_:
-# 	mv	_let_b_6_,_tmp_7_
+# was:	li	_tmp_11_, 1
+l.or_end_15_:
+# 	mv	_let_b_10_,_tmp_11_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_12_
-# was:	bne	_let_b_6_, x0, l.wBoolF_12_
+	bne	x11, x0, l.wBoolF_16_
+# was:	bne	_let_b_10_, x0, l.wBoolF_16_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_12_:
+l.wBoolF_16_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
 	li	x10, 1

@@ -3,21 +3,21 @@
 	jal	f.main
 	jal	p.stop
 # User functions
-# Function writeInt
-f.writeInt:
+# Function writeChar
+f.writeChar:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
-# 	mv	_param_b_1_,x10
+# 	mv	_param_c_1_,x10
 	mv	x18, x10
-# was:	mv	_tmp_3_, _param_b_1_
-# 	mv	_writeIntres_2_,_tmp_3_
+# was:	mv	_tmp_3_, _param_c_1_
+# 	mv	_writeCharres_2_,_tmp_3_
 	mv	x10, x18
-# was:	mv	x10, _writeIntres_2_
-	jal	p.putint
-# was:	jal	p.putint, x10
+# was:	mv	x10, _writeCharres_2_
+	jal	p.putchar
+# was:	jal	p.putchar, x10
 	mv	x10, x18
-# was:	mv	x10, _writeIntres_2_
+# was:	mv	x10, _writeCharres_2_
 	addi	x2, x2, 8
 	lw	x18, -8(x2)
 	lw	x1, -4(x2)
@@ -31,8 +31,8 @@ f.main:
 	sw	x19, -12(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -24
-	li	x11, 10
-# was:	li	_replicate_n_6_, 10
+	li	x11, 5
+# was:	li	_replicate_n_6_, 5
 	bge	x11, x0, l.safe_8_
 # was:	bge	_replicate_n_6_, x0, l.safe_8_
 	li	x10, 4
@@ -41,12 +41,14 @@ f.main:
 # was:	la	x11, m.BadSize
 	j	p.RuntimeError
 l.safe_8_:
-	li	x12, 1
-# was:	li	_replicate_a_7_, 1
+	li	x12, 98
+# was:	li	_replicate_a_7_, 98
 	mv	x10, x3
 # was:	mv	_let_fs_5_, x3
-	slli	x13, x11, 2
-# was:	slli	_tmp_13_, _replicate_n_6_, 2
+	addi	x13, x11, 3
+# was:	addi	_tmp_13_, _replicate_n_6_, 3
+	andi	x13, x13, -4
+# was:	andi	_tmp_13_, _tmp_13_, -4
 	addi	x13, x13, 4
 # was:	addi	_tmp_13_, _tmp_13_, 4
 	add	x3, x3, x13
@@ -73,8 +75,10 @@ l.replicate_end_12_:
 # was:	lw	_size_14_, 0(_arr_15_)
 	mv	x18, x3
 # was:	mv	_mainres_4_, x3
-	slli	x11, x19, 2
-# was:	slli	_tmp_23_, _size_14_, 2
+	addi	x11, x19, 3
+# was:	addi	_tmp_23_, _size_14_, 3
+	andi	x11, x11, -4
+# was:	andi	_tmp_23_, _tmp_23_, -4
 	addi	x11, x11, 4
 # was:	addi	_tmp_23_, _tmp_23_, 4
 	add	x3, x3, x11
@@ -90,19 +94,19 @@ l.replicate_end_12_:
 l.loop_beg_20_:
 	bge	x21, x19, l.loop_end_21_
 # was:	bge	_i_19_, _size_14_, l.loop_end_21_
-	lw	x10, 0(x22)
-# was:	lw	_res_17_, 0(_elem_16_)
-	addi	x22, x22, 4
-# was:	addi	_elem_16_, _elem_16_, 4
+	lbu	x10, 0(x22)
+# was:	lbu	_res_17_, 0(_elem_16_)
+	addi	x22, x22, 1
+# was:	addi	_elem_16_, _elem_16_, 1
 # 	mv	x10,_res_17_
-	jal	f.writeInt
-# was:	jal	f.writeInt, x10
+	jal	f.writeChar
+# was:	jal	f.writeChar, x10
 # 	mv	_tmp_22_,x10
 # 	mv	_res_17_,_tmp_22_
-	sw	x10, 0(x20)
-# was:	sw	_res_17_, 0(_addrg_18_)
-	addi	x20, x20, 4
-# was:	addi	_addrg_18_, _addrg_18_, 4
+	sb	x10, 0(x20)
+# was:	sb	_res_17_, 0(_addrg_18_)
+	addi	x20, x20, 1
+# was:	addi	_addrg_18_, _addrg_18_, 1
 	addi	x21, x21, 1
 # was:	addi	_i_19_, _i_19_, 1
 	j	l.loop_beg_20_

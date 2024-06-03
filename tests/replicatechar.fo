@@ -1,5 +1,5 @@
 fun char writeChar(char c) = write(c)
 
 fun [char] main() =
-    let x = replicate(3, 'b') in
-    map(writeChar, x)
+    let fs = replicate(5, 'b') in
+    map(writeChar, fs)

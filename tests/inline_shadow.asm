@@ -3,27 +3,102 @@
 	jal	f.main
 	jal	p.stop
 # User functions
+# Function f
+f.f:
+	sw	x1, -4(x2)
+	addi	x2, x2, -4
+# 	mv	_param_a_1_,x10
+# 	mv	_param_b_2_,x11
+# 	mv	_param_c_3_,x12
+# 	mv	_param_d_4_,x13
+	li	x14, 1000
+# was:	li	_times_L_16_, 1000
+# 	mv	_times_R_17_,_param_a_1_
+	mul	x14, x14, x10
+# was:	mul	_plus_L_14_, _times_L_16_, _times_R_17_
+	li	x10, 100
+# was:	li	_plus_R_15_, 100
+	add	x10, x14, x10
+# was:	add	_times_L_12_, _plus_L_14_, _plus_R_15_
+# 	mv	_times_R_13_,_param_b_2_
+	mul	x11, x10, x11
+# was:	mul	_plus_L_10_, _times_L_12_, _times_R_13_
+	li	x10, 10
+# was:	li	_plus_R_11_, 10
+	add	x10, x11, x10
+# was:	add	_times_L_8_, _plus_L_10_, _plus_R_11_
+# 	mv	_times_R_9_,_param_c_3_
+	mul	x10, x10, x12
+# was:	mul	_plus_L_6_, _times_L_8_, _times_R_9_
+# 	mv	_plus_R_7_,_param_d_4_
+	add	x10, x10, x13
+# was:	add	_fres_5_, _plus_L_6_, _plus_R_7_
+# 	mv	x10,_fres_5_
+	addi	x2, x2, 4
+	lw	x1, -4(x2)
+	jr	x1
 # Function zero
 f.zero:
 	sw	x1, -4(x2)
 	addi	x2, x2, -4
-# 	mv	_param_b_1_,x10
-# 	mv	_cond_6_,_param_b_1_
-	bne	x10, x0, l.then_3_
-# was:	bne	_cond_6_, x0, l.then_3_
-	j	l.else_4_
-l.then_3_:
+# 	mv	_param_b_18_,x10
+# 	mv	_cond_23_,_param_b_18_
+	bne	x10, x0, l.then_20_
+# was:	bne	_cond_23_, x0, l.then_20_
+	j	l.else_21_
+l.then_20_:
 	li	x10, 0
-# was:	li	_zerores_2_, 0
-	j	l.endif_5_
-l.else_4_:
-# 	mv	_arg_7_,_param_b_1_
-# 	mv	x10,_arg_7_
+# was:	li	_zerores_19_, 0
+	j	l.endif_22_
+l.else_21_:
+# 	mv	_arg_24_,_param_b_18_
+# 	mv	x10,_arg_24_
 	jal	f.zero
 # was:	jal	f.zero, x10
-# 	mv	_zerores_2_,x10
-l.endif_5_:
-# 	mv	x10,_zerores_2_
+# 	mv	_zerores_19_,x10
+l.endif_22_:
+# 	mv	x10,_zerores_19_
+	addi	x2, x2, 4
+	lw	x1, -4(x2)
+	jr	x1
+# Function test
+f.test:
+	sw	x1, -4(x2)
+	addi	x2, x2, -4
+	mv	x14, x10
+# was:	mv	_param_z_25_, x10
+	li	x10, 1
+# was:	li	_plus_L_28_, 1
+# 	mv	_plus_R_29_,_param_z_25_
+	add	x11, x10, x14
+# was:	add	_let_a_27_, _plus_L_28_, _plus_R_29_
+	li	x10, 2
+# was:	li	_plus_L_31_, 2
+# 	mv	_plus_R_32_,_param_z_25_
+	add	x13, x10, x14
+# was:	add	_let_b_30_, _plus_L_31_, _plus_R_32_
+	li	x10, 3
+# was:	li	_plus_L_34_, 3
+# 	mv	_plus_R_35_,_param_z_25_
+	add	x12, x10, x14
+# was:	add	_let_c_33_, _plus_L_34_, _plus_R_35_
+	li	x10, 4
+# was:	li	_plus_L_37_, 4
+# 	mv	_plus_R_38_,_param_z_25_
+	add	x10, x10, x14
+# was:	add	_let_d_36_, _plus_L_37_, _plus_R_38_
+# 	mv	_arg_39_,_let_d_36_
+# 	mv	_arg_40_,_let_a_27_
+# 	mv	_arg_41_,_let_c_33_
+# 	mv	_arg_42_,_let_b_30_
+# 	mv	x10,_arg_39_
+# 	mv	x11,_arg_40_
+# 	mv	x12,_arg_41_
+# 	mv	x13,_arg_42_
+	jal	f.f
+# was:	jal	f.f, x10 x11 x12 x13
+# 	mv	_testres_26_,x10
+# 	mv	x10,_testres_26_
 	addi	x2, x2, 4
 	lw	x1, -4(x2)
 	jr	x1
@@ -33,82 +108,43 @@ f.main:
 	sw	x19, -12(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -12
-	li	x18, 12332
-# was:	li	_tmp_10_, 12332
-# 	mv	_let_r1_9_,_tmp_10_
-	mv	x10, x18
-# was:	mv	x10, _let_r1_9_
+	li	x10, 0
+# was:	li	_arg_46_, 0
+# 	mv	x10,_arg_46_
+	jal	f.test
+# was:	jal	f.test, x10
+# 	mv	_tmp_45_,x10
+	mv	x19, x10
+# was:	mv	_let_r1_44_, _tmp_45_
+	mv	x10, x19
+# was:	mv	x10, _let_r1_44_
 	jal	p.putint
 # was:	jal	p.putint, x10
 	li	x10, 1
-# was:	li	_arg_14_, 1
-# 	mv	x10,_arg_14_
+# was:	li	_arg_50_, 1
+# 	mv	x10,_arg_50_
 	jal	f.zero
 # was:	jal	f.zero, x10
-# 	mv	_let_z_I4_13_,x10
-	li	x11, 1
-# was:	li	_plus_L_16_, 1
-# 	mv	_plus_R_17_,_let_z_I4_13_
-	add	x0, x11, x10
-# was:	add	_let_a_15_, _plus_L_16_, _plus_R_17_
-	li	x11, 2
-# was:	li	_plus_L_19_, 2
-# 	mv	_plus_R_20_,_let_z_I4_13_
-	add	x0, x11, x10
-# was:	add	_let_b_18_, _plus_L_19_, _plus_R_20_
-	li	x11, 3
-# was:	li	_plus_L_22_, 3
-# 	mv	_plus_R_23_,_let_z_I4_13_
-	add	x11, x11, x10
-# was:	add	_let_c_21_, _plus_L_22_, _plus_R_23_
-	li	x12, 4
-# was:	li	_plus_L_25_, 4
-# 	mv	_plus_R_26_,_let_z_I4_13_
-	add	x13, x12, x10
-# was:	add	_let_d_24_, _plus_L_25_, _plus_R_26_
-# 	mv	_let_a_27_,_let_d_24_
-# 	mv	_let_b_28_,_let_a_27_
-	mv	x10, x11
-# was:	mv	_let_c_29_, _let_c_21_
-	mv	x12, x13
-# was:	mv	_let_d_30_, _let_b_28_
-	li	x11, 1000
-# was:	li	_times_L_41_, 1000
-# 	mv	_times_R_42_,_let_d_30_
-	mul	x11, x11, x12
-# was:	mul	_plus_L_39_, _times_L_41_, _times_R_42_
-	li	x12, 100
-# was:	li	_plus_R_40_, 100
-	add	x11, x11, x12
-# was:	add	_times_L_37_, _plus_L_39_, _plus_R_40_
-	mv	x12, x13
-# was:	mv	_times_R_38_, _let_a_27_
-	mul	x11, x11, x12
-# was:	mul	_plus_L_35_, _times_L_37_, _times_R_38_
-	li	x12, 10
-# was:	li	_plus_R_36_, 10
-	add	x11, x11, x12
-# was:	add	_times_L_33_, _plus_L_35_, _plus_R_36_
-# 	mv	_times_R_34_,_let_c_29_
-	mul	x10, x11, x10
-# was:	mul	_plus_L_31_, _times_L_33_, _times_R_34_
-# 	mv	_plus_R_32_,_let_b_28_
-	add	x19, x10, x13
-# was:	add	_tmp_12_, _plus_L_31_, _plus_R_32_
-# 	mv	_let_r2_11_,_tmp_12_
-	mv	x10, x19
-# was:	mv	x10, _let_r2_11_
+# 	mv	_arg_49_,x10
+# 	mv	x10,_arg_49_
+	jal	f.test
+# was:	jal	f.test, x10
+# 	mv	_tmp_48_,x10
+	mv	x18, x10
+# was:	mv	_let_r2_47_, _tmp_48_
+	mv	x10, x18
+# was:	mv	x10, _let_r2_47_
 	jal	p.putint
 # was:	jal	p.putint, x10
 	li	x10, 10000
-# was:	li	_times_L_45_, 10000
-# 	mv	_times_R_46_,_let_r1_9_
-	mul	x10, x10, x18
-# was:	mul	_plus_L_43_, _times_L_45_, _times_R_46_
-# 	mv	_plus_R_44_,_let_r2_11_
-	add	x10, x10, x19
-# was:	add	_mainres_8_, _plus_L_43_, _plus_R_44_
-# 	mv	x10,_mainres_8_
+# was:	li	_times_L_53_, 10000
+# 	mv	_times_R_54_,_let_r1_44_
+	mul	x10, x10, x19
+# was:	mul	_plus_L_51_, _times_L_53_, _times_R_54_
+# 	mv	_plus_R_52_,_let_r2_47_
+	add	x10, x10, x18
+# was:	add	_mainres_43_, _plus_L_51_, _plus_R_52_
+# 	mv	x10,_mainres_43_
 	addi	x2, x2, 12
 	lw	x19, -12(x2)
 	lw	x18, -8(x2)

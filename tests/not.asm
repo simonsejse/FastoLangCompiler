@@ -8,31 +8,22 @@ f.main:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
-	jal	p.getint
-# was:	jal	p.getint, 
-	mv	x11, x10
-# was:	mv	_let_a_2_, x10
-	li	x10, 4
-# was:	li	_let_b_3_, 4
-# 	mv	_div_L_5_,_let_a_2_
-# 	mv	_div_R_6_,_let_b_3_
-	bne	x10, x0, l.divZeroSafe_7_
-# was:	bne	_div_R_6_, x0, l.divZeroSafe_7_
-	li	x10, 4
-# was:	li	x10, 4
-	la	x11, m.DivZero
-# was:	la	x11, m.DivZero
-	j	p.RuntimeError
-l.divZeroSafe_7_:
-	div	x10, x11, x10
-# was:	div	_let_result1_4_, _div_L_5_, _div_R_6_
-# 	mv	_tmp_8_,_let_result1_4_
+	li	x10, 0
+# was:	li	_not_3_, 0
+	xori	x10, x10, 1
+# was:	xori	_let_x_2_, _not_3_, 1
+# 	mv	_tmp_4_,_let_x_2_
 	mv	x18, x10
-# was:	mv	_mainres_1_, _tmp_8_
-	mv	x10, x18
-# was:	mv	x10, _mainres_1_
-	jal	p.putint
-# was:	jal	p.putint, x10
+# was:	mv	_mainres_1_, _tmp_4_
+	la	x10, s.true
+# was:	la	x10, s.true
+	bne	x18, x0, l.wBoolF_5_
+# was:	bne	_mainres_1_, x0, l.wBoolF_5_
+	la	x10, s.false
+# was:	la	x10, s.false
+l.wBoolF_5_:
+	jal	p.putstring
+# was:	jal	p.putstring, x10
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	addi	x2, x2, 8

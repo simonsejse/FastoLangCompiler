@@ -3,6 +3,6 @@ fun bool fAnd(bool a, bool b) = a && b
 fun bool writeBool(bool b) = write(b)
 
 fun [bool] main() =
-    let x = {true, true, false} in
-    let y = scan(fAnd, true, x) in
+    let x = {false, true, false} in
+    let y = scan(fAnd, false, x) in
     map(writeBool, y)
