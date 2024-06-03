@@ -6,63 +6,35 @@
 # Function main
 f.main:
 	sw	x1, -4(x2)
-	sw	x18, -8(x2)
-	addi	x2, x2, -8
-	li	x18, 0
-# was:	li	_let_n_2_, 0
-	li	x10, 1
-# was:	li	_and_L_5_, 1
-	beq	x10, x0, l.and_false_7_
-# was:	beq	_and_L_5_, x0, l.and_false_7_
-# 	mv	_and_R_6_,_let_n_2_
-	beq	x18, x0, l.and_false_7_
-# was:	beq	_and_R_6_, x0, l.and_false_7_
-	li	x11, 1
-# was:	li	_tmp_4_, 1
-	j	l.and_end_8_
-l.and_false_7_:
+	addi	x2, x2, -4
 	li	x11, 0
-# was:	li	_tmp_4_, 0
-l.and_end_8_:
-# 	mv	_let_a_3_,_tmp_4_
+# was:	li	_tmp_3_, 0
+# 	mv	_let_a_2_,_tmp_3_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_9_
-# was:	bne	_let_a_3_, x0, l.wBoolF_9_
+	bne	x11, x0, l.wBoolF_4_
+# was:	bne	_let_a_2_, x0, l.wBoolF_4_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_9_:
+l.wBoolF_4_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-	li	x10, 0
-# was:	li	_and_L_12_, 0
-	bne	x10, x0, l.or_true_14_
-# was:	bne	_and_L_12_, x0, l.or_true_14_
-# 	mv	_and_R_13_,_let_n_2_
-	bne	x18, x0, l.or_true_14_
-# was:	bne	_and_R_13_, x0, l.or_true_14_
 	li	x11, 0
-# was:	li	_tmp_11_, 0
-	j	l.or_end_15_
-l.or_true_14_:
-	li	x11, 1
-# was:	li	_tmp_11_, 1
-l.or_end_15_:
-# 	mv	_let_b_10_,_tmp_11_
+# was:	li	_tmp_6_, 0
+# 	mv	_let_b_5_,_tmp_6_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_16_
-# was:	bne	_let_b_10_, x0, l.wBoolF_16_
+	bne	x11, x0, l.wBoolF_7_
+# was:	bne	_let_b_5_, x0, l.wBoolF_7_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_16_:
+l.wBoolF_7_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
 	li	x10, 0
 # was:	li	_mainres_1_, 0
 # 	mv	x10,_mainres_1_
-	addi	x2, x2, 8
-	lw	x18, -8(x2)
+	addi	x2, x2, 4
 	lw	x1, -4(x2)
 	jr	x1
 # Library functions in Fasto namespace

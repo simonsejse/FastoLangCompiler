@@ -8,223 +8,88 @@ f.main:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
-	li	x10, 1
-# was:	li	_let_x1_2_, 1
-# 	mv	_and_L_4_,_let_x1_2_
-	beq	x10, x0, l.and_false_6_
-# was:	beq	_and_L_4_, x0, l.and_false_6_
-# 	mv	_and_R_5_,_let_x1_2_
-	beq	x10, x0, l.and_false_6_
-# was:	beq	_and_R_5_, x0, l.and_false_6_
 	li	x11, 1
-# was:	li	_let_y1_3_, 1
-	j	l.and_end_7_
-l.and_false_6_:
+# was:	li	_tmp_3_, 1
+# 	mv	_let_a_2_,_tmp_3_
+	la	x10, s.true
+# was:	la	x10, s.true
+	bne	x11, x0, l.wBoolF_4_
+# was:	bne	_let_a_2_, x0, l.wBoolF_4_
+	la	x10, s.false
+# was:	la	x10, s.false
+l.wBoolF_4_:
+	jal	p.putstring
+# was:	jal	p.putstring, x10
 	li	x11, 0
-# was:	li	_let_y1_3_, 0
-l.and_end_7_:
-# 	mv	_tmp_9_,_let_y1_3_
-# 	mv	_let_a_8_,_tmp_9_
+# was:	li	_tmp_6_, 0
+# 	mv	_let_b_5_,_tmp_6_
+	la	x10, s.true
+# was:	la	x10, s.true
+	bne	x11, x0, l.wBoolF_7_
+# was:	bne	_let_b_5_, x0, l.wBoolF_7_
+	la	x10, s.false
+# was:	la	x10, s.false
+l.wBoolF_7_:
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+	li	x11, 0
+# was:	li	_tmp_9_, 0
+# 	mv	_let_c_8_,_tmp_9_
 	la	x10, s.true
 # was:	la	x10, s.true
 	bne	x11, x0, l.wBoolF_10_
-# was:	bne	_let_a_8_, x0, l.wBoolF_10_
+# was:	bne	_let_c_8_, x0, l.wBoolF_10_
 	la	x10, s.false
 # was:	la	x10, s.false
 l.wBoolF_10_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-	li	x10, 0
-# was:	li	_let_x2_11_, 0
-# 	mv	_and_L_13_,_let_x2_11_
-	beq	x10, x0, l.and_false_15_
-# was:	beq	_and_L_13_, x0, l.and_false_15_
-	li	x10, 1
-# was:	li	_and_R_14_, 1
-	beq	x10, x0, l.and_false_15_
-# was:	beq	_and_R_14_, x0, l.and_false_15_
-	li	x11, 1
-# was:	li	_let_y2_12_, 1
-	j	l.and_end_16_
-l.and_false_15_:
 	li	x11, 0
-# was:	li	_let_y2_12_, 0
-l.and_end_16_:
-# 	mv	_tmp_18_,_let_y2_12_
-# 	mv	_let_b_17_,_tmp_18_
+# was:	li	_tmp_12_, 0
+# 	mv	_let_d_11_,_tmp_12_
+	la	x10, s.true
+# was:	la	x10, s.true
+	bne	x11, x0, l.wBoolF_13_
+# was:	bne	_let_d_11_, x0, l.wBoolF_13_
+	la	x10, s.false
+# was:	la	x10, s.false
+l.wBoolF_13_:
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+	li	x11, 0
+# was:	li	_tmp_15_, 0
+# 	mv	_let_e_14_,_tmp_15_
+	la	x10, s.true
+# was:	la	x10, s.true
+	bne	x11, x0, l.wBoolF_16_
+# was:	bne	_let_e_14_, x0, l.wBoolF_16_
+	la	x10, s.false
+# was:	la	x10, s.false
+l.wBoolF_16_:
+	jal	p.putstring
+# was:	jal	p.putstring, x10
+	li	x11, 0
+# was:	li	_tmp_18_, 0
+# 	mv	_let_f_17_,_tmp_18_
 	la	x10, s.true
 # was:	la	x10, s.true
 	bne	x11, x0, l.wBoolF_19_
-# was:	bne	_let_b_17_, x0, l.wBoolF_19_
+# was:	bne	_let_f_17_, x0, l.wBoolF_19_
 	la	x10, s.false
 # was:	la	x10, s.false
 l.wBoolF_19_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
-	li	x10, 1
-# was:	li	_let_x3_20_, 1
-# 	mv	_and_L_22_,_let_x3_20_
-	beq	x10, x0, l.and_false_24_
-# was:	beq	_and_L_22_, x0, l.and_false_24_
-	li	x10, 0
-# was:	li	_and_R_23_, 0
-	beq	x10, x0, l.and_false_24_
-# was:	beq	_and_R_23_, x0, l.and_false_24_
-	li	x11, 1
-# was:	li	_let_y3_21_, 1
-	j	l.and_end_25_
-l.and_false_24_:
-	li	x11, 0
-# was:	li	_let_y3_21_, 0
-l.and_end_25_:
-# 	mv	_tmp_27_,_let_y3_21_
-# 	mv	_let_c_26_,_tmp_27_
+	li	x18, 0
+# was:	li	_tmp_20_, 0
+# 	mv	_mainres_1_,_tmp_20_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_28_
-# was:	bne	_let_c_26_, x0, l.wBoolF_28_
+	bne	x18, x0, l.wBoolF_21_
+# was:	bne	_mainres_1_, x0, l.wBoolF_21_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_28_:
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	li	x10, 0
-# was:	li	_let_x4_29_, 0
-# 	mv	_and_L_31_,_let_x4_29_
-	beq	x10, x0, l.and_false_33_
-# was:	beq	_and_L_31_, x0, l.and_false_33_
-# 	mv	_and_R_32_,_let_x4_29_
-	beq	x10, x0, l.and_false_33_
-# was:	beq	_and_R_32_, x0, l.and_false_33_
-	li	x11, 1
-# was:	li	_let_y4_30_, 1
-	j	l.and_end_34_
-l.and_false_33_:
-	li	x11, 0
-# was:	li	_let_y4_30_, 0
-l.and_end_34_:
-# 	mv	_tmp_36_,_let_y4_30_
-# 	mv	_let_d_35_,_tmp_36_
-	la	x10, s.true
-# was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_37_
-# was:	bne	_let_d_35_, x0, l.wBoolF_37_
-	la	x10, s.false
-# was:	la	x10, s.false
-l.wBoolF_37_:
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	li	x10, 1
-# was:	li	_let_x5_38_, 1
-	li	x11, 0
-# was:	li	_let_y5_39_, 0
-# 	mv	_and_L_41_,_let_x5_38_
-	beq	x10, x0, l.and_false_47_
-# was:	beq	_and_L_41_, x0, l.and_false_47_
-# 	mv	_and_L_43_,_let_y5_39_
-	beq	x11, x0, l.and_false_45_
-# was:	beq	_and_L_43_, x0, l.and_false_45_
-# 	mv	_and_R_44_,_let_x5_38_
-	beq	x10, x0, l.and_false_45_
-# was:	beq	_and_R_44_, x0, l.and_false_45_
-	li	x10, 1
-# was:	li	_and_R_42_, 1
-	j	l.and_end_46_
-l.and_false_45_:
-	li	x10, 0
-# was:	li	_and_R_42_, 0
-l.and_end_46_:
-	beq	x10, x0, l.and_false_47_
-# was:	beq	_and_R_42_, x0, l.and_false_47_
-	li	x10, 1
-# was:	li	_let_z5_40_, 1
-	j	l.and_end_48_
-l.and_false_47_:
-	li	x10, 0
-# was:	li	_let_z5_40_, 0
-l.and_end_48_:
-# 	mv	_tmp_50_,_let_z5_40_
-	mv	x11, x10
-# was:	mv	_let_e_49_, _tmp_50_
-	la	x10, s.true
-# was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_51_
-# was:	bne	_let_e_49_, x0, l.wBoolF_51_
-	la	x10, s.false
-# was:	la	x10, s.false
-l.wBoolF_51_:
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	li	x10, 1
-# was:	li	_let_x6_52_, 1
-# 	mv	_and_L_54_,_let_x6_52_
-	beq	x10, x0, l.and_false_56_
-# was:	beq	_and_L_54_, x0, l.and_false_56_
-	li	x10, 0
-# was:	li	_and_R_55_, 0
-	beq	x10, x0, l.and_false_56_
-# was:	beq	_and_R_55_, x0, l.and_false_56_
-	li	x10, 1
-# was:	li	_let_y6_53_, 1
-	j	l.and_end_57_
-l.and_false_56_:
-	li	x10, 0
-# was:	li	_let_y6_53_, 0
-l.and_end_57_:
-# 	mv	_and_L_59_,_let_y6_53_
-	beq	x10, x0, l.and_false_61_
-# was:	beq	_and_L_59_, x0, l.and_false_61_
-	li	x10, 1
-# was:	li	_and_R_60_, 1
-	beq	x10, x0, l.and_false_61_
-# was:	beq	_and_R_60_, x0, l.and_false_61_
-	li	x10, 1
-# was:	li	_let_z6_58_, 1
-	j	l.and_end_62_
-l.and_false_61_:
-	li	x10, 0
-# was:	li	_let_z6_58_, 0
-l.and_end_62_:
-# 	mv	_tmp_64_,_let_z6_58_
-	mv	x11, x10
-# was:	mv	_let_f_63_, _tmp_64_
-	la	x10, s.true
-# was:	la	x10, s.true
-	bne	x11, x0, l.wBoolF_65_
-# was:	bne	_let_f_63_, x0, l.wBoolF_65_
-	la	x10, s.false
-# was:	la	x10, s.false
-l.wBoolF_65_:
-	jal	p.putstring
-# was:	jal	p.putstring, x10
-	li	x0, 1
-# was:	li	_let_x7_66_, 1
-	li	x10, 0
-# was:	li	_let_x7_67_, 0
-# 	mv	_and_L_69_,_let_x7_67_
-	beq	x10, x0, l.and_false_71_
-# was:	beq	_and_L_69_, x0, l.and_false_71_
-	li	x10, 1
-# was:	li	_and_R_70_, 1
-	beq	x10, x0, l.and_false_71_
-# was:	beq	_and_R_70_, x0, l.and_false_71_
-	li	x10, 1
-# was:	li	_let_y7_68_, 1
-	j	l.and_end_72_
-l.and_false_71_:
-	li	x10, 0
-# was:	li	_let_y7_68_, 0
-l.and_end_72_:
-# 	mv	_tmp_73_,_let_y7_68_
-	mv	x18, x10
-# was:	mv	_mainres_1_, _tmp_73_
-	la	x10, s.true
-# was:	la	x10, s.true
-	bne	x18, x0, l.wBoolF_74_
-# was:	bne	_mainres_1_, x0, l.wBoolF_74_
-	la	x10, s.false
-# was:	la	x10, s.false
-l.wBoolF_74_:
+l.wBoolF_21_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
 	mv	x10, x18

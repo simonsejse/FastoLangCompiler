@@ -8,14 +8,9 @@ f.main:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
-	li	x10, 10
-# was:	li	_let_a_2_, 10
-# 	mv	_negate_4_,_let_a_2_
-	sub	x10, x0, x10
-# was:	sub	_let_result1_3_, x0, _negate_4_
-# 	mv	_tmp_5_,_let_result1_3_
-	mv	x18, x10
-# was:	mv	_mainres_1_, _tmp_5_
+	li	x18, -10
+# was:	li	_tmp_2_, -10
+# 	mv	_mainres_1_,_tmp_2_
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	jal	p.putint

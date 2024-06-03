@@ -8,39 +8,9 @@ f.main:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
-	li	x12, 20
-# was:	li	_let_a_2_, 20
-	li	x10, 4
-# was:	li	_let_b_3_, 4
-	li	x11, 0
-# was:	li	_let_c_4_, 0
-# 	mv	_div_L_6_,_let_a_2_
-# 	mv	_div_R_7_,_let_b_3_
-	bne	x10, x0, l.divZeroSafe_8_
-# was:	bne	_div_R_7_, x0, l.divZeroSafe_8_
-	li	x10, 5
-# was:	li	x10, 5
-	la	x11, m.DivZero
-# was:	la	x11, m.DivZero
-	j	p.RuntimeError
-l.divZeroSafe_8_:
-	div	x10, x12, x10
-# was:	div	_let_result1_5_, _div_L_6_, _div_R_7_
-# 	mv	_div_L_10_,_let_a_2_
-# 	mv	_div_R_11_,_let_c_4_
-	bne	x11, x0, l.divZeroSafe_12_
-# was:	bne	_div_R_11_, x0, l.divZeroSafe_12_
-	li	x10, 6
-# was:	li	x10, 6
-	la	x11, m.DivZero
-# was:	la	x11, m.DivZero
-	j	p.RuntimeError
-l.divZeroSafe_12_:
-	div	x0, x12, x11
-# was:	div	_let_result2_9_, _div_L_10_, _div_R_11_
-# 	mv	_tmp_13_,_let_result1_5_
-	mv	x18, x10
-# was:	mv	_mainres_1_, _tmp_13_
+	li	x18, 5
+# was:	li	_tmp_2_, 5
+# 	mv	_mainres_1_,_tmp_2_
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	jal	p.putint

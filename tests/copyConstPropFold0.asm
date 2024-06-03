@@ -3,30 +3,6 @@
 	jal	f.main
 	jal	p.stop
 # User functions
-# Function f
-f.f:
-	sw	x1, -4(x2)
-	addi	x2, x2, -4
-# 	mv	_param_x_1_,x10
-# 	mv	_param_y_2_,x11
-	mv	x12, x10
-# was:	mv	_plus_L_6_, _param_x_1_
-	li	x10, 2
-# was:	li	_plus_R_7_, 2
-	add	x10, x12, x10
-# was:	add	_times_L_4_, _plus_L_6_, _plus_R_7_
-	mv	x12, x11
-# was:	mv	_minus_L_8_, _param_y_2_
-	li	x11, 2
-# was:	li	_minus_R_9_, 2
-	sub	x11, x12, x11
-# was:	sub	_times_R_5_, _minus_L_8_, _minus_R_9_
-	mul	x10, x10, x11
-# was:	mul	_fres_3_, _times_L_4_, _times_R_5_
-# 	mv	x10,_fres_3_
-	addi	x2, x2, 4
-	lw	x1, -4(x2)
-	jr	x1
 # Function main
 f.main:
 	sw	x1, -4(x2)
@@ -34,33 +10,16 @@ f.main:
 	addi	x2, x2, -8
 	jal	p.getint
 # was:	jal	p.getint, 
-# 	mv	_let_a_11_,x10
-	mv	x12, x10
-# was:	mv	_let_x_13_, _let_a_11_
-	li	x10, 2
-# was:	li	_let_y_14_, 2
-# 	mv	_plus_L_17_,_let_x_13_
-	li	x11, 2
-# was:	li	_plus_R_18_, 2
-	add	x11, x12, x11
-# was:	add	_times_L_15_, _plus_L_17_, _plus_R_18_
-	mv	x12, x10
-# was:	mv	_minus_L_19_, _let_y_14_
-	li	x10, 2
-# was:	li	_minus_R_20_, 2
-	sub	x10, x12, x10
-# was:	sub	_times_R_16_, _minus_L_19_, _minus_R_20_
-	mul	x10, x11, x10
-# was:	mul	_let_b_12_, _times_L_15_, _times_R_16_
-# 	mv	_tmp_21_,_let_b_12_
-	mv	x18, x10
-# was:	mv	_mainres_10_, _tmp_21_
+# 	mv	_let_a_2_,x10
+	li	x18, 0
+# was:	li	_tmp_3_, 0
+# 	mv	_mainres_1_,_tmp_3_
 	mv	x10, x18
-# was:	mv	x10, _mainres_10_
+# was:	mv	x10, _mainres_1_
 	jal	p.putint
 # was:	jal	p.putint, x10
 	mv	x10, x18
-# was:	mv	x10, _mainres_10_
+# was:	mv	x10, _mainres_1_
 	addi	x2, x2, 8
 	lw	x18, -8(x2)
 	lw	x1, -4(x2)
