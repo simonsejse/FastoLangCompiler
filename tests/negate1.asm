@@ -8,16 +8,59 @@ f.main:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
+	li	x11, 0
+# was:	li	_minus_L_8_, 0
+	li	x10, 5
+# was:	li	_minus_R_9_, 5
+	sub	x10, x11, x10
+# was:	sub	_negate_7_, _minus_L_8_, _minus_R_9_
+	sub	x12, x0, x10
+# was:	sub	_eq_L_5_, x0, _negate_7_
+	li	x11, 5
+# was:	li	_eq_R_6_, 5
+	li	x10, 0
+# was:	li	_and_L_3_, 0
+	bne	x12, x11, l.false_10_
+# was:	bne	_eq_L_5_, _eq_R_6_, l.false_10_
+	li	x10, 1
+# was:	li	_and_L_3_, 1
+l.false_10_:
+	beq	x10, x0, l.and_false_17_
+# was:	beq	_and_L_3_, x0, l.and_false_17_
+	li	x10, 5
+# was:	li	_negate_13_, 5
+	sub	x10, x0, x10
+# was:	sub	_eq_L_11_, x0, _negate_13_
+	li	x11, 0
+# was:	li	_minus_L_14_, 0
+	li	x12, 5
+# was:	li	_minus_R_15_, 5
+	sub	x12, x11, x12
+# was:	sub	_eq_R_12_, _minus_L_14_, _minus_R_15_
+	li	x11, 0
+# was:	li	_and_R_4_, 0
+	bne	x10, x12, l.false_16_
+# was:	bne	_eq_L_11_, _eq_R_12_, l.false_16_
+	li	x11, 1
+# was:	li	_and_R_4_, 1
+l.false_16_:
+	beq	x11, x0, l.and_false_17_
+# was:	beq	_and_R_4_, x0, l.and_false_17_
 	li	x18, 1
 # was:	li	_tmp_2_, 1
+	j	l.and_end_18_
+l.and_false_17_:
+	li	x18, 0
+# was:	li	_tmp_2_, 0
+l.and_end_18_:
 # 	mv	_mainres_1_,_tmp_2_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x18, x0, l.wBoolF_3_
-# was:	bne	_mainres_1_, x0, l.wBoolF_3_
+	bne	x18, x0, l.wBoolF_19_
+# was:	bne	_mainres_1_, x0, l.wBoolF_19_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_3_:
+l.wBoolF_19_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
 	mv	x10, x18

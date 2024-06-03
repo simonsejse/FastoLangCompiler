@@ -10,24 +10,25 @@ f.main:
 	addi	x2, x2, -8
 	jal	p.getint
 # was:	jal	p.getint, 
-# 	mv	_let_a_2_,x10
 	mv	x11, x10
-# was:	mv	_div_L_4_, _let_a_2_
+# was:	mv	_let_a_2_, x10
 	li	x10, 4
-# was:	li	_div_R_5_, 4
-	bne	x10, x0, l.divZeroSafe_6_
-# was:	bne	_div_R_5_, x0, l.divZeroSafe_6_
+# was:	li	_let_b_3_, 4
+# 	mv	_div_L_5_,_let_a_2_
+# 	mv	_div_R_6_,_let_b_3_
+	bne	x10, x0, l.divZeroSafe_7_
+# was:	bne	_div_R_6_, x0, l.divZeroSafe_7_
 	li	x10, 4
 # was:	li	x10, 4
 	la	x11, m.DivZero
 # was:	la	x11, m.DivZero
 	j	p.RuntimeError
-l.divZeroSafe_6_:
+l.divZeroSafe_7_:
 	div	x10, x11, x10
-# was:	div	_let_result1_3_, _div_L_4_, _div_R_5_
-# 	mv	_tmp_7_,_let_result1_3_
+# was:	div	_let_result1_4_, _div_L_5_, _div_R_6_
+# 	mv	_tmp_8_,_let_result1_4_
 	mv	x18, x10
-# was:	mv	_mainres_1_, _tmp_7_
+# was:	mv	_mainres_1_, _tmp_8_
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	jal	p.putint

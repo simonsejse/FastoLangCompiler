@@ -8,16 +8,29 @@ f.main:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
+	li	x10, 1
+# was:	li	_and_L_3_, 1
+	beq	x10, x0, l.and_false_5_
+# was:	beq	_and_L_3_, x0, l.and_false_5_
+	li	x10, 1
+# was:	li	_and_R_4_, 1
+	beq	x10, x0, l.and_false_5_
+# was:	beq	_and_R_4_, x0, l.and_false_5_
 	li	x18, 1
 # was:	li	_tmp_2_, 1
+	j	l.and_end_6_
+l.and_false_5_:
+	li	x18, 0
+# was:	li	_tmp_2_, 0
+l.and_end_6_:
 # 	mv	_mainres_1_,_tmp_2_
 	la	x10, s.true
 # was:	la	x10, s.true
-	bne	x18, x0, l.wBoolF_3_
-# was:	bne	_mainres_1_, x0, l.wBoolF_3_
+	bne	x18, x0, l.wBoolF_7_
+# was:	bne	_mainres_1_, x0, l.wBoolF_7_
 	la	x10, s.false
 # was:	la	x10, s.false
-l.wBoolF_3_:
+l.wBoolF_7_:
 	jal	p.putstring
 # was:	jal	p.putstring, x10
 	mv	x10, x18

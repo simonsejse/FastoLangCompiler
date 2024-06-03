@@ -10,15 +10,16 @@ f.main:
 	addi	x2, x2, -8
 	jal	p.getint
 # was:	jal	p.getint, 
-# 	mv	_let_a_2_,x10
 	mv	x11, x10
-# was:	mv	_times_L_4_, _let_a_2_
+# was:	mv	_let_a_2_, x10
 	li	x10, 10
-# was:	li	_times_R_5_, 10
+# was:	li	_let_b_3_, 10
+# 	mv	_times_L_5_,_let_a_2_
+# 	mv	_times_R_6_,_let_b_3_
 	mul	x18, x11, x10
-# was:	mul	_let_result_3_, _times_L_4_, _times_R_5_
-# 	mv	_tmp_6_,_let_result_3_
-# 	mv	_mainres_1_,_tmp_6_
+# was:	mul	_let_result_4_, _times_L_5_, _times_R_6_
+# 	mv	_tmp_7_,_let_result_4_
+# 	mv	_mainres_1_,_tmp_7_
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	jal	p.putint

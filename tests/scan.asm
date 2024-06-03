@@ -3,137 +3,168 @@
 	jal	f.main
 	jal	p.stop
 # User functions
+# Function incr
+f.incr:
+	sw	x1, -4(x2)
+	addi	x2, x2, -4
+# 	mv	_param_a_1_,x10
+# 	mv	_param_b_2_,x11
+# 	mv	_plus_L_4_,_param_a_1_
+# 	mv	_plus_R_5_,_param_b_2_
+	add	x10, x10, x11
+# was:	add	_incrres_3_, _plus_L_4_, _plus_R_5_
+# 	mv	x10,_incrres_3_
+	addi	x2, x2, 4
+	lw	x1, -4(x2)
+	jr	x1
+# Function writeInt
+f.writeInt:
+	sw	x1, -4(x2)
+	sw	x18, -8(x2)
+	addi	x2, x2, -8
+# 	mv	_param_n_6_,x10
+	mv	x18, x10
+# was:	mv	_tmp_8_, _param_n_6_
+# 	mv	_writeIntres_7_,_tmp_8_
+	mv	x10, x18
+# was:	mv	x10, _writeIntres_7_
+	jal	p.putint
+# was:	jal	p.putint, x10
+	mv	x10, x18
+# was:	mv	x10, _writeIntres_7_
+	addi	x2, x2, 8
+	lw	x18, -8(x2)
+	lw	x1, -4(x2)
+	jr	x1
 # Function main
 f.main:
 	sw	x1, -4(x2)
-	sw	x23, -28(x2)
 	sw	x22, -24(x2)
 	sw	x21, -20(x2)
 	sw	x20, -16(x2)
 	sw	x19, -12(x2)
 	sw	x18, -8(x2)
-	addi	x2, x2, -28
+	addi	x2, x2, -24
 	li	x10, 3
-# was:	li	_size_3_, 3
-	mv	x13, x3
-# was:	mv	_let_a_2_, x3
+# was:	li	_size_11_, 3
+	mv	x19, x3
+# was:	mv	_let_a_10_, x3
 	slli	x11, x10, 2
-# was:	slli	_tmp_6_, _size_3_, 2
+# was:	slli	_tmp_14_, _size_11_, 2
 	addi	x11, x11, 4
-# was:	addi	_tmp_6_, _tmp_6_, 4
+# was:	addi	_tmp_14_, _tmp_14_, 4
 	add	x3, x3, x11
-# was:	add	x3, x3, _tmp_6_
-	sw	x10, 0(x13)
-# was:	sw	_size_3_, 0(_let_a_2_)
-	addi	x11, x13, 4
-# was:	addi	_addr_4_, _let_a_2_, 4
-	li	x10, 1
-# was:	li	_tmp_5_, 1
-	sw	x10, 0(x11)
-# was:	sw	_tmp_5_, 0(_addr_4_)
-	addi	x11, x11, 4
-# was:	addi	_addr_4_, _addr_4_, 4
-	li	x10, 2
-# was:	li	_tmp_5_, 2
-	sw	x10, 0(x11)
-# was:	sw	_tmp_5_, 0(_addr_4_)
-	addi	x11, x11, 4
-# was:	addi	_addr_4_, _addr_4_, 4
-	li	x10, 3
-# was:	li	_tmp_5_, 3
-	sw	x10, 0(x11)
-# was:	sw	_tmp_5_, 0(_addr_4_)
-	addi	x11, x11, 4
-# was:	addi	_addr_4_, _addr_4_, 4
-	li	x16, 0
-# was:	li	_scan_ne_8_, 0
-# 	mv	_scan_arr_9_,_let_a_2_
-	lw	x11, 0(x13)
-# was:	lw	_scan_size_10_, 0(_scan_arr_9_)
-	addi	x13, x13, 4
-# was:	addi	_scan_arr_9_, _scan_arr_9_, 4
-	mv	x10, x3
-# was:	mv	_let_b_7_, x3
-	slli	x12, x11, 2
-# was:	slli	_tmp_20_, _scan_size_10_, 2
-	addi	x12, x12, 4
-# was:	addi	_tmp_20_, _tmp_20_, 4
-	add	x3, x3, x12
-# was:	add	x3, x3, _tmp_20_
+# was:	add	x3, x3, _tmp_14_
+	sw	x10, 0(x19)
+# was:	sw	_size_11_, 0(_let_a_10_)
+	addi	x10, x19, 4
+# was:	addi	_addr_12_, _let_a_10_, 4
+	li	x11, 1
+# was:	li	_tmp_13_, 1
 	sw	x11, 0(x10)
-# was:	sw	_scan_size_10_, 0(_let_b_7_)
-	mv	x12, x0
-# was:	mv	_scan_i_11_, x0
-# 	mv	_scan_acc_12_,_scan_ne_8_
-	mv	x14, x10
-# was:	mv	_scan_current_place_14_, _let_b_7_
-	addi	x14, x14, 4
-# was:	addi	_scan_current_place_14_, _scan_current_place_14_, 4
-l.scan_start_15_:
-	bge	x12, x11, l.scan_end_16_
-# was:	bge	_scan_i_11_, _scan_size_10_, l.scan_end_16_
-	lw	x15, 0(x13)
-# was:	lw	_scan_elem_13_, 0(_scan_arr_9_)
-# 	mv	_plus_L_18_,_scan_acc_12_
-# 	mv	_plus_R_19_,_scan_elem_13_
-	add	x16, x16, x15
-# was:	add	_fun_arg_res_17_, _plus_L_18_, _plus_R_19_
-# 	mv	_scan_acc_12_,_fun_arg_res_17_
-	sw	x16, 0(x14)
-# was:	sw	_scan_acc_12_, 0(_scan_current_place_14_)
-	addi	x14, x14, 4
-# was:	addi	_scan_current_place_14_, _scan_current_place_14_, 4
-	addi	x13, x13, 4
-# was:	addi	_scan_arr_9_, _scan_arr_9_, 4
-	addi	x12, x12, 1
-# was:	addi	_scan_i_11_, _scan_i_11_, 1
-	j	l.scan_start_15_
-l.scan_end_16_:
-# 	mv	_arr_22_,_let_b_7_
-	lw	x19, 0(x10)
-# was:	lw	_size_21_, 0(_arr_22_)
+# was:	sw	_tmp_13_, 0(_addr_12_)
+	addi	x10, x10, 4
+# was:	addi	_addr_12_, _addr_12_, 4
+	li	x11, 2
+# was:	li	_tmp_13_, 2
+	sw	x11, 0(x10)
+# was:	sw	_tmp_13_, 0(_addr_12_)
+	addi	x10, x10, 4
+# was:	addi	_addr_12_, _addr_12_, 4
+	li	x11, 3
+# was:	li	_tmp_13_, 3
+	sw	x11, 0(x10)
+# was:	sw	_tmp_13_, 0(_addr_12_)
+	addi	x10, x10, 4
+# was:	addi	_addr_12_, _addr_12_, 4
+	li	x10, 0
+# was:	li	_scan_ne_16_, 0
+# 	mv	_scan_arr_17_,_let_a_10_
+	lw	x20, 0(x19)
+# was:	lw	_scan_size_18_, 0(_scan_arr_17_)
+	addi	x19, x19, 4
+# was:	addi	_scan_arr_17_, _scan_arr_17_, 4
 	mv	x18, x3
-# was:	mv	_mainres_1_, x3
-	slli	x11, x19, 2
-# was:	slli	_tmp_31_, _size_21_, 2
+# was:	mv	_let_b_15_, x3
+	slli	x11, x20, 2
+# was:	slli	_tmp_26_, _scan_size_18_, 2
 	addi	x11, x11, 4
-# was:	addi	_tmp_31_, _tmp_31_, 4
+# was:	addi	_tmp_26_, _tmp_26_, 4
 	add	x3, x3, x11
-# was:	add	x3, x3, _tmp_31_
-	sw	x19, 0(x18)
-# was:	sw	_size_21_, 0(_mainres_1_)
-	addi	x20, x18, 4
-# was:	addi	_addrg_25_, _mainres_1_, 4
+# was:	add	x3, x3, _tmp_26_
+	sw	x20, 0(x18)
+# was:	sw	_scan_size_18_, 0(_let_b_15_)
 	mv	x21, x0
-# was:	mv	_i_26_, x0
-	addi	x23, x10, 4
-# was:	addi	_elem_23_, _arr_22_, 4
-l.loop_beg_27_:
-	bge	x21, x19, l.loop_end_28_
-# was:	bge	_i_26_, _size_21_, l.loop_end_28_
-	lw	x22, 0(x23)
-# was:	lw	_res_24_, 0(_elem_23_)
-	addi	x23, x23, 4
-# was:	addi	_elem_23_, _elem_23_, 4
-# 	mv	_tmp_30_,_res_24_
-# 	mv	_fun_arg_res_29_,_tmp_30_
-	mv	x10, x22
-# was:	mv	x10, _fun_arg_res_29_
-	jal	p.putint
-# was:	jal	p.putint, x10
-# 	mv	_res_24_,_fun_arg_res_29_
-	sw	x22, 0(x20)
-# was:	sw	_res_24_, 0(_addrg_25_)
-	addi	x20, x20, 4
-# was:	addi	_addrg_25_, _addrg_25_, 4
+# was:	mv	_scan_i_19_, x0
+# 	mv	_scan_acc_20_,_scan_ne_16_
+	mv	x22, x18
+# was:	mv	_scan_current_place_22_, _let_b_15_
+	addi	x22, x22, 4
+# was:	addi	_scan_current_place_22_, _scan_current_place_22_, 4
+l.scan_start_23_:
+	bge	x21, x20, l.scan_end_24_
+# was:	bge	_scan_i_19_, _scan_size_18_, l.scan_end_24_
+	lw	x11, 0(x19)
+# was:	lw	_scan_elem_21_, 0(_scan_arr_17_)
+# 	mv	x10,_scan_acc_20_
+# 	mv	x11,_scan_elem_21_
+	jal	f.incr
+# was:	jal	f.incr, x10 x11
+# 	mv	_tmp_25_,x10
+# 	mv	_scan_acc_20_,_tmp_25_
+	sw	x10, 0(x22)
+# was:	sw	_scan_acc_20_, 0(_scan_current_place_22_)
+	addi	x22, x22, 4
+# was:	addi	_scan_current_place_22_, _scan_current_place_22_, 4
+	addi	x19, x19, 4
+# was:	addi	_scan_arr_17_, _scan_arr_17_, 4
 	addi	x21, x21, 1
-# was:	addi	_i_26_, _i_26_, 1
-	j	l.loop_beg_27_
-l.loop_end_28_:
+# was:	addi	_scan_i_19_, _scan_i_19_, 1
+	j	l.scan_start_23_
+l.scan_end_24_:
 	mv	x10, x18
-# was:	mv	x10, _mainres_1_
-	addi	x2, x2, 28
-	lw	x23, -28(x2)
+# was:	mv	_arr_28_, _let_b_15_
+	lw	x18, 0(x10)
+# was:	lw	_size_27_, 0(_arr_28_)
+	mv	x19, x3
+# was:	mv	_mainres_9_, x3
+	slli	x11, x18, 2
+# was:	slli	_tmp_36_, _size_27_, 2
+	addi	x11, x11, 4
+# was:	addi	_tmp_36_, _tmp_36_, 4
+	add	x3, x3, x11
+# was:	add	x3, x3, _tmp_36_
+	sw	x18, 0(x19)
+# was:	sw	_size_27_, 0(_mainres_9_)
+	addi	x20, x19, 4
+# was:	addi	_addrg_31_, _mainres_9_, 4
+	mv	x21, x0
+# was:	mv	_i_32_, x0
+	addi	x22, x10, 4
+# was:	addi	_elem_29_, _arr_28_, 4
+l.loop_beg_33_:
+	bge	x21, x18, l.loop_end_34_
+# was:	bge	_i_32_, _size_27_, l.loop_end_34_
+	lw	x10, 0(x22)
+# was:	lw	_res_30_, 0(_elem_29_)
+	addi	x22, x22, 4
+# was:	addi	_elem_29_, _elem_29_, 4
+# 	mv	x10,_res_30_
+	jal	f.writeInt
+# was:	jal	f.writeInt, x10
+# 	mv	_tmp_35_,x10
+# 	mv	_res_30_,_tmp_35_
+	sw	x10, 0(x20)
+# was:	sw	_res_30_, 0(_addrg_31_)
+	addi	x20, x20, 4
+# was:	addi	_addrg_31_, _addrg_31_, 4
+	addi	x21, x21, 1
+# was:	addi	_i_32_, _i_32_, 1
+	j	l.loop_beg_33_
+l.loop_end_34_:
+	mv	x10, x19
+# was:	mv	x10, _mainres_9_
+	addi	x2, x2, 24
 	lw	x22, -24(x2)
 	lw	x21, -20(x2)
 	lw	x20, -16(x2)

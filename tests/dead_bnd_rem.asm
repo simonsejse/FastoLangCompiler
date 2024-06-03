@@ -10,24 +10,55 @@ f.main:
 	addi	x2, x2, -8
 	jal	p.getint
 # was:	jal	p.getint, 
-	mv	x12, x10
-# was:	mv	_let_y_2_, x10
-# 	mv	_plus_L_4_,_let_y_2_
-	li	x10, 2
-# was:	li	_plus_R_5_, 2
-	add	x10, x12, x10
-# was:	add	_let_x_3_, _plus_L_4_, _plus_R_5_
-# 	mv	_plus_L_7_,_let_y_2_
+# 	mv	_let_y_2_,x10
+	mv	x11, x10
+# was:	mv	_times_L_4_, _let_y_2_
+# 	mv	_times_R_5_,_let_y_2_
+	mul	x12, x11, x10
+# was:	mul	_let_x_3_, _times_L_4_, _times_R_5_
+# 	mv	_plus_L_9_,_let_x_3_
 	li	x11, 3
-# was:	li	_plus_R_8_, 3
+# was:	li	_plus_R_10_, 3
 	add	x11, x12, x11
-# was:	add	_let_y_6_, _plus_L_7_, _plus_R_8_
-# 	mv	_times_L_10_,_let_x_3_
-# 	mv	_times_R_11_,_let_y_6_
-	mul	x18, x10, x11
-# was:	mul	_let_v_9_, _times_L_10_, _times_R_11_
-# 	mv	_tmp_12_,_let_v_9_
-# 	mv	_mainres_1_,_tmp_12_
+# was:	add	_let_x_8_, _plus_L_9_, _plus_R_10_
+# 	mv	_plus_L_12_,_let_x_8_
+# 	mv	_plus_R_13_,_let_y_2_
+	add	x12, x11, x10
+# was:	add	_let_x_11_, _plus_L_12_, _plus_R_13_
+# 	mv	_plus_L_14_,_let_x_11_
+	li	x11, 8
+# was:	li	_plus_R_15_, 8
+	add	x0, x12, x11
+# was:	add	_let_x_7_, _plus_L_14_, _plus_R_15_
+# 	mv	_let_z_6_,_let_y_2_
+	mv	x12, x10
+# was:	mv	_plus_L_17_, _let_y_2_
+	li	x11, 2
+# was:	li	_plus_R_18_, 2
+	add	x11, x12, x11
+# was:	add	_let_x_16_, _plus_L_17_, _plus_R_18_
+# 	mv	_plus_L_22_,_let_x_16_
+	li	x12, 2
+# was:	li	_plus_R_23_, 2
+	add	x12, x11, x12
+# was:	add	_plus_L_20_, _plus_L_22_, _plus_R_23_
+	mv	x13, x10
+# was:	mv	_plus_R_21_, _let_z_6_
+	add	x0, x12, x13
+# was:	add	_let_w_19_, _plus_L_20_, _plus_R_21_
+	mv	x12, x10
+# was:	mv	_plus_L_26_, _let_y_2_
+	li	x10, 3
+# was:	li	_plus_R_27_, 3
+	add	x10, x12, x10
+# was:	add	_let_y_25_, _plus_L_26_, _plus_R_27_
+# 	mv	_times_L_28_,_let_x_16_
+# 	mv	_times_R_29_,_let_y_25_
+	mul	x10, x11, x10
+# was:	mul	_let_v_24_, _times_L_28_, _times_R_29_
+# 	mv	_tmp_30_,_let_v_24_
+	mv	x18, x10
+# was:	mv	_mainres_1_, _tmp_30_
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	jal	p.putint

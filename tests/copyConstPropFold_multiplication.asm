@@ -8,9 +8,31 @@ f.main:
 	sw	x1, -4(x2)
 	sw	x18, -8(x2)
 	addi	x2, x2, -8
-	li	x18, 0
-# was:	li	_tmp_2_, 0
-# 	mv	_mainres_1_,_tmp_2_
+	li	x11, 0
+# was:	li	_times_L_3_, 0
+	li	x10, 5
+# was:	li	_times_R_4_, 5
+	mul	x10, x11, x10
+# was:	mul	_let_x_2_, _times_L_3_, _times_R_4_
+	li	x11, 1
+# was:	li	_times_L_6_, 1
+# 	mv	_times_R_7_,_let_x_2_
+	mul	x0, x11, x10
+# was:	mul	_let_y_5_, _times_L_6_, _times_R_7_
+	li	x12, 5
+# was:	li	_times_L_9_, 5
+	li	x11, 1
+# was:	li	_times_R_10_, 1
+	mul	x12, x12, x11
+# was:	mul	_let_z_8_, _times_L_9_, _times_R_10_
+	li	x11, 1
+# was:	li	_times_L_12_, 1
+# 	mv	_times_R_13_,_let_z_8_
+	mul	x0, x11, x12
+# was:	mul	_let_l_11_, _times_L_12_, _times_R_13_
+# 	mv	_tmp_14_,_let_x_2_
+	mv	x18, x10
+# was:	mv	_mainres_1_, _tmp_14_
 	mv	x10, x18
 # was:	mv	x10, _mainres_1_
 	jal	p.putint
