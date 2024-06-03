@@ -165,10 +165,10 @@ l.false_33_:
 # was:	sb	_tmp_26_, 0(_addr_25_)
 	addi	x10, x10, 1
 # was:	addi	_addr_25_, _addr_25_, 1
-	li	x12, 13
-# was:	li	_div_L_36_, 13
-	li	x11, 13
-# was:	li	_div_R_37_, 13
+	li	x12, 2
+# was:	li	_div_L_36_, 2
+	li	x11, 3
+# was:	li	_div_R_37_, 3
 	bne	x11, x0, l.divZeroSafe_38_
 # was:	bne	_div_R_37_, x0, l.divZeroSafe_38_
 	li	x10, 8
