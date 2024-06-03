@@ -4,7 +4,7 @@ fun [char] writeCharArray([char] x) = map(writeChar, x)
 
 fun [char] main() = 
     let y = {'a', 'b', 'c'} in
-    let z = filter(fn bool (char x) => x == "b", y) in
+    let z = filter(fn bool (char x) => x == 'b', y) in
     writeCharArray(z)
 
 

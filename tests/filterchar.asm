@@ -83,138 +83,111 @@ l.loop_end_13_:
 	lw	x18, -8(x2)
 	lw	x1, -4(x2)
 	jr	x1
-# Function isCharB
-f.isCharB:
-	sw	x1, -4(x2)
-	addi	x2, x2, -4
-# 	mv	_param_x_16_,x10
-	mv	x12, x10
-# was:	mv	_eq_L_18_, _param_x_16_
-	li	x11, 98
-# was:	li	_eq_R_19_, 98
-	li	x10, 0
-# was:	li	_isCharBres_17_, 0
-	bne	x12, x11, l.false_20_
-# was:	bne	_eq_L_18_, _eq_R_19_, l.false_20_
-	li	x10, 1
-# was:	li	_isCharBres_17_, 1
-l.false_20_:
-# 	mv	x10,_isCharBres_17_
-	addi	x2, x2, 4
-	lw	x1, -4(x2)
-	jr	x1
 # Function main
 f.main:
 	sw	x1, -4(x2)
-	sw	x24, -32(x2)
-	sw	x23, -28(x2)
-	sw	x22, -24(x2)
-	sw	x21, -20(x2)
-	sw	x20, -16(x2)
-	sw	x19, -12(x2)
 	sw	x18, -8(x2)
-	addi	x2, x2, -32
+	addi	x2, x2, -8
 	li	x11, 3
-# was:	li	_size_23_, 3
-	mv	x19, x3
-# was:	mv	_let_y_22_, x3
+# was:	li	_size_18_, 3
+	mv	x12, x3
+# was:	mv	_let_y_17_, x3
 	addi	x10, x11, 3
-# was:	addi	_tmp_26_, _size_23_, 3
+# was:	addi	_tmp_21_, _size_18_, 3
 	andi	x10, x10, -4
-# was:	andi	_tmp_26_, _tmp_26_, -4
+# was:	andi	_tmp_21_, _tmp_21_, -4
 	addi	x10, x10, 4
-# was:	addi	_tmp_26_, _tmp_26_, 4
+# was:	addi	_tmp_21_, _tmp_21_, 4
 	add	x3, x3, x10
-# was:	add	x3, x3, _tmp_26_
-	sw	x11, 0(x19)
-# was:	sw	_size_23_, 0(_let_y_22_)
-	addi	x10, x19, 4
-# was:	addi	_addr_24_, _let_y_22_, 4
+# was:	add	x3, x3, _tmp_21_
+	sw	x11, 0(x12)
+# was:	sw	_size_18_, 0(_let_y_17_)
+	addi	x10, x12, 4
+# was:	addi	_addr_19_, _let_y_17_, 4
 	li	x11, 97
-# was:	li	_tmp_25_, 97
+# was:	li	_tmp_20_, 97
 	sb	x11, 0(x10)
-# was:	sb	_tmp_25_, 0(_addr_24_)
+# was:	sb	_tmp_20_, 0(_addr_19_)
 	addi	x10, x10, 1
-# was:	addi	_addr_24_, _addr_24_, 1
+# was:	addi	_addr_19_, _addr_19_, 1
 	li	x11, 98
-# was:	li	_tmp_25_, 98
+# was:	li	_tmp_20_, 98
 	sb	x11, 0(x10)
-# was:	sb	_tmp_25_, 0(_addr_24_)
+# was:	sb	_tmp_20_, 0(_addr_19_)
 	addi	x10, x10, 1
-# was:	addi	_addr_24_, _addr_24_, 1
+# was:	addi	_addr_19_, _addr_19_, 1
 	li	x11, 99
-# was:	li	_tmp_25_, 99
+# was:	li	_tmp_20_, 99
 	sb	x11, 0(x10)
-# was:	sb	_tmp_25_, 0(_addr_24_)
+# was:	sb	_tmp_20_, 0(_addr_19_)
 	addi	x10, x10, 1
-# was:	addi	_addr_24_, _addr_24_, 1
-# 	mv	_filter_arr_28_,_let_y_22_
-	lw	x20, 0(x19)
-# was:	lw	_filter_size_29_, 0(_filter_arr_28_)
-	mv	x18, x3
-# was:	mv	_let_z_27_, x3
-	addi	x10, x20, 3
-# was:	addi	_tmp_39_, _filter_size_29_, 3
-	andi	x10, x10, -4
-# was:	andi	_tmp_39_, _tmp_39_, -4
-	addi	x10, x10, 4
-# was:	addi	_tmp_39_, _tmp_39_, 4
-	add	x3, x3, x10
-# was:	add	x3, x3, _tmp_39_
-	sw	x20, 0(x18)
-# was:	sw	_filter_size_29_, 0(_let_z_27_)
-	addi	x19, x19, 1
-# was:	addi	_filter_arr_28_, _filter_arr_28_, 1
-	mv	x21, x0
-# was:	mv	_filter_i_33_, x0
-	mv	x24, x0
-# was:	mv	_filter_counter_32_, x0
-	mv	x23, x18
-# was:	mv	_filter_current_place_34_, _let_z_27_
-	addi	x23, x23, 1
-# was:	addi	_filter_current_place_34_, _filter_current_place_34_, 1
-l.filter_start_35_:
-	bge	x21, x20, l.filter_end_37_
-# was:	bge	_filter_i_33_, _filter_size_29_, l.filter_end_37_
-	lbu	x22, 0(x19)
-# was:	lbu	_filter_elem_30_, 0(_filter_arr_28_)
-	mv	x10, x22
-# was:	mv	x10, _filter_elem_30_
-	jal	f.isCharB
-# was:	jal	f.isCharB, x10
-# 	mv	_tmp_38_,x10
-# 	mv	_filter_predicate_res_31_,_tmp_38_
-	beq	x10, x0, l.filter_skip_36_
-# was:	beq	_filter_predicate_res_31_, x0, l.filter_skip_36_
-	sb	x22, 0(x23)
-# was:	sb	_filter_elem_30_, 0(_filter_current_place_34_)
-	addi	x23, x23, 1
-# was:	addi	_filter_current_place_34_, _filter_current_place_34_, 1
-	addi	x24, x24, 1
-# was:	addi	_filter_counter_32_, _filter_counter_32_, 1
-l.filter_skip_36_:
-	addi	x19, x19, 1
-# was:	addi	_filter_arr_28_, _filter_arr_28_, 1
-	addi	x21, x21, 1
-# was:	addi	_filter_i_33_, _filter_i_33_, 1
-	j	l.filter_start_35_
-l.filter_end_37_:
-	sw	x24, 0(x18)
-# was:	sw	_filter_counter_32_, 0(_let_z_27_)
-	mv	x10, x18
-# was:	mv	_arg_40_, _let_z_27_
-# 	mv	x10,_arg_40_
+# was:	addi	_addr_19_, _addr_19_, 1
+# 	mv	_filter_arr_23_,_let_y_17_
+	lw	x10, 0(x12)
+# was:	lw	_filter_size_24_, 0(_filter_arr_23_)
+	mv	x11, x3
+# was:	mv	_let_z_22_, x3
+	addi	x13, x10, 3
+# was:	addi	_tmp_37_, _filter_size_24_, 3
+	andi	x13, x13, -4
+# was:	andi	_tmp_37_, _tmp_37_, -4
+	addi	x13, x13, 4
+# was:	addi	_tmp_37_, _tmp_37_, 4
+	add	x3, x3, x13
+# was:	add	x3, x3, _tmp_37_
+	sw	x10, 0(x11)
+# was:	sw	_filter_size_24_, 0(_let_z_22_)
+	addi	x12, x12, 1
+# was:	addi	_filter_arr_23_, _filter_arr_23_, 1
+	mv	x15, x0
+# was:	mv	_filter_i_28_, x0
+	mv	x14, x0
+# was:	mv	_filter_counter_27_, x0
+	mv	x13, x11
+# was:	mv	_filter_current_place_29_, _let_z_22_
+	addi	x13, x13, 1
+# was:	addi	_filter_current_place_29_, _filter_current_place_29_, 1
+l.filter_start_30_:
+	bge	x15, x10, l.filter_end_32_
+# was:	bge	_filter_i_28_, _filter_size_24_, l.filter_end_32_
+	lbu	x18, 0(x12)
+# was:	lbu	_filter_elem_25_, 0(_filter_arr_23_)
+# 	mv	_eq_L_34_,_filter_elem_25_
+	li	x17, 98
+# was:	li	_eq_R_35_, 98
+	li	x16, 0
+# was:	li	_fun_arg_res_33_, 0
+	bne	x18, x17, l.false_36_
+# was:	bne	_eq_L_34_, _eq_R_35_, l.false_36_
+	li	x16, 1
+# was:	li	_fun_arg_res_33_, 1
+l.false_36_:
+# 	mv	_filter_predicate_res_26_,_fun_arg_res_33_
+	beq	x16, x0, l.filter_skip_31_
+# was:	beq	_filter_predicate_res_26_, x0, l.filter_skip_31_
+	sb	x18, 0(x13)
+# was:	sb	_filter_elem_25_, 0(_filter_current_place_29_)
+	addi	x13, x13, 1
+# was:	addi	_filter_current_place_29_, _filter_current_place_29_, 1
+	addi	x14, x14, 1
+# was:	addi	_filter_counter_27_, _filter_counter_27_, 1
+l.filter_skip_31_:
+	addi	x12, x12, 1
+# was:	addi	_filter_arr_23_, _filter_arr_23_, 1
+	addi	x15, x15, 1
+# was:	addi	_filter_i_28_, _filter_i_28_, 1
+	j	l.filter_start_30_
+l.filter_end_32_:
+	sw	x14, 0(x11)
+# was:	sw	_filter_counter_27_, 0(_let_z_22_)
+	mv	x10, x11
+# was:	mv	_arg_38_, _let_z_22_
+# 	mv	x10,_arg_38_
 	jal	f.writeCharArray
 # was:	jal	f.writeCharArray, x10
-# 	mv	_mainres_21_,x10
-# 	mv	x10,_mainres_21_
-	addi	x2, x2, 32
-	lw	x24, -32(x2)
-	lw	x23, -28(x2)
-	lw	x22, -24(x2)
-	lw	x21, -20(x2)
-	lw	x20, -16(x2)
-	lw	x19, -12(x2)
+# 	mv	_mainres_16_,x10
+# 	mv	x10,_mainres_16_
+	addi	x2, x2, 8
 	lw	x18, -8(x2)
 	lw	x1, -4(x2)
 	jr	x1
